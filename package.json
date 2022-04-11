@@ -2,16 +2,19 @@
   "name": "markets",
   "version": "1.0.0",
   "description": "",
-  "main": "index.html",
+  "default": "index.html",
   "scripts": {
-    "start": "parcel index.html"
+    "start": "parcel index.html",
+    "bulid": "parcel build src/index.html -d build"
   },
-  "author": "",
+  "author": "Himanshu Bisht",
   "license": "ISC",
   "devDependencies": {
-    "cssnano": "^5.1.7",
+    "cssnano": "^4.1.11",
     "node-sass": "^7.0.1",
-    "parcel": "^2.4.1",
-    "postcss": "^8.4.12"
+    "parcel": "^2.4.1"
+  },
+  "dependencies": {
+    "modal.js": "^1.1.7"
   }
 }
