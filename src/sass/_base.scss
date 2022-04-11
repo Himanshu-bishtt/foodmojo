@@ -1,0 +1,68 @@
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+// Remove default margin all elements
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+html,
+body {
+  font-size: 62.5%; // 1rem - 10px;
+  // font-family: 'Nunito', sans-serif;
+  font-family: 'Raleway', sans-serif;
+  color: #2d3439;
+}
+
+body {
+}
+
+a {
+  text-decoration: none;
+  color: #333;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  overflow-wrap: break-word;
+}
+
+// Remove list styles on ul
+ul {
+  list-style: none;
+}
+
+// Improve media defaults
+img,
+video,
+picture,
+canvas,
+svg,
+iframe {
+  max-width: 100%;
+  display: block;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  border: none;
+  outline: none;
+  color: inherit;
+}
