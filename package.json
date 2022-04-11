@@ -1,0 +1,17 @@
+{
+  "name": "markets",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.html",
+  "scripts": {
+    "start": "parcel index.html"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "cssnano": "^5.1.7",
+    "node-sass": "^7.0.1",
+    "parcel": "^2.4.1",
+    "postcss": "^8.4.12"
+  }
+}
