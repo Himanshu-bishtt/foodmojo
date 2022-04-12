@@ -1,0 +1,14 @@
+.header {
+  display: flex;
+  justify-content: center;
+  position: sticky;
+  top: 0;
+  padding: 1rem 0rem;
+}
+
+.header__logo {
+}
+
+.header__logo--image {
+  width: 20rem;
+}

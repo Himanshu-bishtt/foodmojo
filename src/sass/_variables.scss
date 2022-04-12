@@ -1,0 +1,14 @@
+[data-theme='dark'] {
+  display: none;
+}
+
+[data-theme='light'] {
+  body {
+    background: #f1f4f8;
+    // background: #f1f1f1;
+  }
+
+  .header {
+    background: #fff;
+  }
+}
