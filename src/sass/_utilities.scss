@@ -1,7 +1,11 @@
 .container {
-  width: 80vw;
+  width: 90vw;
   margin: 0 auto;
   // padding: 0rem 10rem;
+}
+
+.mg-tiny {
+  margin: 1rem 0;
 }
 
 .mg-small {
@@ -18,4 +22,8 @@
 
 .mg-huge {
   margin: 6rem 0;
+}
+
+.heading--secondary {
+  font-size: 3rem;
 }
