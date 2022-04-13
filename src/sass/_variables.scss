@@ -1,3 +1,14 @@
+$color-primary: #fd5353;
+$color-secondary: #ffd93d;
+$color-tertiary: #6bcb77;
+$color-other: #4d96ff;
+
+$color-white: #fff;
+$color-black: #000;
+
+$color-light--1: #f3f3f3;
+$color-dark--1: #333;
+
 [data-theme='dark'] {
   display: none;
 }
@@ -9,6 +20,6 @@
   }
 
   .header {
-    background: #fff;
+    background: $color-white;
   }
 }
