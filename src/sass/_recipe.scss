@@ -29,7 +29,7 @@
       );
       height: 100%;
       width: 100%;
-      transform: scale(3) translateX(-75%) translateY(-75%) rotate(-28deg);
+      transform: scale(2) translateX(-75%) translateY(-75%) rotate(-28deg);
       transition: transform 1.5s cubic-bezier(0.2, 1, 0.3, 1);
     }
 
@@ -45,6 +45,11 @@
 
     &:hover .grid__item--image {
       transform: scale(1.3);
+    }
+
+    &:hover .grid__item--tag {
+      z-index: 0;
+      opacity: 0;
     }
   }
 }
@@ -80,4 +85,7 @@
   top: 4%;
   right: 4%;
   border-radius: 20px;
+  z-index: 1;
+  opacity: 1;
+  transition: all 1s cubic-bezier(0.2, 1, 0.3, 1);
 }
