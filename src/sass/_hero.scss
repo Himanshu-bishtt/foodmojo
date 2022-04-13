@@ -1,0 +1,35 @@
+.hero {
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+    url('../img/hero.jpg');
+  background-size: cover;
+
+  height: 60vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  &__content {
+    color: #fff;
+    font-size: 3rem;
+    text-align: center;
+
+    &--heading {
+      font-size: 8rem;
+      // font-weight: bolder;
+      font-family: 'Montserrat', sans-serif;
+      // letter-spacing: 2px;
+    }
+
+    &--tagline {
+      font-weight: bold;
+    }
+  }
+
+  &__form {
+    display: flex;
+    background-color: blue;
+    color: #fff;
+  }
+}
