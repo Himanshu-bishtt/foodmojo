@@ -12,7 +12,7 @@
       rel="stylesheet"
     />
     <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;900&display=swap"
       rel="stylesheet"
     />
 
@@ -34,15 +34,15 @@
       </div>
     </header>
 
-    <section class="section hero">
+    <section class="section hero" id="section--1">
       <div class="hero__content">
-        <div class="hero__content--heading mg-small">FoodMojo</div>
+        <div class="hero__content--heading mg-2">FoodMojo</div>
         <div class="hero__content--tagline">
           Discover the best food, recipes and ingredients
         </div>
       </div>
 
-      <div class="hero__form mg-huge">
+      <div class="hero__form mg-5">
         <div class="hero__form--location">
           <img src="icons/location-48.png" alt="location icon" />
           <p class="hero__form--user-location">Noida, India</p>
@@ -60,10 +60,10 @@
       </div>
     </section>
 
-    <section class="section recipe mg-large">
+    <section class="section gallery mg-10" id="section--2">
       <div class="container">
-        <div class="recipe__grid">
-          <div class="recipe__grid--item recipe__grid--item-1">
+        <div class="gallery__grid">
+          <div class="gallery__grid--item gallery__grid--item-1">
             <p class="grid__item--tag">Today's Special</p>
             <img
               class="grid__item--image"
@@ -73,13 +73,13 @@
 
             <div class="grid__item--info">
               <h2 class="heading--secondary">Super Pizza Recipe</h2>
-              <p class="mg-tiny">
+              <p class="mg-1">
                 Some text about the recipe, ingredients, author and more!
               </p>
             </div>
           </div>
 
-          <div class="recipe__grid--item recipe__grid--item-2">
+          <div class="gallery__grid--item gallery__grid--item-2">
             <p class="grid__item--tag">Quick & Easy</p>
 
             <img
@@ -90,13 +90,13 @@
 
             <div class="grid__item--info">
               <h2 class="heading--secondary">Italian Pasta Recipe</h2>
-              <p class="mg-tiny">
+              <p class="mg-1">
                 Some text about the recipe, ingredients, author and more!
               </p>
             </div>
           </div>
 
-          <div class="recipe__grid--item recipe__grid--item-3">
+          <div class="gallery__grid--item gallery__grid--item-3">
             <p class="grid__item--tag">Everyone's fav</p>
 
             <img
@@ -107,13 +107,13 @@
 
             <div class="grid__item--info">
               <h2 class="heading--secondary">Pastrami Cheese Burger Recipe</h2>
-              <p class="mg-tiny">
+              <p class="mg-1">
                 Some text about the recipe, ingredients, author and more!
               </p>
             </div>
           </div>
 
-          <div class="recipe__grid--item recipe__grid--item-4">
+          <div class="gallery__grid--item gallery__grid--item-4">
             <p class="grid__item--tag">Worth the effort</p>
 
             <img
@@ -124,12 +124,85 @@
 
             <div class="grid__item--info">
               <h2 class="heading--secondary">Fried Chicked Noodles Recipe</h2>
-              <p class="mg-tiny">
+              <p class="mg-1">
                 Some text about the recipe, ingredients, author and more!
               </p>
             </div>
           </div>
           <!-- <div class="recipe__grid--item recipe__grid--item-5">Item 5</div> -->
+        </div>
+      </div>
+    </section>
+
+    <section class="section recipe-section mg-10" id="section--3">
+      <div class="container">
+        <h2 class="heading--primary text-center">Recipes for you</h2>
+        <p class="mg-1 text-center fs-1-5">Fast, fresh and foolproof</p>
+
+        <!-- recipes image and content -->
+        <div class="recipes mg-8">
+          <div class="recipes__tab--container mg-5">
+            <button class="btn recipes__tab recipes__tab--1" data-tab="1">
+              <span>Steak</span>
+            </button>
+            <button class="btn recipes__tab recipes__tab--2" data-tab="2">
+              <span>Pizza</span>
+            </button>
+            <button
+              class="btn recipes__tab recipes__tab--3 recipes__tab--active"
+              data-tab="3"
+            >
+              <span>Noodles</span>
+            </button>
+          </div>
+
+          <!-- <div
+            class="recipes__content--container recipes__content--container-1 recipes__content--container-all mg-7"
+          >
+            
+          </div> -->
+
+          <div class="recipes__content mg-7">
+            <!-- 1 -->
+            <div class="recipe">
+              <img
+                class="recipe__image"
+                src="https://images.unsplash.com/photo-1565976469782-7c92daebc42e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
+                alt=""
+              />
+              <h3 class="recipe__name heading--tertiary mg-1">Recipe Name</h3>
+            </div>
+
+            <!-- 2 -->
+            <div class="recipe">
+              <img
+                class="recipe__image"
+                src="https://images.unsplash.com/photo-1565976469782-7c92daebc42e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
+                alt=""
+              />
+              <h3 class="recipe__name heading--tertiary mg-1">Recipe Name</h3>
+            </div>
+
+            <!-- 3 -->
+            <div class="recipe">
+              <img
+                class="recipe__image"
+                src="https://images.unsplash.com/photo-1565976469782-7c92daebc42e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
+                alt=""
+              />
+              <h3 class="recipe__name heading--tertiary mg-1">Recipe Name</h3>
+            </div>
+
+            <!-- 4 -->
+            <div class="recipe">
+              <img
+                class="recipe__image"
+                src="https://images.unsplash.com/photo-1565976469782-7c92daebc42e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
+                alt=""
+              />
+              <h3 class="recipe__name heading--tertiary mg-1">Recipe Name</h3>
+            </div>
+          </div>
         </div>
       </div>
     </section>

@@ -2,7 +2,8 @@
   background: linear-gradient(to right, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
     url('../img/hero.jpg');
   background-size: cover;
-  background-position-y: -3rem;
+  // background-position-y: -3rem;
+  background-repeat: no-repeat;
 
   height: 60vh;
 
@@ -22,6 +23,7 @@
       filter: blur(3px);
       letter-spacing: -2px;
       font-family: 'Montserrat', sans-serif;
+      font-weight: bold;
       transition: all 0.5s;
 
       &:hover {

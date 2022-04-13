@@ -19,15 +19,15 @@ html,
 body {
   font-size: 62.5%; // 1rem - 10px;
   font-family: 'Raleway', sans-serif;
-  color: #2d3439;
+  // color: $color-dark--2;
 }
 
-body {
-}
+// body {
+// }
 
 a {
   text-decoration: none;
-  color: #333;
+  color: $color-dark--1;
 }
 
 h1,

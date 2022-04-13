@@ -4,33 +4,93 @@
   // padding: 0rem 10rem;
 }
 
-.mg-tiny {
+// margins
+
+.mg-1 {
   margin: 1rem 0;
 }
 
-.mg-small {
+.mg-2 {
   margin: 2rem 0;
 }
 
-.mg-medium {
+.mg-3 {
+  margin: 3rem 0;
+}
+
+.mg-4 {
   margin: 4rem 0;
 }
 
-.mg-large {
+.mg-5 {
   margin: 5rem 0;
 }
 
-.mg-huge {
+.mg-6 {
   margin: 6rem 0;
 }
 
-.heading--secondary {
-  font-size: 3rem;
+.mg-7 {
+  margin: 7rem 0;
+}
+
+.mg-8 {
+  margin: 8rem 0;
+}
+
+.mg-9 {
+  margin: 8rem 0;
+}
+
+.mg-10 {
+  margin: 10rem 0;
+}
+
+// font sizes
+
+.fs-1 {
+  font-size: 1rem;
+}
+
+.fs-1-5 {
+  font-size: 1.5rem;
+}
+
+.fs-2 {
+  font-size: 2rem;
+}
+
+// font weight
+.fw {
+  font-weight: bold;
+}
+
+.heading--primary {
+  font-size: 4rem;
   text-transform: uppercase;
+  font-family: 'Montserrat', sans-serif;
+  color: $color-dark--1;
+  // font-weight: 600;
+}
+
+.heading--secondary {
+  font-size: 2.5rem;
+  text-transform: uppercase;
+  // font-family: 'Montserrat', sans-serif;
+  // font-weight: 600;
+}
+
+.heading--tertiary {
+  font-size: 1.8rem;
+  color: $color-dark--1;
 }
 
 .text-uppercase {
   text-transform: uppercase;
+}
+
+.text-center {
+  text-align: center;
 }
 
 @keyframes rotate {
@@ -40,4 +100,13 @@
   100% {
     transform: rotateY(180deg);
   }
+}
+
+.btn {
+  padding: 1rem 3rem;
+  font-size: 1.5rem;
+  border-radius: 20px;
+  margin: 0rem 0.5rem;
+  font-weight: bold;
+  cursor: pointer;
 }

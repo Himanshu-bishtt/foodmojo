@@ -9,16 +9,20 @@ $color-black: #000;
 $color-light--1: #f3f3f3;
 $color-light--2: #808080;
 $color-dark--1: #333;
+$color-dark--2: #2d3439;
 
 [data-theme='dark'] {
-  display: none;
+  body {
+    background: $color-dark--2;
+    color: #fff;
+  }
 }
 
 [data-theme='light'] {
-  body {
-    // background: #f1f4f8;
-    // background: #f1f1f1;
-  }
+  // body {
+  //   // background: #f1f4f8;
+  //   // background: #f1f1f1;
+  // }
 
   .header {
     background: $color-white;
