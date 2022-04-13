@@ -5,8 +5,8 @@
     align-items: center;
   }
 
-  &__content--container {
-  }
+  // &__content--container {
+  // }
 
   &__content {
     display: grid;
@@ -19,13 +19,27 @@
 }
 
 .recipe {
+  cursor: pointer;
+
+  &:hover .recipe__name {
+    // text-decoration: underline;
+    color: $color-primary;
+  }
+
+  &:hover .recipe__image {
+    box-shadow: 0rem 1rem 1rem rgba(0, 0, 0, 0.3);
+    transform: scale(1.01);
+  }
 }
 
 .recipe__image {
   border-radius: 1rem;
+  transition: all 0.5s;
 }
 
 .recipe__name {
+  text-align: center;
+  transition: all 0.5s;
 }
 
 .recipes__tab--active {
