@@ -1,0 +1,66 @@
+.upload__form {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 4rem 6rem;
+  margin: 5rem 10rem 8rem 10rem;
+  font-size: 2rem;
+
+  &--column {
+    display: grid;
+    grid-template-columns: 1fr 2.8fr;
+    align-items: center;
+    gap: 1.5rem;
+
+    & label {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: inherit;
+    }
+
+    & input {
+      font-size: 1.5rem;
+      padding: 1.4rem 1rem;
+      border: 1px solid #ddd;
+      border-radius: 0.5rem;
+      transition: all 0.2s;
+
+      &::placeholder {
+        color: $color-light--2;
+      }
+
+      &:focus {
+        outline: none;
+        border: 1px solid $color-secondary;
+        background-color: $color-light--1;
+      }
+    }
+  }
+
+  &--heading {
+    color: $color-dark--1;
+    font-size: 2.25rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    grid-column: 1/-1;
+    // text-transform: none;
+  }
+
+  &--btn {
+    display: flex;
+    grid-column: 1 / -1;
+    justify-self: center;
+    transition: all 0.5s;
+    text-transform: capitalize;
+
+    &:hover {
+      background: $color-secondary;
+      box-shadow: 0rem 1rem 1rem rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  &--btn img {
+    height: 2rem;
+    margin-right: 0.3rem;
+  }
+}
