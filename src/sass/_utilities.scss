@@ -69,6 +69,11 @@
   font-weight: bold;
 }
 
+// background
+.bg-light {
+  background-color: $color-light--1;
+}
+
 .heading--primary {
   font-size: 4rem;
   text-transform: uppercase;

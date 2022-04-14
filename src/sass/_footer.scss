@@ -1,0 +1,26 @@
+.footer__content {
+  height: 8rem;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &--heading {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 3rem;
+    color: $color-dark--1;
+    position: relative;
+    background-image: linear-gradient(
+      to right,
+      rgba($color-primary, 1),
+      rgba($color-primary, 0.5)
+    );
+    color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
+  }
+
+  &--btns {
+    display: flex;
+  }
+}
