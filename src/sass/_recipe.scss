@@ -39,6 +39,9 @@
 
 .recipe__name {
   text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
   transition: all 0.5s;
 }
 
