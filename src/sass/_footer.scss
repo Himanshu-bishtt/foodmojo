@@ -9,18 +9,31 @@
     font-family: 'Montserrat', sans-serif;
     font-size: 3rem;
     color: $color-dark--1;
-    position: relative;
-    background-image: linear-gradient(
-      to right,
-      rgba($color-primary, 1),
-      rgba($color-primary, 0.5)
-    );
-    color: transparent;
-    background-clip: text;
-    -webkit-background-clip: text;
+    // position: relative;
+    // background-image: linear-gradient(
+    //   to right,
+    //   rgba($color-primary, 1),
+    //   rgba($color-primary, 0.5)
+    // );
+    // color: transparent;
+    // background-clip: text;
+    // -webkit-background-clip: text;
   }
 
-  &--btns {
+  &--btn {
     display: flex;
+    align-items: center;
+  }
+
+  .btn__language select,
+  .btn__theme select {
+    padding: 0.3rem 0.5rem;
+    font-size: 1.5rem;
+    margin: 0rem 0.5rem;
+    border-radius: 5px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    color: $color-dark--1;
+    cursor: pointer;
   }
 }
