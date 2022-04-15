@@ -62,10 +62,11 @@
         font-size: 1.3rem;
         margin-left: 0.5rem;
         color: $color-primary;
+        display: none;
       }
 
       &-btn {
-        padding: 1rem 0.4rem;
+        padding: 0rem 0.4rem;
         font-size: 1.3rem;
         cursor: pointer;
         border-radius: 10px;
