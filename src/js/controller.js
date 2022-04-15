@@ -6,9 +6,9 @@ import searchView from './views/searchView';
 
 import { MODAL_CLOSE_SEC } from './config';
 
-if (module.hot) {
-  module.hot.accept();
-}
+// if (module.hot) {
+//   module.hot.accept();
+// }
 
 const controlHeroView = function () {
   heroView.renderAnimation();
@@ -28,6 +28,7 @@ const controlSearchResults = async function () {
 const init = function () {
   controlHeroView();
   searchView.addHandlerSearch(controlSearchResults);
+  modal.loadUserGeolocation();
 };
 
 init();

@@ -8,6 +8,7 @@ export const state = {
     query: [],
     results: [],
   },
+  userLocation: {},
 };
 
 export const loadSearchResults = async function (query) {
@@ -18,4 +19,29 @@ export const loadSearchResults = async function (query) {
   } catch (err) {
     throw err;
   }
+};
+
+export const loadUserGeolocation = async function () {
+  try {
+    const data = await new Promise((resolve, reject) => {
+      navigator.geolocation.getCurrentPosition(resolve, reject);
+    });
+
+    state.userLocation.lat = data.coords.latitude;
+    state.userLocation.lng = data.coords.longitude;
+  } catch (err) {
+    state.userLocation.message = err.message;
+  }
+
+  console.log(state.userLocation);
+
+  // navigator.geolocation.getCurrentPosition(
+  //   success => {
+  //     state.userLocation.lat = success.coords.latitude;
+  //     state.userLocation.lng = success.coords.longitude;
+  //   },
+  //   error => {
+  //     state.userLocation.message = error.message;
+  //   }
+  // );
 };
