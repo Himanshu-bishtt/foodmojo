@@ -34,6 +34,7 @@ const controlUserLocation = async function () {
     heroView.renderUserLocation();
   } catch (err) {
     heroView.renderErrorPopup(`${err.message}. Please reset permission`);
+    heroView.renderLocationErrorOnCancel();
   }
 };
 

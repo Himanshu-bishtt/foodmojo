@@ -37,7 +37,7 @@ class HeroView {
     `;
     this._parentElement
       .querySelector('.hero__form--location')
-      .insertAdjacentHTML('afterbegin', spinner);
+      .insertAdjacentHTML('beforeend', spinner);
   }
 
   renderUserLocation() {
@@ -45,6 +45,17 @@ class HeroView {
     const html = `
       <img src="/location-48.5100a1b2.png" alt="location icon" />
       <p class="hero__form--location-user">Noida, India</p>
+    `;
+    this._parentElement
+      .querySelector('.hero__form--location')
+      .insertAdjacentHTML('beforeend', html);
+  }
+
+  renderLocationErrorOnCancel() {
+    this._parentElement.querySelector('.hero__form--location').innerHTML = '';
+    const html = `
+      <img src="/location-48.5100a1b2.png" alt="location icon" />
+      <p class="hero__form--location-user">Location denied</p>
     `;
     this._parentElement
       .querySelector('.hero__form--location')

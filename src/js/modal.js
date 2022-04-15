@@ -27,8 +27,9 @@ export const loadUserGeolocation = async function () {
       navigator.geolocation.getCurrentPosition(resolve, reject);
     });
 
-    state.userLocation.lat = data.coords.latitude;
-    state.userLocation.lng = data.coords.longitude;
+    const { latitude: lat, longitude: lng } = data.coords;
+    state.userLocation.lat = lat;
+    state.userLocation.lng = lng;
   } catch (err) {
     state.userLocation.message = err.message;
     throw err;
