@@ -25,10 +25,22 @@ const controlSearchResults = async function () {
   }
 };
 
+const controlUserLocation = async function () {
+  try {
+    heroView.renderSpinner();
+
+    await modal.loadUserGeolocation();
+
+    heroView.renderUserLocation();
+  } catch (err) {
+    heroView.renderErrorPopup(`${err.message}. Please reset permission`);
+  }
+};
+
 const init = function () {
   controlHeroView();
   searchView.addHandlerSearch(controlSearchResults);
-  modal.loadUserGeolocation();
+  heroView.addHandlerLocation(controlUserLocation);
 };
 
 init();

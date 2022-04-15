@@ -31,6 +31,7 @@ export const loadUserGeolocation = async function () {
     state.userLocation.lng = data.coords.longitude;
   } catch (err) {
     state.userLocation.message = err.message;
+    throw err;
   }
 
   console.log(state.userLocation);

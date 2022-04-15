@@ -15,6 +15,9 @@
     "parcel": "^2.4.1"
   },
   "dependencies": {
-    "regenerator-runtime": "^0.13.9"
+    "dist": "^0.1.2",
+    "icons": "^1.0.0",
+    "regenerator-runtime": "^0.13.9",
+    "src": "^1.1.2"
   }
 }

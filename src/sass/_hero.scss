@@ -55,14 +55,13 @@
 
       img {
         height: 2rem;
-        animation: rotate 1s ease infinite;
+        // animation: rotate 1s ease infinite;
       }
 
       &-user {
         font-size: 1.3rem;
         margin-left: 0.5rem;
         color: $color-primary;
-        display: none;
       }
 
       &-btn {
@@ -73,6 +72,13 @@
         color: $color-primary;
         background-color: transparent;
       }
+    }
+
+    &--spinner {
+      height: 2rem;
+      width: 2rem;
+      fill: $color-primary;
+      animation: loader 2s infinite linear;
     }
 
     &--form {
