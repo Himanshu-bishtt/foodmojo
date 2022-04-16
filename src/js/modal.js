@@ -8,17 +8,17 @@ export const state = {
     query: [],
     results: [],
   },
-  userLocation: {
-    // userCoords: {},
-    // userData: {},
-  },
+  userLocation: {},
+  recommenedRecipes: [],
 };
 
 export const loadSearchResults = async function (query) {
   try {
     const results = await loadAJAX(`${API_URL}?search=${query}`);
     state.search.query.push(query);
-    state.search.results = results;
+    state.search.results.push(results);
+
+    persistStateToLocalStorage();
   } catch (err) {
     throw err;
   }
@@ -60,4 +60,40 @@ export const loadUserLocation = async function () {
     state.userLocation.message = err.message;
     throw err;
   }
+
+  persistStateToLocalStorage();
+};
+
+// export const loadRecommenedRecipes = async function () {
+//   try {
+//     if (
+//       state.search.query.length === 0 &&
+//       state.recommenedRecipes.length === 0 &&
+//       state.search.results.length === 0
+//     ) {
+//       // load 1 recipe each (pizza, noodles, pasta, burger)
+//       const recipes = await Promise.all([
+//         loadAJAX(`${API_URL}?search=pizza`),
+//         loadAJAX(`${API_URL}?search=noodles`),
+//         loadAJAX(`${API_URL}?search=pasta`),
+//         loadAJAX(`${API_URL}?search=burger`),
+//       ]);
+
+//       console.log(recipes);
+//     }
+
+//     if (state.search.query.length !== 0) {
+//       const recipes = Promise.all([]);
+//     }
+//   } catch (err) {
+//     console.log(err);
+//   }
+// };
+
+const persistStateToLocalStorage = function () {
+  localStorage.setItem('state', JSON.stringify(state));
+};
+
+const removeStateFromLocalStorage = function () {
+  localStorage.removeItem('state');
 };
