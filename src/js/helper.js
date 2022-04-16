@@ -22,9 +22,13 @@ export const loadAJAX = async function (url) {
 };
 
 export const getLocationCoords = async function () {
-  return await new Promise((resolve, reject) =>
-    navigator.geolocation.getCurrentPosition(resolve, reject)
-  );
+  try {
+    return await new Promise((resolve, reject) =>
+      navigator.geolocation.getCurrentPosition(resolve, reject)
+    );
+  } catch (err) {
+    throw err;
+  }
 };
 
 export const getLocation = async function (lat, lng) {

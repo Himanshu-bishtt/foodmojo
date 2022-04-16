@@ -29,8 +29,6 @@ export const loadUserLocation = async function () {
     const geoCoords = await getLocationCoords();
     const { latitude: lat, longitude: lng } = geoCoords.coords;
 
-    // const userCoords = [lat, lng];
-
     state.userLocation.userCoords = { lat, lng };
 
     const geoData = await getLocation(lat, lng);
@@ -45,8 +43,6 @@ export const loadUserLocation = async function () {
       postal,
     } = geoData;
 
-    // const userData = [country, st, city, timezone, region, address, postal];
-
     state.userLocation.userData = {
       country,
       st,
@@ -56,12 +52,12 @@ export const loadUserLocation = async function () {
       address,
       postal,
     };
+    persistStateToLocalStorage();
   } catch (err) {
     state.userLocation.message = err.message;
+    persistStateToLocalStorage();
     throw err;
   }
-
-  persistStateToLocalStorage();
 };
 
 // export const loadRecommenedRecipes = async function () {

@@ -7,9 +7,9 @@ import searchView from './views/searchView';
 import { MODAL_CLOSE_SEC } from './config';
 import { getLocation } from './helper';
 
-if (module.hot) {
-  module.hot.accept();
-}
+// if (module.hot) {
+//   module.hot.accept();
+// }
 
 const controlHeroView = function () {
   heroView.renderAnimation();
