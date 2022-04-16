@@ -1,14 +1,17 @@
 import 'regenerator-runtime';
 
 import { API_URL } from './config';
-import { loadAJAX } from './helper';
+import { getLocation, getLocationCoords, loadAJAX } from './helper';
 
 export const state = {
   search: {
     query: [],
     results: [],
   },
-  userLocation: {},
+  userLocation: {
+    // userCoords: {},
+    // userData: {},
+  },
 };
 
 export const loadSearchResults = async function (query) {
@@ -21,29 +24,40 @@ export const loadSearchResults = async function (query) {
   }
 };
 
-export const loadUserGeolocation = async function () {
+export const loadUserLocation = async function () {
   try {
-    const data = await new Promise((resolve, reject) => {
-      navigator.geolocation.getCurrentPosition(resolve, reject);
-    });
+    const geoCoords = await getLocationCoords();
+    const { latitude: lat, longitude: lng } = geoCoords.coords;
 
-    const { latitude: lat, longitude: lng } = data.coords;
-    state.userLocation.lat = lat;
-    state.userLocation.lng = lng;
+    // const userCoords = [lat, lng];
+
+    state.userLocation.userCoords = { lat, lng };
+
+    const geoData = await getLocation(lat, lng);
+
+    const {
+      country,
+      state: st,
+      city,
+      timezone,
+      region,
+      staadress: address,
+      postal,
+    } = geoData;
+
+    // const userData = [country, st, city, timezone, region, address, postal];
+
+    state.userLocation.userData = {
+      country,
+      st,
+      city,
+      timezone,
+      region,
+      address,
+      postal,
+    };
   } catch (err) {
     state.userLocation.message = err.message;
     throw err;
   }
-
-  console.log(state.userLocation);
-
-  // navigator.geolocation.getCurrentPosition(
-  //   success => {
-  //     state.userLocation.lat = success.coords.latitude;
-  //     state.userLocation.lng = success.coords.longitude;
-  //   },
-  //   error => {
-  //     state.userLocation.message = error.message;
-  //   }
-  // );
 };

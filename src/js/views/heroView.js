@@ -40,11 +40,11 @@ class HeroView {
       .insertAdjacentHTML('beforeend', spinner);
   }
 
-  renderUserLocation() {
+  renderUserLocation(region) {
     this._parentElement.querySelector('.hero__form--location').innerHTML = '';
     const html = `
       <img src="/location-48.5100a1b2.png" alt="location icon" />
-      <p class="hero__form--location-user">Noida, India</p>
+      <p class="hero__form--location-user">${region}</p>
     `;
     this._parentElement
       .querySelector('.hero__form--location')

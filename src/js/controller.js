@@ -5,10 +5,11 @@ import heroView from './views/heroView';
 import searchView from './views/searchView';
 
 import { MODAL_CLOSE_SEC } from './config';
+import { getLocation } from './helper';
 
-// if (module.hot) {
-//   module.hot.accept();
-// }
+if (module.hot) {
+  module.hot.accept();
+}
 
 const controlHeroView = function () {
   heroView.renderAnimation();
@@ -29,9 +30,11 @@ const controlUserLocation = async function () {
   try {
     heroView.renderSpinner();
 
-    await modal.loadUserGeolocation();
+    await modal.loadUserLocation();
 
-    heroView.renderUserLocation();
+    heroView.renderUserLocation(modal.state.userLocation.userData.region);
+
+    console.log(modal);
   } catch (err) {
     heroView.renderErrorPopup(`${err.message}. Please reset permission`);
     heroView.renderLocationErrorOnCancel();
