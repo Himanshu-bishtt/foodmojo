@@ -37,6 +37,10 @@ $color-dark--2: #2d3439;
   .footer {
     background-color: $color-dark--1;
   }
+
+  input {
+    color: $color-dark--1;
+  }
 }
 
 [data-theme='light'] {

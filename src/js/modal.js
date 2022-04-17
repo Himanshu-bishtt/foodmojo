@@ -20,6 +20,8 @@ export const loadTheme = function (th) {
 
 export const loadSearchResults = async function (query) {
   try {
+    if (state.search.query.includes(query)) return;
+
     const results = await loadAJAX(`${API_URL}?search=${query}`);
     state.search.query.push(query);
     state.search.results.push(results);
