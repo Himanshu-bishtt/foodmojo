@@ -28,44 +28,51 @@ class HeroView {
     }, MODAL_CLOSE_SEC * 1000);
   }
 
+  _generateMarkup(element, html) {
+    element.innerHTML = '';
+    element.insertAdjacentHTML('beforeend', html);
+  }
+
   renderSpinner() {
-    this._parentElement.querySelector('.hero__form--location').innerHTML = '';
+    const element = this._parentElement.querySelector('.hero__form--location');
+
     const spinner = `
       <svg class="hero__form--spinner">
         <use href="${icons}#icon-loader"></use>
       </svg>
     `;
-    this._parentElement
-      .querySelector('.hero__form--location')
-      .insertAdjacentHTML('beforeend', spinner);
+
+    this._generateMarkup(element, spinner);
   }
 
   renderUserLocation(region) {
-    this._parentElement.querySelector('.hero__form--location').innerHTML = '';
+    const element = this._parentElement.querySelector('.hero__form--location');
+
     const html = `
       <img src="/location-48.5100a1b2.png" alt="location icon" />
       <p class="hero__form--location-user">${region}</p>
     `;
-    this._parentElement
-      .querySelector('.hero__form--location')
-      .insertAdjacentHTML('beforeend', html);
+
+    this._generateMarkup(element, html);
   }
 
   renderLocationErrorOnCancel() {
-    this._parentElement.querySelector('.hero__form--location').innerHTML = '';
+    const element = this._parentElement.querySelector('.hero__form--location');
+
     const html = `
       <img src="/location-48.5100a1b2.png" alt="location icon" />
       <p class="hero__form--location-user">Location denied</p>
     `;
-    this._parentElement
-      .querySelector('.hero__form--location')
-      .insertAdjacentHTML('beforeend', html);
+
+    this._generateMarkup(element, html);
   }
 
   addHandlerLocation(handler) {
     const detectLocationBtn = this._parentElement.querySelector(
       '.hero__form--location-btn'
     );
+
+    if (!detectLocationBtn) return;
 
     detectLocationBtn.addEventListener('click', function (e) {
       e.preventDefault();

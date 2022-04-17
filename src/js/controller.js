@@ -63,10 +63,20 @@ const controlUserLocation = async function () {
   }
 };
 
+const controlUserLocationOnLoad = function () {
+  const region = modal.state.userLocation.userData?.region;
+  if (!region) {
+    heroView.renderLocationErrorOnCancel();
+    return;
+  }
+  heroView.renderUserLocation(modal.state.userLocation.userData.region);
+};
+
 const init = function () {
   controlLocalStorageData();
   controlHeroView();
   controlThemeOnLoad();
+  controlUserLocationOnLoad();
   searchView.addHandlerSearch(controlSearchResults);
   heroView.addHandlerLocation(controlUserLocation);
   htmlView.changeTheme(controlThemeChange);
