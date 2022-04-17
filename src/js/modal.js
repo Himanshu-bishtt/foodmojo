@@ -87,12 +87,11 @@ export const loadUserLocation = async function () {
 
 // export const loadRecommenedRecipes = async function () {
 //   try {
-//     if (
-//       state.search.query.length === 0 &&
-//       state.recommenedRecipes.length === 0 &&
-//       state.search.results.length === 0
-//     ) {
+//     // case 1. Searched query is empty
+//     if (state.search.query.length === 0) {
 //       // load 1 recipe each (pizza, noodles, pasta, burger)
+//       console.log('CASE 1');
+
 //       const recipes = await Promise.all([
 //         loadAJAX(`${API_URL}?search=pizza`),
 //         loadAJAX(`${API_URL}?search=noodles`),
@@ -104,7 +103,7 @@ export const loadUserLocation = async function () {
 //     }
 
 //     if (state.search.query.length !== 0) {
-//       const recipes = Promise.all([]);
+//       console.log('CASE 2');
 //     }
 //   } catch (err) {
 //     console.log(err);
@@ -118,4 +117,18 @@ const persistStateToLocalStorage = function () {
 
 const removeStateFromLocalStorage = function () {
   localStorage.removeItem('state');
+};
+
+export const loadDataFromLocalStorageOnLoad = function () {
+  // 1. Loading state data from local storage
+  const data = JSON.parse(localStorage.getItem('state'));
+
+  // 2. If no data is present, then return
+  if (!data) return;
+
+  // 3. Loading data into state
+  state.search = data.search;
+  state.userLocation = data.userLocation;
+  state.recommenedRecipes = data.recommenedRecipes;
+  state.theme = data.theme;
 };

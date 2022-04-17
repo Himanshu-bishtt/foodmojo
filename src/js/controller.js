@@ -9,6 +9,10 @@ import htmlView from './views/htmlView';
 //   module.hot.accept();
 // }
 
+const controlLocalStorageData = function () {
+  modal.loadDataFromLocalStorageOnLoad();
+};
+
 const controlHeroView = function () {
   // 1. Rending hero view logo animation on load event
   heroView.renderAnimation();
@@ -56,6 +60,7 @@ const controlUserLocation = async function () {
 };
 
 const init = function () {
+  controlLocalStorageData();
   controlHeroView();
   searchView.addHandlerSearch(controlSearchResults);
   heroView.addHandlerLocation(controlUserLocation);
