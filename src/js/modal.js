@@ -20,12 +20,20 @@ export const loadTheme = function (th) {
 
 export const loadSearchResults = async function (query) {
   try {
+    // 1. If searched query is already in state, then return
     if (state.search.query.includes(query)) return;
 
-    const results = await loadAJAX(`${API_URL}?search=${query}`);
-    state.search.query.push(query);
-    state.search.results.push(results);
+    // 2. Getting search query data
+    const result = await loadAJAX(`${API_URL}?search=${query}`);
 
+    // 3. Pushing searched query into query state
+    state.search.query.push(query);
+
+    // 4. Pushing searched results into results state
+    const { results, data } = result;
+    state.search.results.push({ query, results, data });
+
+    // 5. Storing state after every search into Local Storage
     persistStateToLocalStorage();
   } catch (err) {
     throw err;
@@ -34,13 +42,17 @@ export const loadSearchResults = async function (query) {
 
 export const loadUserLocation = async function () {
   try {
+    // 1. Getting users coordinates
     const geoCoords = await getLocationCoords();
-    const { latitude: lat, longitude: lng } = geoCoords.coords;
 
+    // 2. Storing user coordinates in userlocation state
+    const { latitude: lat, longitude: lng } = geoCoords.coords;
     state.userLocation.userCoords = { lat, lng };
 
+    // 3. Getting user location data by reverse geocoding
     const geoData = await getLocation(lat, lng);
 
+    // 4. Storing user location data to userDate state
     const {
       country,
       state: st,
@@ -60,9 +72,14 @@ export const loadUserLocation = async function () {
       address,
       postal,
     };
+
+    // 5. Storing user location data into Local Storage
     persistStateToLocalStorage();
   } catch (err) {
+    // 6. Storing location error also to userLocation state
     state.userLocation.message = err.message;
+
+    // 7. Updating state into Local Storage
     persistStateToLocalStorage();
     throw err;
   }
@@ -95,6 +112,7 @@ export const loadUserLocation = async function () {
 // };
 
 const persistStateToLocalStorage = function () {
+  // 1. Storing entire state into Local Storage
   localStorage.setItem('state', JSON.stringify(state));
 };
 
