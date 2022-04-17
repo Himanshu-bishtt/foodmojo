@@ -66,7 +66,7 @@ const controlUserLocation = async function () {
 const controlUserLocationOnLoad = function () {
   const region = modal.state.userLocation.userData?.region;
   if (!region) {
-    heroView.renderLocationErrorOnCancel();
+    // heroView.renderLocationErrorOnCancel();
     return;
   }
   heroView.renderUserLocation(modal.state.userLocation.userData.region);
