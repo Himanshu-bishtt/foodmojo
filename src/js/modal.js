@@ -10,6 +10,12 @@ export const state = {
   },
   userLocation: {},
   recommenedRecipes: [],
+  theme: 'light',
+};
+
+export const loadTheme = function (th) {
+  state.theme = th;
+  persistStateToLocalStorage();
 };
 
 export const loadSearchResults = async function (query) {

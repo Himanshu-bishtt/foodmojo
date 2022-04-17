@@ -12,19 +12,32 @@ $color-dark--1: #333;
 $color-dark--2: #2d3439;
 
 [data-theme='dark'] {
+  .heading--primary,
+  .heading--secondary,
+  .heading--teritary {
+    color: $color-light--1;
+  }
   body {
-    background: $color-dark--2;
-    color: #fff;
+    background: #0c0b0bf1;
+    color: $color-light--1;
+  }
+
+  .recipes__content .recipe .recipe__name {
+    color: $color-light--1;
+  }
+
+  .btn {
+    color: $color-black;
+  }
+
+  .recipes__tab--active {
+    color: $color-light--1;
+  }
+
+  .footer {
+    background-color: $color-dark--1;
   }
 }
 
 [data-theme='light'] {
-  // body {
-  //   // background: #f1f4f8;
-  //   // background: #f1f1f1;
-  // }
-
-  .header {
-    background: $color-white;
-  }
 }

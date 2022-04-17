@@ -3,9 +3,7 @@
 import * as modal from './modal';
 import heroView from './views/heroView';
 import searchView from './views/searchView';
-
-import { MODAL_CLOSE_SEC } from './config';
-import { getLocation } from './helper';
+import htmlView from './views/htmlView';
 
 // if (module.hot) {
 //   module.hot.accept();
@@ -41,10 +39,15 @@ const controlUserLocation = async function () {
   }
 };
 
+const controlThemeChange = function (theme) {
+  modal.loadTheme(theme);
+};
+
 const init = function () {
   controlHeroView();
   searchView.addHandlerSearch(controlSearchResults);
   heroView.addHandlerLocation(controlUserLocation);
+  htmlView.changeTheme(controlThemeChange);
 };
 
 init();

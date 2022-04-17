@@ -137,16 +137,16 @@
         <!-- recipes image and content -->
         <div class="recipes mg-8">
           <div class="recipes__tab--container mg-5">
-            <button class="btn recipes__tab recipes__tab--1" data-tab="1">
+            <button
+              class="btn recipes__tab recipes__tab--1 recipes__tab--active"
+              data-tab="1"
+            >
               <span>Steak</span>
             </button>
             <button class="btn recipes__tab recipes__tab--2" data-tab="2">
               <span>Pizza</span>
             </button>
-            <button
-              class="btn recipes__tab recipes__tab--3 recipes__tab--active"
-              data-tab="3"
-            >
+            <button class="btn recipes__tab recipes__tab--3" data-tab="3">
               <span>Noodles</span>
             </button>
           </div>
@@ -323,7 +323,7 @@
               </select>
             </div>
             <div class="btn__theme">
-              <select name="test" id="test">
+              <select class="btn__theme--select" name="test" id="test">
                 <option value="dark">🌙 Dark</option>
                 <option selected value="light">☀️ Light</option>
               </select>

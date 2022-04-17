@@ -22,7 +22,7 @@
   cursor: pointer;
 
   &:hover .recipe__name {
-    // text-decoration: underline;
+    text-decoration: underline;
     color: $color-primary;
   }
 
@@ -46,7 +46,7 @@
 }
 
 .recipes__tab--active {
-  background-color: $color-dark--2;
-  color: $color-white;
+  background-color: $color-dark--1;
+  color: $color-light--1;
   box-shadow: 0rem 1rem 1rem rgba(0, 0, 0, 0.2);
 }
