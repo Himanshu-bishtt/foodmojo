@@ -23,6 +23,10 @@ const controlThemeChange = function (theme) {
   modal.loadTheme(theme);
 };
 
+const controlThemeOnLoad = function () {
+  htmlView.renderSavedTheme(modal.state.theme);
+};
+
 const controlSearchResults = async function () {
   try {
     // 1. Getting query value from search view input form
@@ -62,6 +66,7 @@ const controlUserLocation = async function () {
 const init = function () {
   controlLocalStorageData();
   controlHeroView();
+  controlThemeOnLoad();
   searchView.addHandlerSearch(controlSearchResults);
   heroView.addHandlerLocation(controlUserLocation);
   htmlView.changeTheme(controlThemeChange);
