@@ -72,6 +72,10 @@ const controlUserLocationOnLoad = function () {
   heroView.renderUserLocation(modal.state.userLocation.userData.region);
 };
 
+const controlRecommendedRecipes = async function () {
+  await modal.loadRecommenedRecipes();
+};
+
 const init = function () {
   controlLocalStorageData();
   controlHeroView();
@@ -80,6 +84,7 @@ const init = function () {
   searchView.addHandlerSearch(controlSearchResults);
   heroView.addHandlerLocation(controlUserLocation);
   htmlView.changeTheme(controlThemeChange);
+  controlRecommendedRecipes();
 };
 
 init();

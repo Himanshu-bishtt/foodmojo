@@ -85,38 +85,32 @@ export const loadUserLocation = async function () {
   }
 };
 
-// export const loadRecommenedRecipes = async function () {
-//   try {
-//     // case 1. Searched query is empty
-//     if (state.search.query.length === 0) {
-//       // load 1 recipe each (pizza, noodles, pasta, burger)
-//       console.log('CASE 1');
+export const loadRecommenedRecipes = async function () {
+  try {
+    if (state.recommenedRecipes.length === 0) {
+      console.log('CASE 1');
 
-//       const recipes = await Promise.all([
-//         loadAJAX(`${API_URL}?search=pizza`),
-//         loadAJAX(`${API_URL}?search=noodles`),
-//         loadAJAX(`${API_URL}?search=pasta`),
-//         loadAJAX(`${API_URL}?search=burger`),
-//       ]);
+      const recipes = await loadAJAX(
+        `${API_URL}?search=${state.search.query.at(0) || 'pizza'}`
+      );
 
-//       console.log(recipes);
-//     }
+      const { results: totalResults } = recipes;
 
-//     if (state.search.query.length !== 0) {
-//       console.log('CASE 2');
-//     }
-//   } catch (err) {
-//     console.log(err);
-//   }
-// };
+      const uniqueValues = generateUniques(totalResults);
 
-const persistStateToLocalStorage = function () {
-  // 1. Storing entire state into Local Storage
-  localStorage.setItem('state', JSON.stringify(state));
-};
+      console.log(uniqueValues);
+      uniqueValues.forEach(value => {
+        state.recommenedRecipes.push(recipes.data.recipes.at(value));
+      });
+    } else if (state.recommenedRecipes.length !== 0) {
+      console.log('CASE 2');
+      return;
+    }
 
-const removeStateFromLocalStorage = function () {
-  localStorage.removeItem('state');
+    persistStateToLocalStorage();
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 export const loadDataFromLocalStorageOnLoad = function () {
@@ -131,4 +125,25 @@ export const loadDataFromLocalStorageOnLoad = function () {
   state.userLocation = data.userLocation;
   state.recommenedRecipes = data.recommenedRecipes;
   state.theme = data.theme;
+};
+
+const persistStateToLocalStorage = function () {
+  // 1. Storing entire state into Local Storage
+  localStorage.setItem('state', JSON.stringify(state));
+};
+
+const removeStateFromLocalStorage = function () {
+  localStorage.removeItem('state');
+};
+
+const randomNumberGenerator = function (value) {
+  return Math.floor(Math.random() * value);
+};
+
+export const generateUniques = function (value) {
+  const randomValues = [];
+  for (let i = 0; i < value; ++i) {
+    randomValues.push(randomNumberGenerator(value));
+  }
+  return [...new Set(randomValues)].slice(0, 4);
 };
