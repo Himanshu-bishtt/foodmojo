@@ -35,8 +35,14 @@ $color-dark--2: #2d3439;
     color: $color-light--1;
   }
 
-  .recipes__tab--active {
+  .recipes__tab--container .recipes__tab {
+    background-color: $color-dark--1;
     color: $color-light--1;
+  }
+
+  .recipes__tab--container .recipes__tab--active {
+    background-color: $color-light--1;
+    color: $color-black;
   }
 
   .spinner {
