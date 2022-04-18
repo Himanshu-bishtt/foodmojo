@@ -92,6 +92,7 @@ const controlRecommendedRecipes = async function () {
     // }, SPINNER_CLOSE_SEC * 1000);
   } catch (err) {
     console.log(err);
+    heroView.renderErrorPopup(err.message);
   }
 };
 
@@ -110,6 +111,7 @@ const controlRecipeSection = async function (item) {
     recipeSectionView.renderRecipes(requiredRecipes);
   } catch (err) {
     console.log(err);
+    heroView.renderErrorPopup(err.message);
   }
 };
 
