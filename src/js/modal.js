@@ -110,6 +110,7 @@ export const loadRecommenedRecipes = async function () {
     persistStateToLocalStorage();
   } catch (err) {
     console.log(err);
+    throw err;
   }
 };
 

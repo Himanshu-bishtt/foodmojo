@@ -17,6 +17,15 @@ $color-dark--2: #2d3439;
   .heading--teritary {
     color: $color-light--1;
   }
+
+  .btn {
+    color: $color-black;
+  }
+
+  input {
+    color: $color-dark--1;
+  }
+
   body {
     background: #0c0b0bf1;
     color: $color-light--1;
@@ -26,22 +35,18 @@ $color-dark--2: #2d3439;
     color: $color-light--1;
   }
 
-  .btn {
-    color: $color-black;
-  }
-
   .recipes__tab--active {
     color: $color-light--1;
+  }
+
+  .gallery__grid--spinner {
+    fill: $color-light--1;
   }
 
   .footer {
     background-color: $color-dark--1;
   }
-
-  input {
-    color: $color-dark--1;
-  }
 }
 
-[data-theme='light'] {
-}
+// [data-theme='light'] {
+// }

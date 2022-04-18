@@ -5,6 +5,7 @@ import heroView from './views/heroView';
 import searchView from './views/searchView';
 import htmlView from './views/htmlView';
 import galleryView from './views/galleryView';
+import { MODAL_CLOSE_SEC, SPINNER_CLOSE_SEC } from './config';
 
 // if (module.hot) {
 //   module.hot.accept();
@@ -67,7 +68,6 @@ const controlUserLocation = async function () {
 const controlUserLocationOnLoad = function () {
   const region = modal.state.userLocation.userData?.region;
   if (!region) {
-    // heroView.renderLocationErrorOnCancel();
     return;
   }
   heroView.renderUserLocation(modal.state.userLocation.userData.region);
@@ -81,7 +81,7 @@ const controlRecommendedRecipes = async function () {
 
     galleryView.renderRecipes(modal.state.recommenedRecipes);
     // setTimeout(() => {
-    // }, 2000);
+    // }, SPINNER_CLOSE_SEC * 1000);
   } catch (err) {
     console.log(err);
   }
