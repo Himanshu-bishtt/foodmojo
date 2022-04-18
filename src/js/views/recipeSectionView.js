@@ -16,7 +16,31 @@ class RecipeSectionView {
       .insertAdjacentHTML('beforeend', spinner);
   }
 
-  addHandlerTabs(handler) {
+  renderTabs(tabItems) {
+    const tabsContainer = this._parentElement.querySelector(
+      '.recipes__tab--container'
+    );
+
+    tabsContainer.innerHTML = '';
+
+    const tabs = tabItems
+      .map((item, index) => {
+        return `
+        <button class="btn recipes__tab recipes__tab--${index + 1}" data-tab="${
+          index + 1
+        }">
+            ${item.split('')[0].toUpperCase() + item.slice(1)}
+          </button>
+            `;
+      })
+      .join('');
+
+    tabsContainer.insertAdjacentHTML('beforeend', tabs);
+  }
+
+  addHandlerTabs(handler, tabItems) {
+    this.renderTabs(tabItems);
+
     const allBtns = document.querySelectorAll('.recipes__tab');
 
     this._parentElement

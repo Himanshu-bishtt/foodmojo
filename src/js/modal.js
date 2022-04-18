@@ -8,7 +8,7 @@ export const state = {
     query: [],
     results: [],
   },
-  recipeTabs: ['steak', 'pizza', 'noodles', 'pasta', 'burger'],
+  recipeTabs: ['steak', 'pizza', 'noodles', 'pasta'],
   userLocation: {},
   recommenedRecipes: [],
   theme: 'light',

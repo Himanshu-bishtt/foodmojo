@@ -111,7 +111,10 @@ const init = function () {
   heroView.addHandlerLocation(controlUserLocation);
   htmlView.changeTheme(controlThemeChange);
   controlRecommendedRecipes();
-  recipeSectionView.addHandlerTabs(controlRecipeSection);
+  recipeSectionView.addHandlerTabs(
+    controlRecipeSection,
+    modal.state.recipeTabs
+  );
 };
 
 init();
