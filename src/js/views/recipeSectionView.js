@@ -16,7 +16,7 @@ class RecipeSectionView {
       .insertAdjacentHTML('beforeend', spinner);
   }
 
-  renderTabs(tabItems) {
+  _renderTabs(tabItems) {
     const tabsContainer = this._parentElement.querySelector(
       '.recipes__tab--container'
     );

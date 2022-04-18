@@ -66,19 +66,27 @@ const controlUserLocation = async function () {
 };
 
 const controlUserLocationOnLoad = function () {
+  // 1. Retreving region's from userLocation in modal
   const region = modal.state.userLocation.userData?.region;
+
+  // 2. If region is undefined means user has reject the GPS request
   if (!region) {
     return;
   }
+
+  // 3. Else render user's region location on hero view
   heroView.renderUserLocation(modal.state.userLocation.userData.region);
 };
 
 const controlRecommendedRecipes = async function () {
   try {
+    // 1. Rendering spinner
     galleryView.renderSpinner();
 
+    // 2. Loading recommended recipes and storing in state
     await modal.loadRecommenedRecipes();
 
+    // 3. Rendering recommended recipes on gallery view
     galleryView.renderRecipes(modal.state.recommenedRecipes);
     // setTimeout(() => {
     // }, SPINNER_CLOSE_SEC * 1000);
@@ -89,28 +97,34 @@ const controlRecommendedRecipes = async function () {
 
 const controlRecipeSection = async function (item) {
   try {
+    // 1. Rendering spinner on recipe section
     recipeSectionView.renderSpinner();
 
+    // 2. Loading results based on item clicked on view
     await modal.loadQueryResults(item);
 
+    // 3. Generating required recipes to render
     const requiredRecipes = modal.generateRequiredRecipes(item);
 
+    // 4. Rendering required recipes on view
     recipeSectionView.renderRecipes(requiredRecipes);
-    // modal.generateRequiredRecipes(item);
   } catch (err) {
     console.log(err);
   }
 };
 
 const init = function () {
+  // Tasks to be performed when the page loads
   controlLocalStorageData();
   controlHeroView();
   controlThemeOnLoad();
   controlUserLocationOnLoad();
+  controlRecommendedRecipes();
+
+  // Taks to be performed on user actions on view
   searchView.addHandlerSearch(controlSearchResults);
   heroView.addHandlerLocation(controlUserLocation);
   htmlView.changeTheme(controlThemeChange);
-  controlRecommendedRecipes();
   recipeSectionView.addHandlerTabs(
     controlRecipeSection,
     modal.state.recipeTabs
