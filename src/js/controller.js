@@ -5,7 +5,7 @@ import heroView from './views/heroView';
 import searchView from './views/searchView';
 import htmlView from './views/htmlView';
 import galleryView from './views/galleryView';
-import { MODAL_CLOSE_SEC, SPINNER_CLOSE_SEC } from './config';
+import recipeSectionView from './views/recipeSectionView';
 
 // if (module.hot) {
 //   module.hot.accept();
@@ -35,9 +35,9 @@ const controlSearchResults = async function () {
     const query = searchView.getQuery();
 
     // 2. Loading search results based on query
-    await modal.loadSearchResults(query);
+    await modal.loadQueryResults(query);
 
-    console.log(modal);
+    console.log(modal.state);
   } catch (err) {
     // 3. Error popup on hero view when wrong text is inputted into form
     heroView.renderErrorPopup(err);
@@ -87,6 +87,21 @@ const controlRecommendedRecipes = async function () {
   }
 };
 
+const controlRecipeSection = async function (item) {
+  try {
+    recipeSectionView.renderSpinner();
+
+    await modal.loadQueryResults(item);
+
+    const requiredRecipes = modal.generateRequiredRecipes(item);
+
+    recipeSectionView.renderRecipes(requiredRecipes);
+    // modal.generateRequiredRecipes(item);
+  } catch (err) {
+    console.log(err);
+  }
+};
+
 const init = function () {
   controlLocalStorageData();
   controlHeroView();
@@ -95,7 +110,9 @@ const init = function () {
   searchView.addHandlerSearch(controlSearchResults);
   heroView.addHandlerLocation(controlUserLocation);
   htmlView.changeTheme(controlThemeChange);
-  controlRecommendedRecipes();
+  // controlRecommendedRecipes();
+
+  recipeSectionView.addHandlerTabs(controlRecipeSection);
 };
 
 init();

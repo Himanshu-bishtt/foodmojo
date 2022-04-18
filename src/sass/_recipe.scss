@@ -10,16 +10,19 @@
 
   &__content {
     display: grid;
-    // grid-template-columns: repeat(4, 1fr);
-    grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
     row-gap: 4rem;
     // overflow-x: scroll;
     column-gap: 2rem;
+    position: relative;
   }
 }
 
 .recipe {
-  cursor: pointer;
+  // cursor: pointer;
+  // height: 100%;
+  // width: 100%;
 
   &:hover .recipe__name {
     text-decoration: underline;
@@ -34,6 +37,8 @@
 
 .recipe__image {
   border-radius: 1rem;
+  height: 25rem;
+  width: 100%;
   transition: all 0.5s;
 }
 
@@ -49,4 +54,5 @@
   background-color: $color-dark--1;
   color: $color-light--1;
   box-shadow: 0rem 1rem 1rem rgba(0, 0, 0, 0.2);
+  transform: translateY(-5px);
 }

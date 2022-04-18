@@ -55,16 +55,16 @@
     }
   }
 
-  &--spinner {
-    height: 3rem;
-    width: 3rem;
-    fill: $color-dark--1;
-    animation: loader 2s infinite linear;
-    position: absolute;
-    top: 0%;
-    right: 50%;
-    transform: translate(-50%, -50%);
-  }
+  // &--spinner {
+  //   height: 3rem;
+  //   width: 3rem;
+  //   fill: $color-dark--1;
+  //   animation: loader 2s infinite linear;
+  //   position: absolute;
+  //   top: 0%;
+  //   right: 50%;
+  //   transform: translate(-50%, -50%);
+  // }
 }
 
 .grid__item--image {

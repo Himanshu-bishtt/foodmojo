@@ -1,6 +1,6 @@
 import 'regenerator-runtime';
 
-import { API_URL } from './config';
+import { API_URL, MODAL_CLOSE_SEC } from './config';
 import { getLocation, getLocationCoords, loadAJAX } from './helper';
 
 export const state = {
@@ -8,6 +8,7 @@ export const state = {
     query: [],
     results: [],
   },
+  recipeTabs: ['steak', 'pizza', 'noodles'],
   userLocation: {},
   recommenedRecipes: [],
   theme: 'light',
@@ -18,7 +19,7 @@ export const loadTheme = function (th) {
   persistStateToLocalStorage();
 };
 
-export const loadSearchResults = async function (query) {
+export const loadQueryResults = async function (query) {
   try {
     // 1. If searched query is already in state, then return
     if (state.search.query.includes(query)) return;
@@ -96,7 +97,7 @@ export const loadRecommenedRecipes = async function () {
 
       const { results: totalResults } = recipes;
 
-      const uniqueValues = generateUniques(totalResults);
+      const uniqueValues = generateUniqueRandoms(totalResults);
 
       console.log(uniqueValues);
       uniqueValues.forEach(value => {
@@ -112,6 +113,25 @@ export const loadRecommenedRecipes = async function () {
     console.log(err);
     throw err;
   }
+};
+
+export const generateRequiredRecipes = function (query) {
+  const matchingRecipeResults = state.search.results.find(
+    recipe => recipe.query === query
+  );
+
+  console.log(matchingRecipeResults);
+
+  const { results: totalResults } = matchingRecipeResults;
+
+  // const uniqueValues = generateUniqueRandoms(totalResults, 8);
+  const uniqueValues = Array.from({ length: 8 }, (_, i) => i + 1);
+
+  const requiredRecipes = uniqueValues.map(value =>
+    matchingRecipeResults.data.recipes.at(value)
+  );
+
+  return requiredRecipes;
 };
 
 export const loadDataFromLocalStorageOnLoad = function () {
@@ -141,10 +161,10 @@ const randomNumberGenerator = function (value) {
   return Math.floor(Math.random() * value);
 };
 
-export const generateUniques = function (value) {
+const generateUniqueRandoms = function (value, total = 4) {
   const randomValues = [];
   for (let i = 0; i < value; ++i) {
     randomValues.push(randomNumberGenerator(value));
   }
-  return [...new Set(randomValues)].slice(0, 4);
+  return [...new Set(randomValues)].slice(0, total);
 };

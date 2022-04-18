@@ -128,4 +128,16 @@
   margin: 0rem 0.5rem;
   font-weight: bold;
   cursor: pointer;
+  transition: all 0.5s;
+}
+
+.spinner {
+  height: 3rem;
+  width: 3rem;
+  fill: $color-dark--1;
+  animation: loader 2s infinite linear;
+  position: absolute;
+  top: 0%;
+  right: 50%;
+  transform: translate(-50%, -50%);
 }
