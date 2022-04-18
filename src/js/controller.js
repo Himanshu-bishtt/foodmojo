@@ -4,6 +4,7 @@ import * as modal from './modal';
 import heroView from './views/heroView';
 import searchView from './views/searchView';
 import htmlView from './views/htmlView';
+import galleryView from './views/galleryView';
 
 // if (module.hot) {
 //   module.hot.accept();
@@ -73,7 +74,17 @@ const controlUserLocationOnLoad = function () {
 };
 
 const controlRecommendedRecipes = async function () {
-  await modal.loadRecommenedRecipes();
+  try {
+    galleryView.renderSpinner();
+
+    await modal.loadRecommenedRecipes();
+
+    galleryView.renderRecipes(modal.state.recommenedRecipes);
+    // setTimeout(() => {
+    // }, 2000);
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 const init = function () {
