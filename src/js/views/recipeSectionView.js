@@ -39,7 +39,7 @@ class RecipeSectionView {
   }
 
   addHandlerTabs(handler, tabItems) {
-    this.renderTabs(tabItems);
+    this._renderTabs(tabItems);
 
     const allBtns = document.querySelectorAll('.recipes__tab');
 
