@@ -110,8 +110,7 @@ const init = function () {
   searchView.addHandlerSearch(controlSearchResults);
   heroView.addHandlerLocation(controlUserLocation);
   htmlView.changeTheme(controlThemeChange);
-  // controlRecommendedRecipes();
-
+  controlRecommendedRecipes();
   recipeSectionView.addHandlerTabs(controlRecipeSection);
 };
 

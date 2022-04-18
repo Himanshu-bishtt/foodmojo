@@ -7,7 +7,7 @@ class GalleryView {
     this._parentElement.innerHTML = '';
 
     const spinner = `
-    <svg class="gallery__grid--spinner">
+    <svg class="gallery__grid--spinner spinner">
     <use href="${icons}#icon-loader"></use>
   </svg>
     `;
@@ -34,7 +34,7 @@ class GalleryView {
     return data
       .map((recipe, i) => {
         return `
-        <a href="#${recipe.id}" class="gallery__grid--item gallery__grid--item-1">
+        <a href="#${recipe.id}" class="gallery__grid--item gallery__grid--item-1" title="${recipe.title}">
           <div style="height: 100%">
             <p class="grid__item--tag">${tags[i]}</p>
             <img class="grid__item--image" src="${recipe.image_url}" alt="${recipe.title}" />
