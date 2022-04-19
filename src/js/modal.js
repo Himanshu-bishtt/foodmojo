@@ -1,7 +1,7 @@
 import 'regenerator-runtime';
 
 import { API_URL, MODAL_CLOSE_SEC } from './config';
-import { getLocation, getLocationCoords, loadAJAX } from './helper';
+import { cronJob, getLocation, getLocationCoords, loadAJAX } from './helper';
 
 export const state = {
   search: {
@@ -89,8 +89,6 @@ export const loadUserLocation = async function () {
 export const loadRecommenedRecipes = async function () {
   try {
     if (state.recommenedRecipes.length === 0) {
-      console.log('CASE 1');
-
       const recipes = await loadAJAX(
         `${API_URL}?search=${state.search.query.at(0) || 'pizza'}`
       );
@@ -103,9 +101,24 @@ export const loadRecommenedRecipes = async function () {
       uniqueValues.forEach(value => {
         state.recommenedRecipes.push(recipes.data.recipes.at(value));
       });
-    } else if (state.recommenedRecipes.length !== 0) {
-      console.log('CASE 2');
-      return;
+    } else if (cronJob()) {
+      const recipes = await loadAJAX(
+        `${API_URL}?search=${
+          state.search.query.at(
+            generateUniqueRandoms(state.search.query.length).at(0)
+          ) || 'pizza'
+        }`
+      );
+
+      const { results: totalResults } = recipes;
+
+      const uniqueValues = generateUniqueRandoms(totalResults);
+
+      state.recommenedRecipes = [];
+
+      uniqueValues.forEach(value => {
+        state.recommenedRecipes.push(recipes.data.recipes.at(value));
+      });
     }
 
     persistStateToLocalStorage();

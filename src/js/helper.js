@@ -47,3 +47,18 @@ export const getLocation = async function (lat, lng) {
     throw err;
   }
 };
+
+export const cronJob = function () {
+  const midnight = '00:00:01';
+
+  const date = new Date();
+  const hours = String(date.getHours()).padStart(2, 0);
+  const mins = String(date.getMinutes()).padStart(2, 0);
+  const secs = String(date.getSeconds()).padStart(2, 0);
+
+  const now = `${hours}:${mins}:${secs}`;
+
+  console.log(now);
+  if (now === midnight) return true;
+  return false;
+};

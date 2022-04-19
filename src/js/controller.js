@@ -6,6 +6,7 @@ import searchView from './views/searchView';
 import htmlView from './views/htmlView';
 import galleryView from './views/galleryView';
 import recipeSectionView from './views/recipeSectionView';
+import { cronJob } from './helper';
 
 // if (module.hot) {
 //   module.hot.accept();
@@ -123,6 +124,10 @@ const init = function () {
   controlUserLocationOnLoad();
   controlRecommendedRecipes();
 
+  setInterval(() => {
+    cronJob() ? controlRecommendedRecipes() : null;
+  }, 1000);
+
   // Taks to be performed on user actions on view
   searchView.addHandlerSearch(controlSearchResults);
   heroView.addHandlerLocation(controlUserLocation);
@@ -131,6 +136,9 @@ const init = function () {
     controlRecipeSection,
     modal.state.recipeTabs
   );
+
+  // test
+  console.log(cronJob());
 };
 
 init();
