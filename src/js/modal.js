@@ -133,8 +133,6 @@ export const generateRequiredRecipes = function (query) {
     recipe => recipe.query === query
   );
 
-  console.log(matchingRecipeResults);
-
   const { results: totalResults } = matchingRecipeResults;
 
   // const uniqueValues = generateUniqueRandoms(totalResults, 8);

@@ -18,6 +18,10 @@ $color-dark--2: #2d3439;
     color: $color-light--1;
   }
 
+  .heading--teritary {
+    text-transform: capitalize;
+  }
+
   .btn {
     color: $color-black;
   }

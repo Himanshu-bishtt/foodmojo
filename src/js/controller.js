@@ -136,9 +136,6 @@ const init = function () {
     controlRecipeSection,
     modal.state.recipeTabs
   );
-
-  // test
-  console.log(cronJob());
 };
 
 init();

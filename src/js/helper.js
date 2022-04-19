@@ -58,7 +58,6 @@ export const cronJob = function () {
 
   const now = `${hours}:${mins}:${secs}`;
 
-  console.log(now);
   if (now === midnight) return true;
   return false;
 };
