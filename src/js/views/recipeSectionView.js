@@ -16,6 +16,19 @@ class RecipeSectionView {
       .insertAdjacentHTML('beforeend', spinner);
   }
 
+  renderError(msg) {
+    this._parentElement.querySelector('.recipes__content').innerHTML = '';
+
+    const html = `
+    <p class="text-center fs-1-5" style="color: red">
+      ${msg}
+    </p>
+    `;
+    this._parentElement
+      .querySelector('.recipes__content')
+      .insertAdjacentHTML('beforeend', html);
+  }
+
   _renderTabs(tabItems) {
     const tabsContainer = this._parentElement.querySelector(
       '.recipes__tab--container'

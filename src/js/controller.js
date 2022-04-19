@@ -111,8 +111,10 @@ const controlRecipeSection = async function (item) {
     // 4. Rendering required recipes on view
     recipeSectionView.renderRecipes(requiredRecipes);
   } catch (err) {
-    console.log(err);
     heroView.renderErrorPopup(err.message);
+    recipeSectionView.renderError(
+      `${err.message}. Please check your internet connection`
+    );
   }
 };
 
