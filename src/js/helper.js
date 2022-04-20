@@ -48,6 +48,18 @@ export const getLocation = async function (lat, lng) {
   }
 };
 
+export const randomNumberGenerator = function (value) {
+  return Math.floor(Math.random() * value);
+};
+
+export const generateUniqueRandoms = function (value, total = 4) {
+  const randomValues = [];
+  for (let i = 0; i < value; ++i) {
+    randomValues.push(randomNumberGenerator(value));
+  }
+  return [...new Set(randomValues)].slice(0, total);
+};
+
 export const cronJob = function () {
   const midnight = '00:00:01';
 

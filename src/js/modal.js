@@ -1,7 +1,13 @@
 import 'regenerator-runtime';
 
-import { API_URL, MODAL_CLOSE_SEC } from './config';
-import { cronJob, getLocation, getLocationCoords, loadAJAX } from './helper';
+import { API_URL } from './config';
+import {
+  cronJob,
+  getLocation,
+  getLocationCoords,
+  loadAJAX,
+  generateUniqueRandoms,
+} from './helper';
 
 export const state = {
   search: {
@@ -89,19 +95,25 @@ export const loadUserLocation = async function () {
 export const loadRecommenedRecipes = async function () {
   try {
     if (state.recommenedRecipes.length === 0) {
+      // Case 1: No recommended recipes are in the state
+
+      // 1. Loading pizza recipes in recommendation by default
       const recipes = await loadAJAX(
         `${API_URL}?search=${state.search.query.at(0) || 'pizza'}`
       );
 
+      // 2. Generating 4 unique random values less than number of results (0 < x < totalResults), which act as indexs to retrieve that index
       const { results: totalResults } = recipes;
-
       const uniqueValues = generateUniqueRandoms(totalResults);
 
-      console.log(uniqueValues);
+      // 3. Creating side effects by pushing the recipes into recommenedRecipes state.
       uniqueValues.forEach(value => {
         state.recommenedRecipes.push(recipes.data.recipes.at(value));
       });
     } else if (cronJob()) {
+      // Case 2: New day begin, so load new recipes
+
+      // 1. Loading query recipes which are stored in query state at random or pizza if no query is stored.
       const recipes = await loadAJAX(
         `${API_URL}?search=${
           state.search.query.at(
@@ -110,17 +122,20 @@ export const loadRecommenedRecipes = async function () {
         }`
       );
 
+      // 2. Generating 4 unique random values less than number of results (0 < x < totalResults), which act as indexs to retrieve that index
       const { results: totalResults } = recipes;
-
       const uniqueValues = generateUniqueRandoms(totalResults);
 
+      // 3. Emptying recommened recipes array before loading new recipes.
       state.recommenedRecipes = [];
 
+      // 4. Creating side effects by pushing the recipes into recommenedRecipes state.
       uniqueValues.forEach(value => {
         state.recommenedRecipes.push(recipes.data.recipes.at(value));
       });
     }
 
+    // 5. Persisting data to local storage
     persistStateToLocalStorage();
   } catch (err) {
     console.log(err);
@@ -129,6 +144,7 @@ export const loadRecommenedRecipes = async function () {
 };
 
 export const generateRequiredRecipes = function (query) {
+  // 1. searching for results which matches with query param
   const matchingRecipeResults = state.search.results.find(
     recipe => recipe.query === query
   );
@@ -138,10 +154,12 @@ export const generateRequiredRecipes = function (query) {
   // const uniqueValues = generateUniqueRandoms(totalResults, 8);
   const uniqueValues = Array.from({ length: 8 }, (_, i) => i + 1);
 
+  // 2. Generating required recipes which are array elements from 1 to 8
   const requiredRecipes = uniqueValues.map(value =>
     matchingRecipeResults.data.recipes.at(value)
   );
 
+  // 3. Returing generated recipes array for controller
   return requiredRecipes;
 };
 
@@ -166,16 +184,4 @@ const persistStateToLocalStorage = function () {
 
 const removeStateFromLocalStorage = function () {
   localStorage.removeItem('state');
-};
-
-const randomNumberGenerator = function (value) {
-  return Math.floor(Math.random() * value);
-};
-
-const generateUniqueRandoms = function (value, total = 4) {
-  const randomValues = [];
-  for (let i = 0; i < value; ++i) {
-    randomValues.push(randomNumberGenerator(value));
-  }
-  return [...new Set(randomValues)].slice(0, total);
 };
