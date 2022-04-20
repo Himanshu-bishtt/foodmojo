@@ -1,25 +1,25 @@
 class HtmlView {
-  _parentElement = document.querySelector('html');
+  #parentElement = document.querySelector('html');
 
   changeTheme(handler) {
-    const themePicker = this._parentElement.querySelector(
+    const themePicker = this.#parentElement.querySelector(
       '.btn__theme--select'
     );
 
     themePicker.addEventListener('change', () => {
-      this._parentElement.setAttribute('data-theme', themePicker.value);
+      this.#parentElement.setAttribute('data-theme', themePicker.value);
       handler(themePicker.value);
     });
   }
 
   renderErrorOnOffline() {
-    window.addEventListener('online', this._updateOnlineStatus.bind(this));
-    window.addEventListener('offline', this._updateOnlineStatus.bind(this));
+    window.addEventListener('online', this.#updateOnlineStatus.bind(this));
+    window.addEventListener('offline', this.#updateOnlineStatus.bind(this));
   }
 
-  _updateOnlineStatus() {
-    const overlay = this._parentElement.querySelector('.overlay__error');
-    const popup = this._parentElement.querySelector('.popup__error');
+  #updateOnlineStatus() {
+    const overlay = this.#parentElement.querySelector('.overlay__error');
+    const popup = this.#parentElement.querySelector('.popup__error');
 
     if (!navigator.onLine) {
       overlay.classList.remove('hidden');
@@ -31,8 +31,8 @@ class HtmlView {
   }
 
   renderSavedTheme(theme) {
-    this._parentElement.setAttribute('data-theme', theme);
-    const themePicker = this._parentElement.querySelector(
+    this.#parentElement.setAttribute('data-theme', theme);
+    const themePicker = this.#parentElement.querySelector(
       '.btn__theme--select'
     );
     themePicker.value = theme === 'dark' ? 'dark' : 'light';
