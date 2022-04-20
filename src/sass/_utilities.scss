@@ -141,3 +141,47 @@
   right: 50%;
   transform: translate(-50%, -50%);
 }
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(3px);
+  z-index: 5;
+}
+
+.overlay__error {
+  background-color: rgba(161, 1, 1, 0.637);
+}
+
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%;
+  padding: 4rem;
+  border-radius: 5px;
+  box-shadow: 0 3rem 5rem rgba(0, 0, 0, 0.3);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: $color-dark--1;
+  font-size: 1.2rem;
+
+  & img {
+    height: 4rem;
+  }
+}
+
+.hidden {
+  display: none;
+}
+
+.popup__error {
+  background-color: #f3f3f3;
+}

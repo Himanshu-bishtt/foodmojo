@@ -120,6 +120,7 @@ const controlRecipeSection = async function (item) {
 
 const init = function () {
   // Tasks to be performed when the page loads
+  htmlView.renderErrorOnOffline();
   controlLocalStorageData();
   controlHeroView();
   controlThemeOnLoad();
@@ -127,7 +128,7 @@ const init = function () {
   controlRecommendedRecipes();
 
   setInterval(() => {
-    cronJob() ? controlRecommendedRecipes() : null;
+    cronJob() && controlRecommendedRecipes();
   }, 1000);
 
   // Taks to be performed on user actions on view
