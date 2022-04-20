@@ -1,10 +1,10 @@
 import icons from '../../icons/icons.svg';
 
 class GalleryView {
-  _parentElement = document.querySelector('.gallery__grid');
+  #parentElement = document.querySelector('.gallery__grid');
 
   renderSpinner() {
-    this._parentElement.innerHTML = '';
+    this.#parentElement.innerHTML = '';
 
     const spinner = `
     <svg class="gallery__grid--spinner spinner">
@@ -12,19 +12,19 @@ class GalleryView {
   </svg>
     `;
 
-    this._parentElement.insertAdjacentHTML('beforeend', spinner);
+    this.#parentElement.insertAdjacentHTML('beforeend', spinner);
   }
 
   renderRecipes(data) {
-    this._parentElement.innerHTML = '';
+    this.#parentElement.innerHTML = '';
 
-    this._parentElement.insertAdjacentHTML(
+    this.#parentElement.insertAdjacentHTML(
       'beforeend',
-      this._generateMarkup(data)
+      this.#generateMarkup(data)
     );
   }
 
-  _generateMarkup(data) {
+  #generateMarkup(data) {
     const tags = [
       "Today's Special",
       'Quick & Easy',

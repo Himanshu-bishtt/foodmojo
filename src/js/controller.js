@@ -16,6 +16,10 @@ const controlLocalStorageData = function () {
   modal.loadDataFromLocalStorageOnLoad();
 };
 
+const controlUserNetworkStatus = function () {
+  htmlView.renderErrorOnOffline();
+};
+
 const controlHeroView = function () {
   // 1. Rending hero view logo animation on load event
   heroView.renderAnimation();
@@ -28,6 +32,19 @@ const controlThemeChange = function (theme) {
 
 const controlThemeOnLoad = function () {
   htmlView.renderSavedTheme(modal.state.theme);
+};
+
+const controlUserLocationOnLoad = function () {
+  // 1. Retreving region's from userLocation in modal
+  const region = modal.state.userLocation.userData?.region;
+
+  // 2. If region is undefined means user has reject the GPS request
+  if (!region) {
+    return;
+  }
+
+  // 3. Else render user's region location on hero view
+  heroView.renderUserLocation(modal.state.userLocation.userData.region);
 };
 
 const controlSearchResults = async function () {
@@ -64,19 +81,6 @@ const controlUserLocation = async function () {
     // 5. Display error message on hero view.
     heroView.renderLocationErrorOnCancel();
   }
-};
-
-const controlUserLocationOnLoad = function () {
-  // 1. Retreving region's from userLocation in modal
-  const region = modal.state.userLocation.userData?.region;
-
-  // 2. If region is undefined means user has reject the GPS request
-  if (!region) {
-    return;
-  }
-
-  // 3. Else render user's region location on hero view
-  heroView.renderUserLocation(modal.state.userLocation.userData.region);
 };
 
 const controlRecommendedRecipes = async function () {
@@ -120,8 +124,8 @@ const controlRecipeSection = async function (item) {
 
 const init = function () {
   // Tasks to be performed when the page loads
-  htmlView.renderErrorOnOffline();
   controlLocalStorageData();
+  controlUserNetworkStatus();
   controlHeroView();
   controlThemeOnLoad();
   controlUserLocationOnLoad();

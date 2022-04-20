@@ -1,9 +1,9 @@
 import icons from '../../icons/icons.svg';
 class RecipeSectionView {
-  _parentElement = document.querySelector('.recipes');
+  #parentElement = document.querySelector('.recipes');
 
   renderSpinner() {
-    this._parentElement.querySelector('.recipes__content').innerHTML = '';
+    this.#parentElement.querySelector('.recipes__content').innerHTML = '';
 
     const spinner = `
     <svg class="recipes__content--spinner spinner">
@@ -11,26 +11,26 @@ class RecipeSectionView {
             </svg>
     `;
 
-    this._parentElement
+    this.#parentElement
       .querySelector('.recipes__content')
       .insertAdjacentHTML('beforeend', spinner);
   }
 
   renderError(msg) {
-    this._parentElement.querySelector('.recipes__content').innerHTML = '';
+    this.#parentElement.querySelector('.recipes__content').innerHTML = '';
 
     const html = `
     <p class="text-center fs-1-5" style="color: red">
       ${msg}
     </p>
     `;
-    this._parentElement
+    this.#parentElement
       .querySelector('.recipes__content')
       .insertAdjacentHTML('beforeend', html);
   }
 
-  _renderTabs(tabItems) {
-    const tabsContainer = this._parentElement.querySelector(
+  #renderTabs(tabItems) {
+    const tabsContainer = this.#parentElement.querySelector(
       '.recipes__tab--container'
     );
 
@@ -52,11 +52,11 @@ class RecipeSectionView {
   }
 
   addHandlerTabs(handler, tabItems) {
-    this._renderTabs(tabItems);
+    this.#renderTabs(tabItems);
 
     const allBtns = document.querySelectorAll('.recipes__tab');
 
-    this._parentElement
+    this.#parentElement
       .querySelector('.recipes__tab--container')
       .addEventListener('click', function (e) {
         if (!e.target.classList.contains('recipes__tab')) return;
@@ -69,8 +69,8 @@ class RecipeSectionView {
   }
 
   renderRecipes(data) {
-    this._parentElement.querySelector('.recipes__content').innerHTML = '';
-    this._parentElement
+    this.#parentElement.querySelector('.recipes__content').innerHTML = '';
+    this.#parentElement
       .querySelector('.recipes__content')
       .insertAdjacentHTML('beforeend', this._generateMarkup(data));
   }
