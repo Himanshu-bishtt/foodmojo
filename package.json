@@ -2,7 +2,7 @@
   "name": "foodmojo",
   "version": "1.0.0",
   "description": "Foodmojo is a site for food lover. Discover the best food, recipes and ingredients. Get daily recipe recommendations and more.",
-  "main": "index.html",
+  "default": "index.html",
   "scripts": {
     "start": "parcel index.html",
     "bulid": "parcel build src/index.html -d build"
@@ -10,14 +10,12 @@
   "author": "Himanshu Bisht",
   "license": "ISC",
   "devDependencies": {
-    "cssnano": "^4.1.11",
-    "node-sass": "^7.0.1",
-    "parcel": "^2.4.1"
+    "parcel": "^2.0.0-beta.1",
+    "sass": "^1.26.10"
   },
   "dependencies": {
-    "dist": "^0.1.2",
-    "icons": "^1.0.0",
-    "regenerator-runtime": "^0.13.9",
-    "src": "^1.1.2"
+    "core-js": "^3.6.5",
+    "fractional": "^1.0.0",
+    "regenerator-runtime": "^0.13.7"
   }
 }
