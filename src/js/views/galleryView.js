@@ -34,7 +34,7 @@ class GalleryView {
     return data
       .map((recipe, i) => {
         return `
-        <a href="#${recipe.id}" class="gallery__grid--item gallery__grid--item-1" title="${recipe.title}">
+        <a href="./recipe.html?id=${recipe.id}" class="gallery__grid--item gallery__grid--item-1" title="${recipe.title}" data-id="${recipe.id}">
           <div style="height: 100%">
             <p class="grid__item--tag">${tags[i]}</p>
             <img class="grid__item--image" src="${recipe.image_url}" alt="${recipe.title}" />

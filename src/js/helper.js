@@ -13,7 +13,7 @@ export const loadAJAX = async function (url) {
   try {
     const res = await Promise.race([fetch(url), timeout(TIMEOUT_SEC)]);
     const data = await res.json();
-    if (!data.results)
+    if (!res.ok || data.results === 0)
       throw new Error(`No recipes found with that query. Please try again!`);
     return data;
   } catch (err) {

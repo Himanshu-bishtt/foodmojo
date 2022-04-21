@@ -13,6 +13,7 @@ export const state = {
   search: {
     query: [],
     results: [],
+    recipe: {},
   },
   recipeTabs: ['steak', 'pizza', 'noodles', 'pasta'],
   userLocation: {},
@@ -23,6 +24,17 @@ export const state = {
 export const loadTheme = function (th) {
   state.theme = th;
   persistStateToLocalStorage();
+};
+
+export const loadRecipe = async function (id) {
+  try {
+    const result = await loadAJAX(`${API_URL}${id}`);
+    state.search.recipe = result.data.recipe;
+
+    persistStateToLocalStorage();
+  } catch (err) {
+    throw err;
+  }
 };
 
 export const loadQueryResults = async function (query) {

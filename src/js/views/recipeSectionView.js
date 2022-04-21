@@ -79,7 +79,7 @@ class RecipeSectionView {
     return data
       .map(recipe => {
         return `
-        <a href="#${recipe.id}" title="${recipe.title}">
+        <a href="./recipe.html?id=${recipe.id}" title="${recipe.title}" data-id="${recipe.id}">
           <div class="recipe">
             <img class="recipe__image" src="${recipe.image_url}" alt="${recipe.title}" />
             <h3 class="recipe__name heading--tertiary mg-2">
