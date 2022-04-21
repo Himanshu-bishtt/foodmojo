@@ -3,7 +3,7 @@
 import * as modal from './modal';
 import heroView from './views/heroView';
 import htmlView from './views/htmlView';
-import recipeView from './views/recipeView';
+import recipePageView from './views/recipePageView';
 
 const controlLocalStorageData = function () {
   modal.loadDataFromLocalStorageOnLoad();
@@ -37,7 +37,7 @@ const controlRecipePage = async function () {
 
   await modal.loadRecipe(id);
 
-  recipeView.renderRecipe(modal.state.search.recipe);
+  recipePageView.renderRecipe(modal.state.search.recipe);
 };
 
 const init = function () {

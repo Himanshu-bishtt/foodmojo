@@ -1,4 +1,4 @@
-class RecipeView {
+class RecipePageView {
   #parentElement = document.querySelector('.recipe');
 
   addHandlerRender(handler) {
@@ -20,4 +20,4 @@ class RecipeView {
   }
 }
 
-export default new RecipeView();
+export default new RecipePageView();
