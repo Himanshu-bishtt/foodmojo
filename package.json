@@ -1,8 +1,8 @@
 {
-  "name": "markets",
+  "name": "foodmojo",
   "version": "1.0.0",
-  "description": "",
-  "default": "index.html",
+  "description": "Foodmojo is a site for food lover. Discover the best food, recipes and ingredients. Get daily recipe recommendations and more.",
+  "main": "index.html",
   "scripts": {
     "start": "parcel index.html",
     "bulid": "parcel build src/index.html -d build"
