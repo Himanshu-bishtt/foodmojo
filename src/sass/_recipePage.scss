@@ -1,0 +1,71 @@
+.recipe__content {
+  width: 70vw;
+  margin: 0 auto;
+}
+.recipe {
+  // background-color: $color-grey-light-1;
+
+  ///////////
+  // FIGURE
+  &__fig {
+    height: 60rem;
+    position: relative;
+    // transform: scale(1.04) translateY(-1px);
+    transform-origin: top;
+
+    &::before {
+      content: '';
+      display: block;
+      height: 100%;
+      width: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      // background-image: linear-gradient(
+      //   to right bottom,
+      //   rgba(0, 0, 0, 0.8),
+      //   rgba(0, 0, 0, 0.5)
+      // );
+      opacity: 0.6;
+    }
+  }
+
+  &__img {
+    width: 100%;
+    display: block;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0rem 1rem 1rem rgba(0, 0, 0, 0.1);
+  }
+
+  &__title {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 20%);
+    color: #fff;
+    font-weight: 700;
+    font-size: 3.25rem;
+    text-transform: uppercase;
+    width: 100%;
+    line-height: 1.95;
+    text-align: center;
+
+    span {
+      -webkit-box-decoration-break: clone;
+      box-decoration-break: clone;
+      padding: 1.3rem 2rem;
+      background-image: linear-gradient(
+        to right bottom,
+        rgba($color-primary, 0.9),
+        rgba($color-primary, 0.9)
+      );
+      box-shadow: 0rem 1rem 1rem rgba(0, 0, 0, 0.1);
+    }
+
+    // @media only screen and (max-width: $bp-medium) {
+    //   width: 70%;
+    // }
+  }
+}
