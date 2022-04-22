@@ -28,16 +28,22 @@ const controlThemeOnLoad = function () {
 };
 
 const controlRecipePage = async function () {
-  const url = window.location.href;
-  const url_str = new URL(url);
-  console.log(url_str);
+  try {
+    const url = window.location.href;
+    const url_str = new URL(url);
+    console.log(url_str);
 
-  const id = url_str.searchParams.get('id');
-  if (!id) return;
+    const id = url_str.searchParams.get('id');
+    if (!id) return;
 
-  await modal.loadRecipe(id);
+    recipePageView.renderSpinner();
 
-  recipePageView.renderRecipe(modal.state.search.recipe);
+    await modal.loadRecipe(id);
+
+    recipePageView.renderRecipe(modal.state.search.recipe);
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 const init = function () {
