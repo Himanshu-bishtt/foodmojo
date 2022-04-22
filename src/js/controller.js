@@ -10,10 +10,6 @@ import galleryView from './views/galleryView';
 import recipeSectionView from './views/recipeSectionView';
 import { cronJob } from './helper';
 
-// if (module.hot) {
-//   module.hot.accept();
-// }
-
 const controlLocalStorageData = function () {
   modal.loadDataFromLocalStorageOnLoad();
 };
