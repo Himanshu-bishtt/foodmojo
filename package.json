@@ -5,7 +5,7 @@
   "default": "index.html",
   "scripts": {
     "start": "parcel index.html",
-    "bulid": "parcel build src/index.html -d build"
+    "build": "parcel build src/index.html --no-minify -d output"
   },
   "author": "Himanshu Bisht",
   "license": "ISC",

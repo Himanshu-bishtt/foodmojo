@@ -9,11 +9,6 @@ const controlLocalStorageData = function () {
   modal.loadDataFromLocalStorageOnLoad();
 };
 
-const controlHeroView = function () {
-  // 1. Rending hero view logo animation on load event
-  heroView.renderAnimation();
-};
-
 const controlUserNetworkStatus = function () {
   htmlView.renderErrorOnOffline();
 };
@@ -48,7 +43,6 @@ const controlRecipePage = async function () {
 const init = function () {
   controlLocalStorageData();
   controlUserNetworkStatus();
-  controlHeroView();
   controlThemeOnLoad();
   controlRecipePage();
 
