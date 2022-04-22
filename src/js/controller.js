@@ -1,5 +1,7 @@
 'use strict';
 
+import 'core-js/stable';
+
 import * as modal from './modal';
 import heroView from './views/heroView';
 import searchView from './views/searchView';

@@ -1,7 +1,8 @@
 'use strict';
 
+import 'core-js/stable';
+
 import * as modal from './modal';
-import heroView from './views/heroView';
 import htmlView from './views/htmlView';
 import recipePageView from './views/recipePageView';
 
