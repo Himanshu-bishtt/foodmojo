@@ -5,25 +5,17 @@
     align-items: center;
   }
 
-  // &__content--container {
-  // }
-
   &__content {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
     row-gap: 4rem;
-    // overflow-x: scroll;
     column-gap: 2rem;
     position: relative;
   }
 }
 
 .recipe {
-  // cursor: pointer;
-  // height: 100%;
-  // width: 100%;
-
   &:hover .recipe__name {
     text-decoration: underline;
     color: $color-primary;
