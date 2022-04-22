@@ -1,6 +1,6 @@
 .recipe__content {
   position: relative;
-  width: 60vw;
+  width: 50vw;
   margin: 0 auto;
 }
 .recipe {
@@ -11,7 +11,7 @@
   &__fig {
     height: 30rem;
     position: relative;
-    // transform: scale(1.04) translateY(-1px);
+    transform: scale(1.04) translateY(-1px);
     transform-origin: top;
 
     &::before {
@@ -44,7 +44,7 @@
     position: absolute;
     bottom: 0;
     left: 50%;
-    transform: translate(-50%, 50%);
+    transform: translate(-50%, 50%) skew(-5deg);
     color: #fff;
     font-weight: 700;
     font-size: 3.25rem;
@@ -72,11 +72,8 @@
 
   &__details {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
-    // color: $color-dark--1;
-    // background-color: $color-light--1;
-    // background-color: #f5f5f5;
     padding: 8rem 5rem 0rem 5rem;
 
     & div {
@@ -97,7 +94,7 @@
   }
 
   &__ingredients {
-    padding: 3rem 8rem;
+    padding: 3rem 0rem;
     font-size: 1.6rem;
     line-height: 1.4;
     display: flex;

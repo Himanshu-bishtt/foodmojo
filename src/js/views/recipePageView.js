@@ -2,6 +2,7 @@ import icons from '../../icons/icons.svg';
 
 class RecipePageView {
   #parentElement = document.querySelector('.recipe__content');
+  #errorMessage = 'No recipe found with that id. Please try again!';
 
   addHandlerRender(handler) {
     ['hashchange', 'load'].forEach(ev => window.addEventListener(ev, handler));
@@ -17,6 +18,16 @@ class RecipePageView {
     `;
 
     this.#parentElement.insertAdjacentHTML('beforeend', spinner);
+  }
+
+  renderError(msg = this.#errorMessage) {
+    this.#parentElement.innerHTML = '';
+
+    const html = `
+      <p class="text-center fs-2" style="color: red">${msg}</p>
+    `;
+
+    this.#parentElement.insertAdjacentHTML('beforeend', html);
   }
 
   renderRecipe(recipe) {
@@ -70,9 +81,9 @@ class RecipePageView {
           <svg class="recipe__icon">
             <use href="${icons}#icon-check"></use>
           </svg>
-          <div class="recipe__quantity">${ing.quantity}</div>
+          <div class="recipe__quantity">${ing.quantity || ''}</div>
           <div class="recipe__description">
-            <span class="recipe__unit">${ing.quantity}</span>
+            <span class="recipe__unit">${ing.unit}</span>
             ${ing.description}
           </div>
         </li>

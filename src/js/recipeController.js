@@ -31,7 +31,6 @@ const controlRecipePage = async function () {
   try {
     const url = window.location.href;
     const url_str = new URL(url);
-    console.log(url_str);
 
     const id = url_str.searchParams.get('id');
     if (!id) return;
@@ -42,7 +41,7 @@ const controlRecipePage = async function () {
 
     recipePageView.renderRecipe(modal.state.search.recipe);
   } catch (err) {
-    console.log(err);
+    recipePageView.renderError();
   }
 };
 
@@ -51,7 +50,6 @@ const init = function () {
   controlUserNetworkStatus();
   controlHeroView();
   controlThemeOnLoad();
-
   controlRecipePage();
 
   htmlView.changeTheme(controlThemeChange);
