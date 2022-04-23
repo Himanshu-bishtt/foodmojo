@@ -15832,6 +15832,7 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 var state = {
+  allLoadedContent: [],
   search: {
     query: [],
     results: [],
@@ -15916,27 +15917,43 @@ var loadQueryResults = /*#__PURE__*/function () {
             state.search.query.push(query); // 4. Pushing searched results into results state
 
             results = result.results, data = result.data;
-            state.search.results.push({
+
+            if (state.search.results.length !== 0) {
+              state.search.results = [];
+              state.search.results.push({
+                query: query,
+                results: results,
+                recipes: data.recipes
+              });
+            } else {
+              state.search.results.push({
+                query: query,
+                results: results,
+                recipes: data.recipes
+              });
+            }
+
+            state.allLoadedContent.push({
               query: query,
               results: results,
-              data: data
+              recipes: data.recipes
             }); // 5. Storing state after every search into Local Storage
 
             persistStateToLocalStorage();
-            _context2.next = 15;
+            _context2.next = 16;
             break;
 
-          case 12:
-            _context2.prev = 12;
+          case 13:
+            _context2.prev = 13;
             _context2.t0 = _context2["catch"](0);
             throw _context2.t0;
 
-          case 15:
+          case 16:
           case "end":
             return _context2.stop();
         }
       }
-    }, _callee2, null, [[0, 12]]);
+    }, _callee2, null, [[0, 13]]);
   }));
 
   return function loadQueryResults(_x2) {
@@ -16096,7 +16113,7 @@ var loadTabsRequiredRecipes = function loadTabsRequiredRecipes(query) {
     return item.query === query;
   })) return; // 1. searching for results which matches with query param
 
-  var matchingRecipeResults = state.search.results.find(function (recipe) {
+  var matchingRecipeResults = state.allLoadedContent.find(function (recipe) {
     return recipe.query === query;
   });
   var totalResults = matchingRecipeResults.results;
@@ -16104,7 +16121,7 @@ var loadTabsRequiredRecipes = function loadTabsRequiredRecipes(query) {
   // 2. Generating required recipes which are array elements from 1 to 8
 
   var requiredRecipes = uniqueValues.map(function (value) {
-    return matchingRecipeResults.data.recipes.at(value);
+    return matchingRecipeResults.recipes.at(value);
   });
   state.recipeTabsContent.push({
     query: query,
@@ -16119,9 +16136,9 @@ var loadDataFromLocalStorageOnLoad = function loadDataFromLocalStorageOnLoad() {
   // 1. Loading state data from local storage
   var data = JSON.parse(localStorage.getItem('state')); // 2. If no data is present, then return
 
-  if (!data) return;
-  console.log(data); // 3. Loading data into state
+  if (!data) return; // 3. Loading data into state
 
+  state.allLoadedContent = data.allLoadedContent;
   state.search = data.search;
   state.recipeTabsContent = data.recipeTabsContent;
   state.userLocation = data.userLocation;
@@ -16835,7 +16852,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "38073" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "43193" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

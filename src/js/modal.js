@@ -10,6 +10,7 @@ import {
 } from './helper';
 
 export const state = {
+  allLoadedContent: [],
   search: {
     query: [],
     results: [],
@@ -51,7 +52,15 @@ export const loadQueryResults = async function (query) {
 
     // 4. Pushing searched results into results state
     const { results, data } = result;
-    state.search.results.push({ query, results, data });
+
+    if (state.search.results.length !== 0) {
+      state.search.results = [];
+      state.search.results.push({ query, results, recipes: data.recipes });
+    } else {
+      state.search.results.push({ query, results, recipes: data.recipes });
+    }
+
+    state.allLoadedContent.push({ query, results, recipes: data.recipes });
 
     // 5. Storing state after every search into Local Storage
     persistStateToLocalStorage();
@@ -161,7 +170,7 @@ export const loadTabsRequiredRecipes = function (query) {
   if (state.recipeTabsContent.find(item => item.query === query)) return;
 
   // 1. searching for results which matches with query param
-  const matchingRecipeResults = state.search.results.find(
+  const matchingRecipeResults = state.allLoadedContent.find(
     recipe => recipe.query === query
   );
 
@@ -172,7 +181,7 @@ export const loadTabsRequiredRecipes = function (query) {
 
   // 2. Generating required recipes which are array elements from 1 to 8
   const requiredRecipes = uniqueValues.map(value =>
-    matchingRecipeResults.data.recipes.at(value)
+    matchingRecipeResults.recipes.at(value)
   );
 
   state.recipeTabsContent.push({ query, requiredRecipes });
@@ -188,6 +197,7 @@ export const loadDataFromLocalStorageOnLoad = function () {
   if (!data) return;
 
   // 3. Loading data into state
+  state.allLoadedContent = data.allLoadedContent;
   state.search = data.search;
   state.recipeTabsContent = data.recipeTabsContent;
   state.userLocation = data.userLocation;
