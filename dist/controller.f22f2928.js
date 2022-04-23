@@ -15819,7 +15819,7 @@ exports.cronJob = cronJob;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.state = exports.loadUserLocation = exports.loadTheme = exports.loadRecommenedRecipes = exports.loadRecipe = exports.loadQueryResults = exports.loadDataFromLocalStorageOnLoad = exports.generateRequiredRecipes = void 0;
+exports.state = exports.loadUserLocation = exports.loadTheme = exports.loadTabsRequiredRecipes = exports.loadRecommenedRecipes = exports.loadRecipe = exports.loadQueryResults = exports.loadDataFromLocalStorageOnLoad = void 0;
 
 require("regenerator-runtime");
 
@@ -15838,6 +15838,7 @@ var state = {
     recipe: {}
   },
   recipeTabs: ['steak', 'pizza', 'noodles', 'pasta'],
+  recipeTabsContent: [],
   userLocation: {},
   recommenedRecipes: [],
   theme: 'light'
@@ -16089,27 +16090,30 @@ var loadRecommenedRecipes = /*#__PURE__*/function () {
 
 exports.loadRecommenedRecipes = loadRecommenedRecipes;
 
-var generateRequiredRecipes = function generateRequiredRecipes(query) {
-  // 1. searching for results which matches with query param
+var loadTabsRequiredRecipes = function loadTabsRequiredRecipes(query) {
+  // 0. If tab recipe is already loaded, then return
+  if (state.recipeTabsContent.find(function (item) {
+    return item.query === query;
+  })) return; // 1. searching for results which matches with query param
+
   var matchingRecipeResults = state.search.results.find(function (recipe) {
     return recipe.query === query;
   });
-  var totalResults = matchingRecipeResults.results; // const uniqueValues = generateUniqueRandoms(totalResults, 8);
-
-  var uniqueValues = Array.from({
-    length: 8
-  }, function (_, i) {
-    return i + 1;
-  }); // 2. Generating required recipes which are array elements from 1 to 8
+  var totalResults = matchingRecipeResults.results;
+  var uniqueValues = (0, _helper.generateUniqueRandoms)(totalResults, 8); // const uniqueValues = Array.from({ length: 8 }, (_, i) => i + 1);
+  // 2. Generating required recipes which are array elements from 1 to 8
 
   var requiredRecipes = uniqueValues.map(function (value) {
     return matchingRecipeResults.data.recipes.at(value);
-  }); // 3. Returing generated recipes array for controller
-
-  return requiredRecipes;
+  });
+  state.recipeTabsContent.push({
+    query: query,
+    requiredRecipes: requiredRecipes
+  });
+  persistStateToLocalStorage();
 };
 
-exports.generateRequiredRecipes = generateRequiredRecipes;
+exports.loadTabsRequiredRecipes = loadTabsRequiredRecipes;
 
 var loadDataFromLocalStorageOnLoad = function loadDataFromLocalStorageOnLoad() {
   // 1. Loading state data from local storage
@@ -16830,27 +16834,32 @@ var controlRecipeSection = /*#__PURE__*/function () {
 
           case 4:
             // 3. Generating required recipes to render
-            requiredRecipes = modal.generateRequiredRecipes(item); // 4. Rendering required recipes on view
+            modal.loadTabsRequiredRecipes(item); // 4. Rendering required recipes on view
 
-            _recipeSectionView.default.renderRecipes(requiredRecipes);
+            requiredRecipes = modal.state.recipeTabsContent.find(function (i) {
+              return i.query === item;
+            }); // console.log(requiredRecipes);
 
-            _context4.next = 12;
+            _recipeSectionView.default.renderRecipes(requiredRecipes.requiredRecipes);
+
+            _context4.next = 14;
             break;
 
-          case 8:
-            _context4.prev = 8;
+          case 9:
+            _context4.prev = 9;
             _context4.t0 = _context4["catch"](0);
+            console.log(_context4.t0);
 
             _heroView.default.renderErrorPopup(_context4.t0.message);
 
             _recipeSectionView.default.renderError("".concat(_context4.t0.message, ". Please check your internet connection"));
 
-          case 12:
+          case 14:
           case "end":
             return _context4.stop();
         }
       }
-    }, _callee4, null, [[0, 8]]);
+    }, _callee4, null, [[0, 9]]);
   }));
 
   return function controlRecipeSection(_x) {
@@ -16908,7 +16917,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "37757" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "43955" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -108,11 +108,17 @@ const controlRecipeSection = async function (item) {
     await modal.loadQueryResults(item);
 
     // 3. Generating required recipes to render
-    const requiredRecipes = modal.generateRequiredRecipes(item);
+    modal.loadTabsRequiredRecipes(item);
 
     // 4. Rendering required recipes on view
-    recipeSectionView.renderRecipes(requiredRecipes);
+    const requiredRecipes = modal.state.recipeTabsContent.find(
+      i => i.query === item
+    );
+
+    // console.log(requiredRecipes);
+    recipeSectionView.renderRecipes(requiredRecipes.requiredRecipes);
   } catch (err) {
+    console.log(err);
     heroView.renderErrorPopup(err.message);
     recipeSectionView.renderError(
       `${err.message}. Please check your internet connection`

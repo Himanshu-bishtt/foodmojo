@@ -16,6 +16,7 @@ export const state = {
     recipe: {},
   },
   recipeTabs: ['steak', 'pizza', 'noodles', 'pasta'],
+  recipeTabsContent: [],
   userLocation: {},
   recommenedRecipes: [],
   theme: 'light',
@@ -155,7 +156,10 @@ export const loadRecommenedRecipes = async function () {
   }
 };
 
-export const generateRequiredRecipes = function (query) {
+export const loadTabsRequiredRecipes = function (query) {
+  // 0. If tab recipe is already loaded, then return
+  if (state.recipeTabsContent.find(item => item.query === query)) return;
+
   // 1. searching for results which matches with query param
   const matchingRecipeResults = state.search.results.find(
     recipe => recipe.query === query
@@ -163,16 +167,17 @@ export const generateRequiredRecipes = function (query) {
 
   const { results: totalResults } = matchingRecipeResults;
 
-  // const uniqueValues = generateUniqueRandoms(totalResults, 8);
-  const uniqueValues = Array.from({ length: 8 }, (_, i) => i + 1);
+  const uniqueValues = generateUniqueRandoms(totalResults, 8);
+  // const uniqueValues = Array.from({ length: 8 }, (_, i) => i + 1);
 
   // 2. Generating required recipes which are array elements from 1 to 8
   const requiredRecipes = uniqueValues.map(value =>
     matchingRecipeResults.data.recipes.at(value)
   );
 
-  // 3. Returing generated recipes array for controller
-  return requiredRecipes;
+  state.recipeTabsContent.push({ query, requiredRecipes });
+
+  persistStateToLocalStorage();
 };
 
 export const loadDataFromLocalStorageOnLoad = function () {
