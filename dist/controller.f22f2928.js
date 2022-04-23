@@ -16122,6 +16122,7 @@ var loadDataFromLocalStorageOnLoad = function loadDataFromLocalStorageOnLoad() {
   if (!data) return; // 3. Loading data into state
 
   state.search = data.search;
+  state.recipeTabsContent = data.recipeTabsContent;
   state.userLocation = data.userLocation;
   state.recommenedRecipes = data.recommenedRecipes;
   state.theme = data.theme;
@@ -16842,19 +16843,18 @@ var controlRecipeSection = /*#__PURE__*/function () {
 
             _recipeSectionView.default.renderRecipes(requiredRecipes.requiredRecipes);
 
-            _context4.next = 14;
+            _context4.next = 13;
             break;
 
           case 9:
             _context4.prev = 9;
             _context4.t0 = _context4["catch"](0);
-            console.log(_context4.t0);
 
             _heroView.default.renderErrorPopup(_context4.t0.message);
 
             _recipeSectionView.default.renderError("".concat(_context4.t0.message, ". Please check your internet connection"));
 
-          case 14:
+          case 13:
           case "end":
             return _context4.stop();
         }
@@ -16917,7 +16917,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "43955" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "38073" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

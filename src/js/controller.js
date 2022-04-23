@@ -118,7 +118,6 @@ const controlRecipeSection = async function (item) {
     // console.log(requiredRecipes);
     recipeSectionView.renderRecipes(requiredRecipes.requiredRecipes);
   } catch (err) {
-    console.log(err);
     heroView.renderErrorPopup(err.message);
     recipeSectionView.renderError(
       `${err.message}. Please check your internet connection`

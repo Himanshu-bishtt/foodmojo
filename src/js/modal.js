@@ -189,6 +189,7 @@ export const loadDataFromLocalStorageOnLoad = function () {
 
   // 3. Loading data into state
   state.search = data.search;
+  state.recipeTabsContent = data.recipeTabsContent;
   state.userLocation = data.userLocation;
   state.recommenedRecipes = data.recommenedRecipes;
   state.theme = data.theme;
