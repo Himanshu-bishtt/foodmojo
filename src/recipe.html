@@ -25,6 +25,40 @@
     <!-- <title>RECIPE NAME BY Publisher</title> -->
   </head>
   <body>
+    <section class="section hero" id="section--1">
+      <div class="hero__content">
+        <div class="hero__content--heading mg-2">FoodMojo</div>
+        <div class="hero__content--tagline">
+          Discover the best food, recipes and ingredients
+        </div>
+      </div>
+
+      <div class="hero__form mg-5">
+        <div class="hero__form--location">
+          <img src="icons/location-48.png" alt="location icon" />
+          <!-- <p class="hero__form--location-user">Noida, India</p> -->
+          <button class="hero__form--location-btn">Detect location</button>
+          <!-- <svg class="hero__form--spinner">
+            <use href="icons/icons.svg#icon-loader"></use>
+          </svg> -->
+        </div>
+        <form class="hero__form--form">
+          <svg>
+            <use href="icons/icons.svg#icon-search"></use>
+          </svg>
+          <input
+            class="hero__form--input"
+            type="text"
+            placeholder="Search for dish, recipe, ingredients"
+          />
+        </form>
+      </div>
+
+      <div class="hero__error-popup">
+        No recipes found with that query. Please try again!
+      </div>
+    </section>
+
     <section class="section recipe mg-7">
       <div class="container">
         <div class="recipe__content">

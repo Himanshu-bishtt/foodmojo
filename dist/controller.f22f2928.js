@@ -16322,9 +16322,17 @@ var _parentElement = /*#__PURE__*/new WeakMap();
 
 var _clearInput = /*#__PURE__*/new WeakSet();
 
+var _showSuggestionBox = /*#__PURE__*/new WeakSet();
+
+var _hideSuggestionBox = /*#__PURE__*/new WeakSet();
+
 var SearchView = /*#__PURE__*/function () {
   function SearchView() {
     _classCallCheck(this, SearchView);
+
+    _classPrivateMethodInitSpec(this, _hideSuggestionBox);
+
+    _classPrivateMethodInitSpec(this, _showSuggestionBox);
 
     _classPrivateMethodInitSpec(this, _clearInput);
 
@@ -16346,6 +16354,10 @@ var SearchView = /*#__PURE__*/function () {
   }, {
     key: "addHandlerSearch",
     value: function addHandlerSearch(handler) {
+      _classPrivateMethodGet(this, _showSuggestionBox, _showSuggestionBox2).call(this);
+
+      _classPrivateMethodGet(this, _hideSuggestionBox, _hideSuggestionBox2).call(this);
+
       _classPrivateFieldGet(this, _parentElement).addEventListener('submit', function (e) {
         e.preventDefault();
         handler();
@@ -16360,6 +16372,28 @@ function _clearInput2() {
   _classPrivateFieldGet(this, _parentElement).querySelector('.hero__form--input').value = '';
 
   _classPrivateFieldGet(this, _parentElement).querySelector('.hero__form--input').blur();
+}
+
+function _showSuggestionBox2() {
+  var _this = this;
+
+  _classPrivateFieldGet(this, _parentElement).querySelector('.hero__form--input').addEventListener('focus', function () {
+    var suggestionBox = _classPrivateFieldGet(_this, _parentElement).querySelector('.hero__form--suggestion-box');
+
+    suggestionBox.style.transform = 'translateY(0rem)';
+    suggestionBox.style.opacity = '1';
+  });
+}
+
+function _hideSuggestionBox2() {
+  var _this2 = this;
+
+  _classPrivateFieldGet(this, _parentElement).querySelector('.hero__form--input').addEventListener('focusout', function () {
+    var suggestionBox = _classPrivateFieldGet(_this2, _parentElement).querySelector('.hero__form--suggestion-box');
+
+    suggestionBox.style.transform = 'translateY(2rem)';
+    suggestionBox.style.opacity = '0';
+  });
 }
 
 var _default = new SearchView();
@@ -16696,6 +16730,9 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+// if (module.hot) {
+//   module.hot.accept();
+// }
 var controlLocalStorageData = function controlLocalStorageData() {
   modal.loadDataFromLocalStorageOnLoad();
 };
@@ -16945,7 +16982,15 @@ var init = function init() {
   _recipeSectionView.default.addHandlerTabs(controlRecipeSection, modal.state.recipeTabs);
 };
 
-init();
+init(); // document
+// document
+//   .querySelector('.hero__form--input')
+//   .addEventListener('focusout', function (e) {
+//     console.log(e);
+//     const suggestionBox = document.querySelector('.hero__form--suggestion-box');
+//     suggestionBox.style.transform = 'translateY(2rem)';
+//     suggestionBox.style.opacity = '0';
+//   });
 },{"core-js/stable":"../node_modules/core-js/stable/index.js","./modal":"js/modal.js","./views/heroView":"js/views/heroView.js","./views/searchView":"js/views/searchView.js","./views/htmlView":"js/views/htmlView.js","./views/galleryView":"js/views/galleryView.js","./views/recipeSectionView":"js/views/recipeSectionView.js","./helper":"js/helper.js"}],"../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -16974,7 +17019,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "39693" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "36735" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

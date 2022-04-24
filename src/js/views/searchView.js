@@ -13,10 +13,38 @@ class SearchView {
   }
 
   addHandlerSearch(handler) {
-    this.#parentElement.addEventListener('submit', function (e) {
+    this.#showSuggestionBox();
+    this.#hideSuggestionBox();
+    this.#parentElement.addEventListener('submit', e => {
       e.preventDefault();
       handler();
     });
+  }
+
+  #showSuggestionBox() {
+    this.#parentElement
+      .querySelector('.hero__form--input')
+      .addEventListener('focus', () => {
+        const suggestionBox = this.#parentElement.querySelector(
+          '.hero__form--suggestion-box'
+        );
+
+        suggestionBox.style.transform = 'translateY(0rem)';
+        suggestionBox.style.opacity = '1';
+      });
+  }
+
+  #hideSuggestionBox() {
+    this.#parentElement
+      .querySelector('.hero__form--input')
+      .addEventListener('focusout', () => {
+        const suggestionBox = this.#parentElement.querySelector(
+          '.hero__form--suggestion-box'
+        );
+
+        suggestionBox.style.transform = 'translateY(2rem)';
+        suggestionBox.style.opacity = '0';
+      });
   }
 }
 

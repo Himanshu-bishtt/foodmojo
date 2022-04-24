@@ -10,6 +10,9 @@ import galleryView from './views/galleryView';
 import recipeSectionView from './views/recipeSectionView';
 import { cronJob } from './helper';
 
+// if (module.hot) {
+//   module.hot.accept();
+// }
 const controlLocalStorageData = function () {
   modal.loadDataFromLocalStorageOnLoad();
 };
@@ -162,3 +165,15 @@ const init = function () {
 };
 
 init();
+
+// document
+
+// document
+//   .querySelector('.hero__form--input')
+//   .addEventListener('focusout', function (e) {
+//     console.log(e);
+//     const suggestionBox = document.querySelector('.hero__form--suggestion-box');
+
+//     suggestionBox.style.transform = 'translateY(2rem)';
+//     suggestionBox.style.opacity = '0';
+//   });
