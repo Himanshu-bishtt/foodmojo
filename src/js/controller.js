@@ -125,6 +125,18 @@ const controlRecipeSection = async function (item) {
   }
 };
 
+const controlRecipeSectionOnLoad = function () {
+  if (!modal.state.activeTab) return;
+
+  recipeSectionView.activeTab(modal.state.activeTab);
+
+  const requiredRecipes = modal.state.recipeTabsContent.find(
+    i => i.query === modal.state.activeTab
+  );
+
+  recipeSectionView.renderRecipes(requiredRecipes.requiredRecipes);
+};
+
 const init = function () {
   // Tasks to be performed when the page loads
   controlLocalStorageData();
@@ -133,6 +145,7 @@ const init = function () {
   controlThemeOnLoad();
   controlUserLocationOnLoad();
   controlRecommendedRecipes();
+  controlRecipeSectionOnLoad();
 
   setInterval(() => {
     cronJob() && controlRecommendedRecipes();

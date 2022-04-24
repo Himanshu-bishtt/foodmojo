@@ -15839,6 +15839,7 @@ var state = {
     recipe: {}
   },
   recipeTabs: ['steak', 'pizza', 'noodles', 'pasta'],
+  activeTab: '',
   recipeTabsContent: [],
   userLocation: {},
   recommenedRecipes: [],
@@ -16111,7 +16112,8 @@ var loadTabsRequiredRecipes = function loadTabsRequiredRecipes(query) {
   // 0. If tab recipe is already loaded, then return
   if (state.recipeTabsContent.find(function (item) {
     return item.query === query;
-  })) return; // 1. searching for results which matches with query param
+  })) return;
+  state.activeTab = query; // 1. searching for results which matches with query param
 
   var matchingRecipeResults = state.allLoadedContent.find(function (recipe) {
     return recipe.query === query;
@@ -16140,6 +16142,7 @@ var loadDataFromLocalStorageOnLoad = function loadDataFromLocalStorageOnLoad() {
 
   state.allLoadedContent = data.allLoadedContent;
   state.search = data.search;
+  state.activeTab = data.activeTab;
   state.recipeTabsContent = data.recipeTabsContent;
   state.userLocation = data.userLocation;
   state.recommenedRecipes = data.recommenedRecipes;
@@ -16852,7 +16855,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "43193" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "39693" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

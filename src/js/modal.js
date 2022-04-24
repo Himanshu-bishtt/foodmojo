@@ -17,6 +17,7 @@ export const state = {
     recipe: {},
   },
   recipeTabs: ['steak', 'pizza', 'noodles', 'pasta'],
+  activeTab: '',
   recipeTabsContent: [],
   userLocation: {},
   recommenedRecipes: [],
@@ -169,6 +170,8 @@ export const loadTabsRequiredRecipes = function (query) {
   // 0. If tab recipe is already loaded, then return
   if (state.recipeTabsContent.find(item => item.query === query)) return;
 
+  state.activeTab = query;
+
   // 1. searching for results which matches with query param
   const matchingRecipeResults = state.allLoadedContent.find(
     recipe => recipe.query === query
@@ -199,6 +202,7 @@ export const loadDataFromLocalStorageOnLoad = function () {
   // 3. Loading data into state
   state.allLoadedContent = data.allLoadedContent;
   state.search = data.search;
+  state.activeTab = data.activeTab;
   state.recipeTabsContent = data.recipeTabsContent;
   state.userLocation = data.userLocation;
   state.recommenedRecipes = data.recommenedRecipes;

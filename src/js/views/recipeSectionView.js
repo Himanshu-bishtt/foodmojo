@@ -68,14 +68,29 @@ class RecipeSectionView {
       });
   }
 
+  activeTab(tab) {
+    window.addEventListener('DOMContentLoaded', e => {
+      const upperCaseTabName = tab.split('')[0].toUpperCase() + tab.slice(1);
+
+      this.#parentElement
+        .querySelector('.recipes__tab--container')
+        .querySelectorAll('.recipes__tab')
+        .forEach(item => {
+          if (item.innerText === upperCaseTabName) {
+            item.classList.add('recipes__tab--active');
+          }
+        });
+    });
+  }
+
   renderRecipes(data) {
     this.#parentElement.querySelector('.recipes__content').innerHTML = '';
     this.#parentElement
       .querySelector('.recipes__content')
-      .insertAdjacentHTML('beforeend', this._generateMarkup(data));
+      .insertAdjacentHTML('beforeend', this.#generateMarkup(data));
   }
 
-  _generateMarkup(data) {
+  #generateMarkup(data) {
     return data
       .map(recipe => {
         return `

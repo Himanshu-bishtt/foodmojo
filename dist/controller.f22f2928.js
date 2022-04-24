@@ -15839,6 +15839,7 @@ var state = {
     recipe: {}
   },
   recipeTabs: ['steak', 'pizza', 'noodles', 'pasta'],
+  activeTab: '',
   recipeTabsContent: [],
   userLocation: {},
   recommenedRecipes: [],
@@ -16111,7 +16112,8 @@ var loadTabsRequiredRecipes = function loadTabsRequiredRecipes(query) {
   // 0. If tab recipe is already loaded, then return
   if (state.recipeTabsContent.find(function (item) {
     return item.query === query;
-  })) return; // 1. searching for results which matches with query param
+  })) return;
+  state.activeTab = query; // 1. searching for results which matches with query param
 
   var matchingRecipeResults = state.allLoadedContent.find(function (recipe) {
     return recipe.query === query;
@@ -16140,6 +16142,7 @@ var loadDataFromLocalStorageOnLoad = function loadDataFromLocalStorageOnLoad() {
 
   state.allLoadedContent = data.allLoadedContent;
   state.search = data.search;
+  state.activeTab = data.activeTab;
   state.recipeTabsContent = data.recipeTabsContent;
   state.userLocation = data.userLocation;
   state.recommenedRecipes = data.recommenedRecipes;
@@ -16565,9 +16568,13 @@ var _parentElement = /*#__PURE__*/new WeakMap();
 
 var _renderTabs = /*#__PURE__*/new WeakSet();
 
+var _generateMarkup = /*#__PURE__*/new WeakSet();
+
 var RecipeSectionView = /*#__PURE__*/function () {
   function RecipeSectionView() {
     _classCallCheck(this, RecipeSectionView);
+
+    _classPrivateMethodInitSpec(this, _generateMarkup);
 
     _classPrivateMethodInitSpec(this, _renderTabs);
 
@@ -16610,18 +16617,26 @@ var RecipeSectionView = /*#__PURE__*/function () {
       });
     }
   }, {
+    key: "activeTab",
+    value: function activeTab(tab) {
+      var _this = this;
+
+      window.addEventListener('DOMContentLoaded', function (e) {
+        var upperCaseTabName = tab.split('')[0].toUpperCase() + tab.slice(1);
+
+        _classPrivateFieldGet(_this, _parentElement).querySelector('.recipes__tab--container').querySelectorAll('.recipes__tab').forEach(function (item) {
+          if (item.innerText === upperCaseTabName) {
+            item.classList.add('recipes__tab--active');
+          }
+        });
+      });
+    }
+  }, {
     key: "renderRecipes",
     value: function renderRecipes(data) {
       _classPrivateFieldGet(this, _parentElement).querySelector('.recipes__content').innerHTML = '';
 
-      _classPrivateFieldGet(this, _parentElement).querySelector('.recipes__content').insertAdjacentHTML('beforeend', this._generateMarkup(data));
-    }
-  }, {
-    key: "_generateMarkup",
-    value: function _generateMarkup(data) {
-      return data.map(function (recipe) {
-        return "\n        <a href=\"./recipe.html?id=".concat(recipe.id, "\" title=\"").concat(recipe.title, "\" data-id=\"").concat(recipe.id, "\">\n          <div class=\"recipe\">\n            <img class=\"recipe__image\" src=\"").concat(recipe.image_url, "\" alt=\"").concat(recipe.title, "\" />\n            <h3 class=\"recipe__name heading--tertiary mg-2\">\n              ").concat(recipe.title, "\n            </h3>\n          </div>\n        </a>\n      ");
-      }).join('');
+      _classPrivateFieldGet(this, _parentElement).querySelector('.recipes__content').insertAdjacentHTML('beforeend', _classPrivateMethodGet(this, _generateMarkup, _generateMarkup2).call(this, data));
     }
   }]);
 
@@ -16636,6 +16651,12 @@ function _renderTabs2(tabItems) {
     return "\n        <button class=\"btn recipes__tab recipes__tab--".concat(index + 1, "\" data-tab=\"").concat(index + 1, "\">\n            ").concat(item.split('')[0].toUpperCase() + item.slice(1), "\n          </button>\n            ");
   }).join('');
   tabsContainer.insertAdjacentHTML('beforeend', tabs);
+}
+
+function _generateMarkup2(data) {
+  return data.map(function (recipe) {
+    return "\n        <a href=\"./recipe.html?id=".concat(recipe.id, "\" title=\"").concat(recipe.title, "\" data-id=\"").concat(recipe.id, "\">\n          <div class=\"recipe\">\n            <img class=\"recipe__image\" src=\"").concat(recipe.image_url, "\" alt=\"").concat(recipe.title, "\" />\n            <h3 class=\"recipe__name heading--tertiary mg-2\">\n              ").concat(recipe.title, "\n            </h3>\n          </div>\n        </a>\n      ");
+  }).join('');
 }
 
 var _default = new RecipeSectionView();
@@ -16885,6 +16906,18 @@ var controlRecipeSection = /*#__PURE__*/function () {
   };
 }();
 
+var controlRecipeSectionOnLoad = function controlRecipeSectionOnLoad() {
+  if (!modal.state.activeTab) return;
+
+  _recipeSectionView.default.activeTab(modal.state.activeTab);
+
+  var requiredRecipes = modal.state.recipeTabsContent.find(function (i) {
+    return i.query === modal.state.activeTab;
+  });
+
+  _recipeSectionView.default.renderRecipes(requiredRecipes.requiredRecipes);
+};
+
 var init = function init() {
   // Tasks to be performed when the page loads
   controlLocalStorageData();
@@ -16893,6 +16926,7 @@ var init = function init() {
   controlThemeOnLoad();
   controlUserLocationOnLoad();
   controlRecommendedRecipes();
+  controlRecipeSectionOnLoad();
   setInterval(function () {
     (0, _helper.cronJob)() && controlRecommendedRecipes();
   }, 1000); // Taks to be performed on user actions on view
@@ -16935,7 +16969,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "43193" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "39693" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
