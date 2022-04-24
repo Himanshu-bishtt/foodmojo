@@ -16112,7 +16112,12 @@ var loadTabsRequiredRecipes = function loadTabsRequiredRecipes(query) {
   // 0. If tab recipe is already loaded, then return
   if (state.recipeTabsContent.find(function (item) {
     return item.query === query;
-  })) return;
+  })) {
+    state.activeTab = query;
+    persistStateToLocalStorage();
+    return;
+  }
+
   state.activeTab = query; // 1. searching for results which matches with query param
 
   var matchingRecipeResults = state.allLoadedContent.find(function (recipe) {

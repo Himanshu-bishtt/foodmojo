@@ -168,7 +168,11 @@ export const loadRecommenedRecipes = async function () {
 
 export const loadTabsRequiredRecipes = function (query) {
   // 0. If tab recipe is already loaded, then return
-  if (state.recipeTabsContent.find(item => item.query === query)) return;
+  if (state.recipeTabsContent.find(item => item.query === query)) {
+    state.activeTab = query;
+    persistStateToLocalStorage();
+    return;
+  }
 
   state.activeTab = query;
 
