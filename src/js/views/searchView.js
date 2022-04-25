@@ -31,6 +31,7 @@ class SearchView {
 
         suggestionBox.style.transform = 'translateY(0rem)';
         suggestionBox.style.opacity = '1';
+        suggestionBox.style.visibility = 'visible';
       });
   }
 
@@ -44,6 +45,7 @@ class SearchView {
 
         suggestionBox.style.transform = 'translateY(2rem)';
         suggestionBox.style.opacity = '0';
+        suggestionBox.style.visibility = 'hidden';
       });
   }
 }

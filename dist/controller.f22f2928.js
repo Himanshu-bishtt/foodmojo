@@ -16390,6 +16390,7 @@ function _showSuggestionBox2() {
 
     suggestionBox.style.transform = 'translateY(0rem)';
     suggestionBox.style.opacity = '1';
+    suggestionBox.style.visibility = 'visible';
   });
 }
 
@@ -16401,6 +16402,7 @@ function _hideSuggestionBox2() {
 
     suggestionBox.style.transform = 'translateY(2rem)';
     suggestionBox.style.opacity = '0';
+    suggestionBox.style.visibility = 'hidden';
   });
 }
 
