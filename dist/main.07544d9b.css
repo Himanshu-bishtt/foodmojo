@@ -57,6 +57,12 @@ body {
   font-family: "Raleway", sans-serif;
   transition: all 0.5s;
 }
+@media only screen and (max-width: 600px) {
+  html,
+body {
+    font-size: 50%;
+  }
+}
 
 a {
   text-decoration: none;
@@ -103,6 +109,12 @@ select {
   align-items: center;
   padding: 1.5rem 0rem;
 }
+@media only screen and (max-width: 600px) {
+  .footer__content {
+    flex-direction: column-reverse;
+    row-gap: 2rem;
+  }
+}
 .footer__content--heading {
   font-size: 1.2rem;
   font-weight: bold;
@@ -126,15 +138,27 @@ select {
   cursor: pointer;
 }
 
+@media only screen and (max-width: 600px) {
+  .gallery {
+    margin: 10rem 0rem 0rem 0rem !important;
+  }
+}
+
 .gallery__grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 1rem;
+  column-gap: 2rem;
   height: 30rem;
   position: relative;
 }
+@media only screen and (max-width: 600px) {
+  .gallery__grid {
+    grid-template-columns: 1fr;
+    height: auto;
+    row-gap: 4rem;
+  }
+}
 .gallery__grid--item {
-  margin: 1rem;
   height: 100%;
   border-radius: 20px;
   position: relative;
@@ -165,6 +189,15 @@ select {
 .gallery__grid--item:hover .grid__item--tag {
   z-index: 0;
   opacity: 0;
+}
+@media only screen and (max-width: 600px) {
+  .gallery__grid--item::after {
+    transform: scale(2) translateX(0%) translateY(0%) rotate(-28deg);
+  }
+  .gallery__grid--item .grid__item--info {
+    opacity: 1;
+    z-index: 1;
+  }
 }
 
 .grid__item--image {
@@ -209,6 +242,11 @@ select {
   opacity: 1;
   transition: all 1s cubic-bezier(0.2, 1, 0.3, 1);
 }
+@media only screen and (max-width: 600px) {
+  .grid__item--tag {
+    top: 5%;
+  }
+}
 
 .header {
   display: flex;
@@ -234,10 +272,20 @@ select {
   justify-content: center;
   align-items: center;
 }
+@media only screen and (max-width: 600px) {
+  .hero {
+    height: 60vh;
+  }
+}
 .hero__content {
   color: #fff;
   font-size: 3rem;
   text-align: center;
+}
+@media only screen and (max-width: 600px) {
+  .hero__content {
+    font-size: 2rem;
+  }
 }
 .hero__content--heading {
   font-size: 8rem;
@@ -247,6 +295,11 @@ select {
   font-family: "Montserrat", sans-serif;
   font-weight: bold;
   transition: all 0.5s;
+}
+@media only screen and (max-width: 600px) {
+  .hero__content--heading {
+    font-size: 6rem;
+  }
 }
 .hero__content--heading:hover {
   filter: blur(0);
@@ -262,6 +315,11 @@ select {
   width: 50vw;
   display: flex;
   align-items: center;
+}
+@media only screen and (max-width: 600px) {
+  .hero__form {
+    width: 90%;
+  }
 }
 .hero__form--location {
   display: flex;
@@ -311,6 +369,11 @@ select {
   font-size: 1.5rem;
   color: #808080;
 }
+@media only screen and (max-width: 600px) {
+  .hero__form--form .hero__form--input {
+    font-size: 1.3rem;
+  }
+}
 .hero__form--form .hero__form--suggestion-box {
   position: absolute;
   background-color: #fff;
@@ -345,6 +408,18 @@ select {
   transform: scale(0.6);
   transition: all 0.5s;
 }
+@media only screen and (max-width: 600px) {
+  .hero__error-popup {
+    right: -16%;
+    font-size: 2rem;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .recipe-section {
+    margin: 5rem 0rem !important;
+  }
+}
 
 .recipes__tab--container {
   display: flex;
@@ -370,7 +445,7 @@ select {
 }
 
 .recipe__image {
-  border-radius: 1rem;
+  border-radius: 2rem;
   height: 25rem;
   width: 100%;
   transition: all 0.5s;
@@ -395,6 +470,11 @@ select {
   position: relative;
   width: 50vw;
   margin: 0 auto;
+}
+@media only screen and (max-width: 600px) {
+  .recipe__content {
+    width: 90vw;
+  }
 }
 
 .recipe__fig {
@@ -434,6 +514,11 @@ select {
   line-height: 1.95;
   text-align: center;
 }
+@media only screen and (max-width: 600px) {
+  .recipe__title {
+    font-size: 2.5rem;
+  }
+}
 .recipe__title span {
   -webkit-box-decoration-break: clone;
   box-decoration-break: clone;
@@ -446,6 +531,11 @@ select {
   justify-content: space-between;
   align-items: center;
   padding: 8rem 5rem 0rem 5rem;
+}
+@media only screen and (max-width: 600px) {
+  .recipe__details {
+    margin-top: 2rem;
+  }
 }
 .recipe__details div {
   display: flex;
@@ -476,6 +566,13 @@ select {
   grid-template-columns: 1fr 1fr;
   gap: 5rem 3rem;
   list-style: none;
+}
+@media only screen and (max-width: 600px) {
+  .recipe__ingredient-list {
+    grid-template-columns: 1fr;
+    row-gap: 3rem;
+    width: 80%;
+  }
 }
 .recipe__ingredient {
   display: flex;
@@ -510,6 +607,11 @@ select {
   grid-template-columns: repeat(3, 1fr);
   justify-content: center;
   gap: 4rem 4rem;
+}
+@media only screen and (max-width: 600px) {
+  .results__container {
+    grid-template-columns: 1fr;
+  }
 }
 
 .results__item {
@@ -680,6 +782,11 @@ select {
   font-family: "Montserrat", sans-serif;
   color: #333;
 }
+@media only screen and (max-width: 600px) {
+  .heading--primary {
+    font-size: 2.7rem;
+  }
+}
 
 .heading--secondary {
   font-size: 2.5rem;
@@ -723,6 +830,11 @@ select {
   font-weight: bold;
   cursor: pointer;
   transition: all 0.5s;
+}
+@media only screen and (max-width: 600px) {
+  .btn {
+    padding: 1rem 2.3rem;
+  }
 }
 
 .spinner {

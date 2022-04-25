@@ -11,6 +11,12 @@ $color-light--2: #808080;
 $color-dark--1: #333;
 $color-dark--2: #2d3439;
 
+// media queries breakpoints
+$bp-mobile: 600px;
+$bp-tablet: 768px;
+$bp-laptop: 992px;
+$bp-large-screen: 1200px;
+
 [data-theme='dark'] {
   .heading--primary,
   .heading--secondary,

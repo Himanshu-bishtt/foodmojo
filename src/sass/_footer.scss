@@ -4,6 +4,11 @@
   align-items: center;
   padding: 1.5rem 0rem;
 
+  @media only screen and (max-width: $bp-mobile) {
+    flex-direction: column-reverse;
+    row-gap: 2rem;
+  }
+
   &--heading {
     // font-family: 'Montserrat', sans-serif;
     // font-size: 3rem;

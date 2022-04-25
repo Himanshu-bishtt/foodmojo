@@ -22,6 +22,10 @@ body {
   font-family: 'Raleway', sans-serif;
   transition: all 0.5s;
   // color: $color-dark--2;
+
+  @media only screen and (max-width: $bp-mobile) {
+    font-size: 50%;
+  }
 }
 
 // body {

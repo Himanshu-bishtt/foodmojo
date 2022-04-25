@@ -2,6 +2,10 @@
   position: relative;
   width: 50vw;
   margin: 0 auto;
+
+  @media only screen and (max-width: $bp-mobile) {
+    width: 90vw;
+  }
 }
 .recipe {
   // background-color: $color-grey-light-1;
@@ -53,6 +57,10 @@
     line-height: 1.95;
     text-align: center;
 
+    @media only screen and (max-width: $bp-mobile) {
+      font-size: 2.5rem;
+    }
+
     span {
       -webkit-box-decoration-break: clone;
       box-decoration-break: clone;
@@ -75,6 +83,10 @@
     justify-content: space-between;
     align-items: center;
     padding: 8rem 5rem 0rem 5rem;
+
+    @media only screen and (max-width: $bp-mobile) {
+      margin-top: 2rem;
+    }
 
     & div {
       display: flex;
@@ -111,6 +123,12 @@
     grid-template-columns: 1fr 1fr;
     gap: 5rem 3rem;
     list-style: none;
+
+    @media only screen and (max-width: $bp-mobile) {
+      grid-template-columns: 1fr;
+      row-gap: 3rem;
+      width: 80%;
+    }
   }
 
   &__ingredient {
