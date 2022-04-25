@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Raleway:wght@200;300;400&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <script defer type="module" src="js/searchController.js"></script>
+    <link rel="stylesheet" href="sass/main.scss" />
+
+    <link rel="shortcut icon" type="image/png" href="img/favicon.png" />
+
+    <title>FoodMojo | Search Recipe | Ingredients | How to cook & more</title>
+  </head>
+  <body>
+    <section class="section results mg-5">
+      <div class="container">
+        <div class="results__heading">
+          <h2 class="heading--primary">Search query whatever user entered</h2>
+          <p class="results__count mg-1">
+            Total results: <span class="results__count--number">59</span>
+          </p>
+        </div>
+
+        <div class="results__container mg-8">
+          <a href="#" title="Some long recipe name for testing">
+            <div class="results__item">
+              <img
+                class="results__item--image"
+                src="./img/recipe.jpg"
+                alt="recipe name"
+              />
+              <div class="results__item--info">
+                <h3 class="results__item--title">
+                  Some long recipe name for testing
+                </h3>
+                <h3 class="results__item--publisher">Recipe Publisher</h3>
+              </div>
+            </div>
+          </a>
+
+          <a href="#" title="Some long recipe name for testing">
+            <div class="results__item">
+              <img
+                class="results__item--image"
+                src="./img/recipe.jpg"
+                alt="recipe name"
+              />
+              <div class="results__item--info">
+                <h3 class="results__item--title">
+                  Some long recipe name for testing
+                </h3>
+                <h3 class="results__item--publisher">Recipe Publisher</h3>
+              </div>
+            </div>
+          </a>
+
+          <a href="#" title="Some long recipe name for testing">
+            <div class="results__item">
+              <img
+                class="results__item--image"
+                src="./img/recipe.jpg"
+                alt="recipe name"
+              />
+              <div class="results__item--info">
+                <h3 class="results__item--title">
+                  Some long recipe name for testing
+                </h3>
+                <h3 class="results__item--publisher">Recipe Publisher</h3>
+              </div>
+            </div>
+          </a>
+
+          <a href="#" title="Some long recipe name for testing">
+            <div class="results__item">
+              <img
+                class="results__item--image"
+                src="./img/recipe.jpg"
+                alt="recipe name"
+              />
+              <div class="results__item--info">
+                <h3 class="results__item--title">
+                  Some long recipe name for testing
+                </h3>
+                <h3 class="results__item--publisher">Recipe Publisher</h3>
+              </div>
+            </div>
+          </a>
+
+          <a href="#" title="Some long recipe name for testing">
+            <div class="results__item">
+              <img
+                class="results__item--image"
+                src="./img/recipe.jpg"
+                alt="recipe name"
+              />
+              <div class="results__item--info">
+                <h3 class="results__item--title">
+                  Some long recipe name for testing
+                </h3>
+                <h3 class="results__item--publisher">Recipe Publisher</h3>
+              </div>
+            </div>
+          </a>
+
+          <a href="#" title="Some long recipe name for testing">
+            <div class="results__item">
+              <img
+                class="results__item--image"
+                src="./img/recipe.jpg"
+                alt="recipe name"
+              />
+              <div class="results__item--info">
+                <h3 class="results__item--title">
+                  Some long recipe name for testing
+                </h3>
+                <h3 class="results__item--publisher">Recipe Publisher</h3>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+    <footer class="footer bg-light">
+      <div class="container">
+        <div class="footer__content">
+          <h2 class="footer__content--heading">
+            Made with ❤️ by
+            <a target="_blank" href="https://himanshuu.netlify.app"
+              >Himanshu Bisht</a
+            >
+          </h2>
+          <div class="footer__content--btn">
+            <div class="btn__language">
+              <select name="language" id="language">
+                <option selected value="english">🇺🇸 English</option>
+                <option value="hindi">🇮🇳 Hindi</option>
+                <option value="portugese">🇵🇹 Portugese</option>
+              </select>
+            </div>
+            <div class="btn__theme">
+              <select
+                class="btn__theme--select"
+                name="themePicker"
+                id="themePicker"
+              >
+                <option value="light">☀️ Light</option>
+                <option value="dark">🌙 Dark</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+  <div class="overlay overlay__error hidden"></div>
+  <div class="popup popup__error hidden text-center">
+    <img src="icons/nointernet.png" alt="no internet icon" class="mg-1" />
+    <p class="heading--tertiary">No internet</p>
+    <p class="mg-1">Check your connection settings and try again.</p>
+    <p class="fs-1-5 mg-1">ERR_INTERNET_DISCONNECTED</p>
+  </div>
+</html>

@@ -1,0 +1,55 @@
+.results__count {
+  font-size: 2rem;
+
+  &--number {
+    color: $color-primary;
+    font-weight: bold;
+  }
+}
+
+.results__container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4rem 4rem;
+}
+
+.results__item {
+  display: flex;
+  align-items: center;
+  padding: 1rem 0.8rem;
+  border-radius: 10px;
+  transition: all 0.5s;
+
+  &:hover {
+    background-color: $color-light--1;
+    box-shadow: 0rem 1rem 2rem rgba(0, 0, 0, 0.1);
+    transform: translateY(-0.5rem);
+  }
+
+  &--image {
+    height: 10rem;
+    width: 10rem;
+    border-radius: 50%;
+    margin-right: 1.5rem;
+  }
+
+  &--info {
+    text-transform: uppercase;
+    width: 71%;
+  }
+
+  &--title {
+    font-size: 1.5rem;
+    color: $color-primary;
+    width: 100%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  &--publisher {
+    font-size: 1.3rem;
+    margin-top: 0.5rem;
+    color: $color-dark--1;
+  }
+}
