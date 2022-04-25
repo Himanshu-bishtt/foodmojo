@@ -45,6 +45,8 @@ export const loadQueryResults = async function (query) {
     // 1. If searched query is already in state, then return
     if (state.search.query.includes(query)) return;
 
+    if (!query) throw new Error('Please enter valid query');
+
     // 2. Getting search query data
     const result = await loadAJAX(`${API_URL}?search=${query}`);
 
