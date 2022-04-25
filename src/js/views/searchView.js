@@ -15,10 +15,40 @@ class SearchView {
   addHandlerSearch(handler) {
     this.#showSuggestionBox();
     this.#hideSuggestionBox();
+    this.renderSuggestionList();
     this.#parentElement.addEventListener('submit', e => {
       e.preventDefault();
       handler();
     });
+  }
+
+  renderSuggestionList() {
+    this.#parentElement.querySelector('.suggestion-box__list').innerHTML = '';
+
+    const suggestionItems = [
+      'pizza',
+      'pasta',
+      'carrot',
+      'pineapple',
+      'cauliflower pizza crust',
+    ];
+
+    this.#parentElement
+      .querySelector('.suggestion-box__list')
+      .insertAdjacentHTML(
+        'beforeend',
+        this.#generateSuggestionList(suggestionItems)
+      );
+  }
+
+  #generateSuggestionList(items) {
+    return items
+      .map(
+        item => `
+      <a href="./search.html?query=${item}"><li class="suggestion-box__item">${item}</li></a>
+    `
+      )
+      .join('');
   }
 
   #showSuggestionBox() {

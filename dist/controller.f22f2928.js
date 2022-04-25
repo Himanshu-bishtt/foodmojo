@@ -16330,6 +16330,8 @@ var _parentElement = /*#__PURE__*/new WeakMap();
 
 var _clearInput = /*#__PURE__*/new WeakSet();
 
+var _generateSuggestionList = /*#__PURE__*/new WeakSet();
+
 var _showSuggestionBox = /*#__PURE__*/new WeakSet();
 
 var _hideSuggestionBox = /*#__PURE__*/new WeakSet();
@@ -16341,6 +16343,8 @@ var SearchView = /*#__PURE__*/function () {
     _classPrivateMethodInitSpec(this, _hideSuggestionBox);
 
     _classPrivateMethodInitSpec(this, _showSuggestionBox);
+
+    _classPrivateMethodInitSpec(this, _generateSuggestionList);
 
     _classPrivateMethodInitSpec(this, _clearInput);
 
@@ -16366,10 +16370,20 @@ var SearchView = /*#__PURE__*/function () {
 
       _classPrivateMethodGet(this, _hideSuggestionBox, _hideSuggestionBox2).call(this);
 
+      this.renderSuggestionList();
+
       _classPrivateFieldGet(this, _parentElement).addEventListener('submit', function (e) {
         e.preventDefault();
         handler();
       });
+    }
+  }, {
+    key: "renderSuggestionList",
+    value: function renderSuggestionList() {
+      _classPrivateFieldGet(this, _parentElement).querySelector('.suggestion-box__list').innerHTML = '';
+      var suggestionItems = ['pizza', 'pasta', 'carrot', 'pineapple', 'cauliflower pizza crust'];
+
+      _classPrivateFieldGet(this, _parentElement).querySelector('.suggestion-box__list').insertAdjacentHTML('beforeend', _classPrivateMethodGet(this, _generateSuggestionList, _generateSuggestionList2).call(this, suggestionItems));
     }
   }]);
 
@@ -16380,6 +16394,12 @@ function _clearInput2() {
   _classPrivateFieldGet(this, _parentElement).querySelector('.hero__form--input').value = '';
 
   _classPrivateFieldGet(this, _parentElement).querySelector('.hero__form--input').blur();
+}
+
+function _generateSuggestionList2(items) {
+  return items.map(function (item) {
+    return "\n      <a href=\"./search.html?query=".concat(item, "\"><li class=\"suggestion-box__item\">").concat(item, "</li></a>\n    ");
+  }).join('');
 }
 
 function _showSuggestionBox2() {

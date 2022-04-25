@@ -23,9 +23,7 @@ const controlThemeOnLoad = function () {
   htmlView.renderSavedTheme(modal.state.theme);
 };
 
-const controlSearchPageResults = function () {
-  // searchPageView.renderSpinner();
-
+const controlSearchPageResults = async function () {
   try {
     searchPageView.renderSpinner();
 
@@ -34,6 +32,18 @@ const controlSearchPageResults = function () {
     const queryResults = modal.state.allLoadedContent.find(
       results => results.query === query
     );
+
+    if (!queryResults) {
+      await modal.loadQueryResults(query);
+
+      const queryResults = modal.state.allLoadedContent.find(
+        results => results.query === query
+      );
+
+      searchPageView.renderResults(queryResults);
+
+      return;
+    }
 
     searchPageView.renderResults(queryResults);
   } catch (err) {

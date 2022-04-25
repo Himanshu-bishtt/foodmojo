@@ -16375,6 +16375,10 @@ function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "functio
 
 function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 var controlLocalStorageData = function controlLocalStorageData() {
   modal.loadDataFromLocalStorageOnLoad();
 };
@@ -16392,21 +16396,63 @@ var controlThemeOnLoad = function controlThemeOnLoad() {
   _htmlView.default.renderSavedTheme(modal.state.theme);
 };
 
-var controlSearchPageResults = function controlSearchPageResults() {
-  // searchPageView.renderSpinner();
-  try {
-    _searchPageView.default.renderSpinner();
+var controlSearchPageResults = /*#__PURE__*/function () {
+  var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+    var query, queryResults, _queryResults;
 
-    var query = new URL(window.location.href).searchParams.get('query');
-    var queryResults = modal.state.allLoadedContent.find(function (results) {
-      return results.query === query;
-    });
+    return regeneratorRuntime.wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            _context.prev = 0;
 
-    _searchPageView.default.renderResults(queryResults);
-  } catch (err) {
-    console.log(err);
-  }
-};
+            _searchPageView.default.renderSpinner();
+
+            query = new URL(window.location.href).searchParams.get('query');
+            queryResults = modal.state.allLoadedContent.find(function (results) {
+              return results.query === query;
+            });
+
+            if (queryResults) {
+              _context.next = 10;
+              break;
+            }
+
+            _context.next = 7;
+            return modal.loadQueryResults(query);
+
+          case 7:
+            _queryResults = modal.state.allLoadedContent.find(function (results) {
+              return results.query === query;
+            });
+
+            _searchPageView.default.renderResults(_queryResults);
+
+            return _context.abrupt("return");
+
+          case 10:
+            _searchPageView.default.renderResults(queryResults);
+
+            _context.next = 16;
+            break;
+
+          case 13:
+            _context.prev = 13;
+            _context.t0 = _context["catch"](0);
+            console.log(_context.t0);
+
+          case 16:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee, null, [[0, 13]]);
+  }));
+
+  return function controlSearchPageResults() {
+    return _ref.apply(this, arguments);
+  };
+}();
 
 var init = function init() {
   controlLocalStorageData();
@@ -16446,7 +16492,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "39443" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "41341" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

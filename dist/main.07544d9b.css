@@ -378,7 +378,7 @@ select {
 }
 @media only screen and (max-width: 600px) {
   .hero__form--form .hero__form--input {
-    font-size: 1.3rem;
+    font-size: 1.5rem;
   }
 }
 .hero__form--form .hero__form--suggestion-box {
@@ -417,7 +417,8 @@ select {
 }
 @media only screen and (max-width: 600px) {
   .hero__error-popup {
-    right: -16%;
+    top: 1%;
+    right: -5%;
     font-size: 2rem;
   }
 }
