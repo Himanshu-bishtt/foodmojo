@@ -498,14 +498,20 @@ select {
 
 .results__count {
   font-size: 2rem;
+  font-weight: bold;
 }
 .results__count--number {
   color: #fd5353;
-  font-weight: bold;
+}
+
+.results__searched {
+  color: #fd5353;
 }
 
 .results__container {
   display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-content: center;
   gap: 4rem 4rem;
 }
 
@@ -513,7 +519,6 @@ select {
   display: flex;
   align-items: center;
   padding: 1rem 0.8rem;
-  width: 50%;
   border-radius: 10px;
   transition: all 0.5s;
 }
@@ -530,7 +535,7 @@ select {
 }
 .results__item--info {
   text-transform: uppercase;
-  width: 71%;
+  width: 25rem;
 }
 .results__item--title {
   font-size: 1.5rem;
@@ -543,7 +548,6 @@ select {
 .results__item--publisher {
   font-size: 1.3rem;
   margin-top: 0.5rem;
-  color: #333;
 }
 
 .upload__form {

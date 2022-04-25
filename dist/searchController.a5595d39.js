@@ -16344,14 +16344,14 @@ var SearchPageView = /*#__PURE__*/function () {
 
 function _renderSearchInfo2(results) {
   _classPrivateFieldGet(this, _parentElement).querySelector('.results__heading').innerHTML = '';
-  var html = "\n    <h2 class=\"heading--primary\">".concat(results.query, "</h2>\n          <p class=\"results__count mg-1\">\n            Total results: <span class=\"results__count--number\">").concat(results.results, "</span>\n          </p>\n    ");
+  var html = "\n      <h2 class=\"heading--primary\">You searched for: <span class=\"results__searched\">".concat(results.query, "</span></h2>\n      <p class=\"results__count mg-1\">\n        Total results: <span class=\"results__count--number\">").concat(results.results, "</span>\n      </p>\n    ");
 
   _classPrivateFieldGet(this, _parentElement).querySelector('.results__heading').insertAdjacentHTML('beforeend', html);
 }
 
 function _generateMarkup2(results) {
   return results.recipes.map(function (recipe) {
-    return "<a href=\"./recipe.html?id=".concat(recipe.id, "\" title=\"").concat(recipe.title, "\">\n    <div class=\"results__item\">\n      <img\n        class=\"results__item--image\"\n        src=\"").concat(recipe.image_url, "\"\n        alt=\"").concat(recipe.title, "\"\n      />\n      <div class=\"results__item--info\">\n        <h3 class=\"results__item--title\">\n          ").concat(recipe.title, "\n        </h3>\n        <h3 class=\"results__item--publisher\">").concat(recipe.publisher, "</h3>\n      </div>\n    </div>\n  </a>\n    ");
+    return "<a href=\"./recipe.html?id=".concat(recipe.id, "\" title=\"").concat(recipe.title, "\">\n            <div class=\"results__item\">\n              <img\n                class=\"results__item--image\"\n                src=\"").concat(recipe.image_url, "\"\n                alt=\"").concat(recipe.title, "\"\n              />\n              <div class=\"results__item--info\">\n                <h3 class=\"results__item--title\">\n                  ").concat(recipe.title, "\n                </h3>\n                <h3 class=\"results__item--publisher\">").concat(recipe.publisher, "</h3>\n              </div>\n            </div>\n          </a>\n    ");
   }).join('');
 }
 
@@ -16395,7 +16395,8 @@ var controlThemeOnLoad = function controlThemeOnLoad() {
 var controlSearchPageResults = function controlSearchPageResults() {
   // searchPageView.renderSpinner();
   try {
-    // searchPageView.renderSpinner();
+    _searchPageView.default.renderSpinner();
+
     var query = new URL(window.location.href).searchParams.get('query');
     var queryResults = modal.state.allLoadedContent.find(function (results) {
       return results.query === query;
@@ -16445,7 +16446,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "46707" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "36871" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

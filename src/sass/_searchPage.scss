@@ -1,15 +1,21 @@
 .results__count {
   font-size: 2rem;
+  font-weight: bold;
 
   &--number {
     color: $color-primary;
-    font-weight: bold;
   }
+}
+
+.results__searched {
+  color: $color-primary;
 }
 
 .results__container {
   display: grid;
-  // grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, 1fr);
+  // grid-template-columns: repeat(auto-fit, minmax(50rem, 1fr));
+  justify-content: center;
   gap: 4rem 4rem;
 }
 
@@ -17,7 +23,7 @@
   display: flex;
   align-items: center;
   padding: 1rem 0.8rem;
-  width: 50%;
+  // width: 50%;
   border-radius: 10px;
   transition: all 0.5s;
 
@@ -36,7 +42,7 @@
 
   &--info {
     text-transform: uppercase;
-    width: 71%;
+    width: 25rem;
   }
 
   &--title {
@@ -51,6 +57,6 @@
   &--publisher {
     font-size: 1.3rem;
     margin-top: 0.5rem;
-    color: $color-dark--1;
+    // color: $color-dark--1;
   }
 }

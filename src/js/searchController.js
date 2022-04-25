@@ -27,7 +27,8 @@ const controlSearchPageResults = function () {
   // searchPageView.renderSpinner();
 
   try {
-    // searchPageView.renderSpinner();
+    searchPageView.renderSpinner();
+
     const query = new URL(window.location.href).searchParams.get('query');
 
     const queryResults = modal.state.allLoadedContent.find(
