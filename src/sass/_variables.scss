@@ -55,6 +55,14 @@ $bp-large-screen: 1200px;
     color: $color-black;
   }
 
+  .results__item .results__item--publisher {
+    color: $color-light--1;
+  }
+
+  .results__item:hover .results__item--publisher {
+    color: $color-dark--1;
+  }
+
   .spinner {
     fill: $color-light--1;
   }

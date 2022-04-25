@@ -27,6 +27,12 @@
   background-color: #f3f3f3;
   color: #000;
 }
+[data-theme=dark] .results__item .results__item--publisher {
+  color: #f3f3f3;
+}
+[data-theme=dark] .results__item:hover .results__item--publisher {
+  color: #333;
+}
 [data-theme=dark] .spinner {
   fill: #f3f3f3;
 }
@@ -154,7 +160,7 @@ select {
 @media only screen and (max-width: 600px) {
   .gallery__grid {
     grid-template-columns: 1fr;
-    height: auto;
+    height: 120rem;
     row-gap: 4rem;
   }
 }
@@ -319,6 +325,7 @@ select {
 @media only screen and (max-width: 600px) {
   .hero__form {
     width: 90%;
+    padding: 1.5rem 1rem;
   }
 }
 .hero__form--location {
@@ -647,6 +654,7 @@ select {
 .results__item--publisher {
   font-size: 1.3rem;
   margin-top: 0.5rem;
+  transition: all 0.5s;
 }
 
 .upload__form {
