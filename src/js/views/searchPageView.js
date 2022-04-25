@@ -32,6 +32,8 @@ class SearchPageView {
   }
 
   renderResults(results) {
+    document.title = `FoodMojo | Showing ${results.results} results for ${results.query}`;
+
     this.#renderSearchInfo(results);
     this.#parentElement.querySelector('.results__container').innerHTML = '';
 

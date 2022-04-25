@@ -16331,6 +16331,8 @@ var SearchPageView = /*#__PURE__*/function () {
   }, {
     key: "renderResults",
     value: function renderResults(results) {
+      document.title = "FoodMojo | Showing ".concat(results.results, " results for ").concat(results.query);
+
       _classPrivateMethodGet(this, _renderSearchInfo, _renderSearchInfo2).call(this, results);
 
       _classPrivateFieldGet(this, _parentElement).querySelector('.results__container').innerHTML = '';
@@ -16492,7 +16494,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "41341" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "40507" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
