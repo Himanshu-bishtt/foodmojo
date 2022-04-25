@@ -506,7 +506,6 @@ select {
 
 .results__container {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
   gap: 4rem 4rem;
 }
 
@@ -514,6 +513,7 @@ select {
   display: flex;
   align-items: center;
   padding: 1rem 0.8rem;
+  width: 50%;
   border-radius: 10px;
   transition: all 0.5s;
 }
@@ -606,6 +606,7 @@ select {
 .container {
   width: 90vw;
   margin: 0 auto;
+  overflow: hidden;
 }
 
 .mg-1 {

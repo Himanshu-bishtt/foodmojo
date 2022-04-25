@@ -15909,10 +15909,18 @@ var loadQueryResults = /*#__PURE__*/function () {
             return _context2.abrupt("return");
 
           case 3:
-            _context2.next = 5;
-            return (0, _helper.loadAJAX)("".concat(_config.API_URL, "?search=").concat(query));
+            if (query) {
+              _context2.next = 5;
+              break;
+            }
+
+            throw new Error('Please enter valid query');
 
           case 5:
+            _context2.next = 7;
+            return (0, _helper.loadAJAX)("".concat(_config.API_URL, "?search=").concat(query));
+
+          case 7:
             result = _context2.sent;
             // 3. Pushing searched query into query state
             state.search.query.push(query); // 4. Pushing searched results into results state
@@ -15941,20 +15949,20 @@ var loadQueryResults = /*#__PURE__*/function () {
             }); // 5. Storing state after every search into Local Storage
 
             persistStateToLocalStorage();
-            _context2.next = 16;
+            _context2.next = 18;
             break;
 
-          case 13:
-            _context2.prev = 13;
+          case 15:
+            _context2.prev = 15;
             _context2.t0 = _context2["catch"](0);
             throw _context2.t0;
 
-          case 16:
+          case 18:
           case "end":
             return _context2.stop();
         }
       }
-    }, _callee2, null, [[0, 13]]);
+    }, _callee2, null, [[0, 15]]);
   }));
 
   return function loadQueryResults(_x2) {
@@ -16784,7 +16792,7 @@ var controlSearchResults = /*#__PURE__*/function () {
             return modal.loadQueryResults(query);
 
           case 4:
-            console.log(modal.state);
+            window.location.href = "search.html?query=".concat(query);
             _context.next = 10;
             break;
 
@@ -17019,7 +17027,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "38491" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "46707" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

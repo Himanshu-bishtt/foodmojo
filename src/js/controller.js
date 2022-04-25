@@ -56,7 +56,7 @@ const controlSearchResults = async function () {
     // 2. Loading search results based on query
     await modal.loadQueryResults(query);
 
-    console.log(modal.state);
+    window.location.href = `search.html?query=${query}`;
   } catch (err) {
     // 3. Error popup on hero view when wrong text is inputted into form
     heroView.renderErrorPopup(err);
