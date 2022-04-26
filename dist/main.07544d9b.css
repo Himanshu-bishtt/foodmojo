@@ -423,9 +423,10 @@ select {
 }
 @media only screen and (max-width: 600px) {
   .hero__error-popup {
-    top: 1%;
-    right: -5%;
-    font-size: 2rem;
+    top: 2%;
+    right: 5%;
+    font-size: 1.3rem;
+    padding: 1.5rem 1rem;
   }
 }
 

@@ -177,9 +177,10 @@
     transition: all 0.5s;
 
     @media only screen and (max-width: $bp-mobile) {
-      top: 1%;
-      right: -5%;
-      font-size: 2rem;
+      top: 2%;
+      right: 5%;
+      font-size: 1.3rem;
+      padding: 1.5rem 1rem;
     }
   }
 }
