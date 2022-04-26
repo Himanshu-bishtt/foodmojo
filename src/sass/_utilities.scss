@@ -182,6 +182,10 @@
   color: $color-dark--1;
   font-size: 1.2rem;
 
+  @media only screen and (max-width: $bp-mobile) {
+    width: 75%;
+  }
+
   & img {
     height: 4rem;
   }
