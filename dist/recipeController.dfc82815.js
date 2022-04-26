@@ -16172,7 +16172,133 @@ var persistStateToLocalStorage = function persistStateToLocalStorage() {
 var removeStateFromLocalStorage = function removeStateFromLocalStorage() {
   localStorage.removeItem('state');
 };
-},{"regenerator-runtime":"../node_modules/regenerator-runtime/runtime.js","./config":"js/config.js","./helper":"js/helper.js"}],"js/views/htmlView.js":[function(require,module,exports) {
+},{"regenerator-runtime":"../node_modules/regenerator-runtime/runtime.js","./config":"js/config.js","./helper":"js/helper.js"}],"icons/icons.svg":[function(require,module,exports) {
+module.exports = "/icons.f20fc8b5.svg";
+},{}],"js/views/heroView.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _config = require("../config");
+
+var _icons = _interopRequireDefault(require("../../icons/icons.svg"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+function _classPrivateMethodInitSpec(obj, privateSet) { _checkPrivateRedeclaration(obj, privateSet); privateSet.add(obj); }
+
+function _classPrivateFieldInitSpec(obj, privateMap, value) { _checkPrivateRedeclaration(obj, privateMap); privateMap.set(obj, value); }
+
+function _checkPrivateRedeclaration(obj, privateCollection) { if (privateCollection.has(obj)) { throw new TypeError("Cannot initialize the same private elements twice on an object"); } }
+
+function _classPrivateMethodGet(receiver, privateSet, fn) { if (!privateSet.has(receiver)) { throw new TypeError("attempted to get private field on non-instance"); } return fn; }
+
+function _classPrivateFieldGet(receiver, privateMap) { var descriptor = _classExtractFieldDescriptor(receiver, privateMap, "get"); return _classApplyDescriptorGet(receiver, descriptor); }
+
+function _classExtractFieldDescriptor(receiver, privateMap, action) { if (!privateMap.has(receiver)) { throw new TypeError("attempted to " + action + " private field on non-instance"); } return privateMap.get(receiver); }
+
+function _classApplyDescriptorGet(receiver, descriptor) { if (descriptor.get) { return descriptor.get.call(receiver); } return descriptor.value; }
+
+var _parentElement = /*#__PURE__*/new WeakMap();
+
+var _generateMarkup = /*#__PURE__*/new WeakSet();
+
+var HeroView = /*#__PURE__*/function () {
+  function HeroView() {
+    _classCallCheck(this, HeroView);
+
+    _classPrivateMethodInitSpec(this, _generateMarkup);
+
+    _classPrivateFieldInitSpec(this, _parentElement, {
+      writable: true,
+      value: document.querySelector('.hero')
+    });
+  }
+
+  _createClass(HeroView, [{
+    key: "renderAnimation",
+    value: function renderAnimation() {
+      var _this = this;
+
+      window.addEventListener('load', function () {
+        _classPrivateFieldGet(_this, _parentElement).querySelector('.hero__content--heading').style.filter = 'blur(0)';
+        _classPrivateFieldGet(_this, _parentElement).querySelector('.hero__content--heading').style.letterSpacing = '0';
+      });
+    }
+  }, {
+    key: "renderErrorPopup",
+    value: function renderErrorPopup(msg) {
+      var errorPopup = _classPrivateFieldGet(this, _parentElement).querySelector('.hero__error-popup');
+
+      errorPopup.textContent = msg;
+      errorPopup.style.opacity = 1;
+      errorPopup.style.transform = 'scale(1)';
+      setTimeout(function () {
+        errorPopup.style.opacity = 0;
+        errorPopup.style.transform = 'scale(0)';
+      }, _config.MODAL_CLOSE_SEC * 1000);
+    }
+  }, {
+    key: "renderSpinner",
+    value: function renderSpinner() {
+      var element = _classPrivateFieldGet(this, _parentElement).querySelector('.hero__form--location');
+
+      var spinner = "\n      <svg class=\"hero__form--spinner\">\n        <use href=\"".concat(_icons.default, "#icon-loader\"></use>\n      </svg>\n    ");
+
+      _classPrivateMethodGet(this, _generateMarkup, _generateMarkup2).call(this, element, spinner);
+    }
+  }, {
+    key: "renderUserLocation",
+    value: function renderUserLocation(region) {
+      var element = _classPrivateFieldGet(this, _parentElement).querySelector('.hero__form--location');
+
+      var html = "\n      <img src=\"/location-48.5100a1b2.png\" alt=\"location icon\" />\n      <p class=\"hero__form--location-user\">".concat(region, "</p>\n    ");
+
+      _classPrivateMethodGet(this, _generateMarkup, _generateMarkup2).call(this, element, html);
+    }
+  }, {
+    key: "renderLocationErrorOnCancel",
+    value: function renderLocationErrorOnCancel() {
+      var element = _classPrivateFieldGet(this, _parentElement).querySelector('.hero__form--location');
+
+      var html = "\n      <img src=\"/location-48.5100a1b2.png\" alt=\"location icon\" />\n      <p class=\"hero__form--location-user\">Location denied</p>\n    ";
+
+      _classPrivateMethodGet(this, _generateMarkup, _generateMarkup2).call(this, element, html);
+    }
+  }, {
+    key: "addHandlerLocation",
+    value: function addHandlerLocation(handler) {
+      var detectLocationBtn = _classPrivateFieldGet(this, _parentElement).querySelector('.hero__form--location-btn');
+
+      if (!detectLocationBtn) return;
+      detectLocationBtn.addEventListener('click', function (e) {
+        e.preventDefault();
+        handler();
+      });
+    }
+  }]);
+
+  return HeroView;
+}();
+
+function _generateMarkup2(element, html) {
+  element.innerHTML = '';
+  element.insertAdjacentHTML('beforeend', html);
+}
+
+var _default = new HeroView();
+
+exports.default = _default;
+},{"../config":"js/config.js","../../icons/icons.svg":"icons/icons.svg"}],"js/views/htmlView.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -16266,8 +16392,137 @@ function _updateOnlineStatus2() {
 var _default = new HtmlView();
 
 exports.default = _default;
-},{}],"icons/icons.svg":[function(require,module,exports) {
-module.exports = "/icons.f20fc8b5.svg";
+},{}],"js/views/searchView.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+function _classPrivateMethodInitSpec(obj, privateSet) { _checkPrivateRedeclaration(obj, privateSet); privateSet.add(obj); }
+
+function _classPrivateFieldInitSpec(obj, privateMap, value) { _checkPrivateRedeclaration(obj, privateMap); privateMap.set(obj, value); }
+
+function _checkPrivateRedeclaration(obj, privateCollection) { if (privateCollection.has(obj)) { throw new TypeError("Cannot initialize the same private elements twice on an object"); } }
+
+function _classPrivateMethodGet(receiver, privateSet, fn) { if (!privateSet.has(receiver)) { throw new TypeError("attempted to get private field on non-instance"); } return fn; }
+
+function _classPrivateFieldGet(receiver, privateMap) { var descriptor = _classExtractFieldDescriptor(receiver, privateMap, "get"); return _classApplyDescriptorGet(receiver, descriptor); }
+
+function _classExtractFieldDescriptor(receiver, privateMap, action) { if (!privateMap.has(receiver)) { throw new TypeError("attempted to " + action + " private field on non-instance"); } return privateMap.get(receiver); }
+
+function _classApplyDescriptorGet(receiver, descriptor) { if (descriptor.get) { return descriptor.get.call(receiver); } return descriptor.value; }
+
+var _parentElement = /*#__PURE__*/new WeakMap();
+
+var _clearInput = /*#__PURE__*/new WeakSet();
+
+var _generateSuggestionList = /*#__PURE__*/new WeakSet();
+
+var _showSuggestionBox = /*#__PURE__*/new WeakSet();
+
+var _hideSuggestionBox = /*#__PURE__*/new WeakSet();
+
+var SearchView = /*#__PURE__*/function () {
+  function SearchView() {
+    _classCallCheck(this, SearchView);
+
+    _classPrivateMethodInitSpec(this, _hideSuggestionBox);
+
+    _classPrivateMethodInitSpec(this, _showSuggestionBox);
+
+    _classPrivateMethodInitSpec(this, _generateSuggestionList);
+
+    _classPrivateMethodInitSpec(this, _clearInput);
+
+    _classPrivateFieldInitSpec(this, _parentElement, {
+      writable: true,
+      value: document.querySelector('.hero__form--form')
+    });
+  }
+
+  _createClass(SearchView, [{
+    key: "getQuery",
+    value: function getQuery() {
+      var query = _classPrivateFieldGet(this, _parentElement).querySelector('.hero__form--input').value;
+
+      _classPrivateMethodGet(this, _clearInput, _clearInput2).call(this);
+
+      return query.toLowerCase();
+    }
+  }, {
+    key: "addHandlerSearch",
+    value: function addHandlerSearch(handler) {
+      _classPrivateMethodGet(this, _showSuggestionBox, _showSuggestionBox2).call(this);
+
+      _classPrivateMethodGet(this, _hideSuggestionBox, _hideSuggestionBox2).call(this);
+
+      this.renderSuggestionList();
+
+      _classPrivateFieldGet(this, _parentElement).addEventListener('submit', function (e) {
+        e.preventDefault();
+        handler();
+      });
+    }
+  }, {
+    key: "renderSuggestionList",
+    value: function renderSuggestionList() {
+      _classPrivateFieldGet(this, _parentElement).querySelector('.suggestion-box__list').innerHTML = '';
+      var suggestionItems = ['pizza', 'pasta', 'carrot', 'pineapple', 'cauliflower pizza crust'];
+
+      _classPrivateFieldGet(this, _parentElement).querySelector('.suggestion-box__list').insertAdjacentHTML('beforeend', _classPrivateMethodGet(this, _generateSuggestionList, _generateSuggestionList2).call(this, suggestionItems));
+    }
+  }]);
+
+  return SearchView;
+}();
+
+function _clearInput2() {
+  _classPrivateFieldGet(this, _parentElement).querySelector('.hero__form--input').value = '';
+
+  _classPrivateFieldGet(this, _parentElement).querySelector('.hero__form--input').blur();
+}
+
+function _generateSuggestionList2(items) {
+  return items.map(function (item) {
+    return "\n      <a href=\"./search.html?query=".concat(item, "\"><li class=\"suggestion-box__item\">").concat(item, "</li></a>\n    ");
+  }).join('');
+}
+
+function _showSuggestionBox2() {
+  var _this = this;
+
+  _classPrivateFieldGet(this, _parentElement).querySelector('.hero__form--input').addEventListener('focus', function () {
+    var suggestionBox = _classPrivateFieldGet(_this, _parentElement).querySelector('.hero__form--suggestion-box');
+
+    suggestionBox.style.transform = 'translateY(0rem)';
+    suggestionBox.style.opacity = '1';
+    suggestionBox.style.visibility = 'visible';
+  });
+}
+
+function _hideSuggestionBox2() {
+  var _this2 = this;
+
+  _classPrivateFieldGet(this, _parentElement).querySelector('.hero__form--input').addEventListener('focusout', function () {
+    var suggestionBox = _classPrivateFieldGet(_this2, _parentElement).querySelector('.hero__form--suggestion-box');
+
+    suggestionBox.style.transform = 'translateY(2rem)';
+    suggestionBox.style.opacity = '0';
+    suggestionBox.style.visibility = 'hidden';
+  });
+}
+
+var _default = new SearchView();
+
+exports.default = _default;
 },{}],"../node_modules/fractional/index.js":[function(require,module,exports) {
 /*
 fraction.js
@@ -16749,7 +17004,11 @@ require("core-js/stable");
 
 var modal = _interopRequireWildcard(require("./modal"));
 
+var _heroView = _interopRequireDefault(require("./views/heroView"));
+
 var _htmlView = _interopRequireDefault(require("./views/htmlView"));
+
+var _searchView = _interopRequireDefault(require("./views/searchView"));
 
 var _recipePageView = _interopRequireDefault(require("./views/recipePageView"));
 
@@ -16771,6 +17030,11 @@ var controlUserNetworkStatus = function controlUserNetworkStatus() {
   _htmlView.default.renderErrorOnOffline();
 };
 
+var controlHeroView = function controlHeroView() {
+  // 1. Rending hero view logo animation on load event
+  _heroView.default.renderAnimation();
+};
+
 var controlThemeChange = function controlThemeChange(theme) {
   // 1. Storing theme in state when change
   modal.loadTheme(theme);
@@ -16780,67 +17044,172 @@ var controlThemeOnLoad = function controlThemeOnLoad() {
   _htmlView.default.renderSavedTheme(modal.state.theme);
 };
 
-var controlRecipePage = /*#__PURE__*/function () {
+var controlUserLocation = /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
-    var url, url_str, id;
     return regeneratorRuntime.wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
             _context.prev = 0;
+
+            // 1. Render spinner on hero view location
+            _heroView.default.renderSpinner(); // 2. Async loading user location and storing in state
+
+
+            _context.next = 4;
+            return modal.loadUserLocation();
+
+          case 4:
+            // 3. Displaying user exact location on hero view
+            _heroView.default.renderUserLocation(modal.state.userLocation.userData.region);
+
+            console.log(modal);
+            _context.next = 12;
+            break;
+
+          case 8:
+            _context.prev = 8;
+            _context.t0 = _context["catch"](0);
+
+            // 4. Display error popup, if user denied location
+            _heroView.default.renderErrorPopup("".concat(_context.t0.message, ". Please reset permission")); // 5. Display error message on hero view.
+
+
+            _heroView.default.renderLocationErrorOnCancel();
+
+          case 12:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee, null, [[0, 8]]);
+  }));
+
+  return function controlUserLocation() {
+    return _ref.apply(this, arguments);
+  };
+}();
+
+var controlUserLocationOnLoad = function controlUserLocationOnLoad() {
+  var _modal$state$userLoca;
+
+  // 1. Retreving region's from userLocation in modal
+  var region = (_modal$state$userLoca = modal.state.userLocation.userData) === null || _modal$state$userLoca === void 0 ? void 0 : _modal$state$userLoca.region; // 2. If region is undefined means user has reject the GPS request
+
+  if (!region) {
+    return;
+  } // 3. Else render user's region location on hero view
+
+
+  _heroView.default.renderUserLocation(modal.state.userLocation.userData.region);
+};
+
+var controlSearchResults = /*#__PURE__*/function () {
+  var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
+    var query;
+    return regeneratorRuntime.wrap(function _callee2$(_context2) {
+      while (1) {
+        switch (_context2.prev = _context2.next) {
+          case 0:
+            _context2.prev = 0;
+            // 1. Getting query value from search view input form
+            query = _searchView.default.getQuery(); // 2. Loading search results based on query
+
+            _context2.next = 4;
+            return modal.loadQueryResults(query);
+
+          case 4:
+            window.location.href = "./search.html?query=".concat(query);
+            _context2.next = 10;
+            break;
+
+          case 7:
+            _context2.prev = 7;
+            _context2.t0 = _context2["catch"](0);
+
+            // 3. Error popup on hero view when wrong text is inputted into form
+            _heroView.default.renderErrorPopup(_context2.t0);
+
+          case 10:
+          case "end":
+            return _context2.stop();
+        }
+      }
+    }, _callee2, null, [[0, 7]]);
+  }));
+
+  return function controlSearchResults() {
+    return _ref2.apply(this, arguments);
+  };
+}();
+
+var controlRecipePage = /*#__PURE__*/function () {
+  var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3() {
+    var url, url_str, id;
+    return regeneratorRuntime.wrap(function _callee3$(_context3) {
+      while (1) {
+        switch (_context3.prev = _context3.next) {
+          case 0:
+            _context3.prev = 0;
             url = window.location.href;
             url_str = new URL(url);
             id = url_str.searchParams.get('id');
 
             if (id) {
-              _context.next = 6;
+              _context3.next = 6;
               break;
             }
 
-            return _context.abrupt("return");
+            return _context3.abrupt("return");
 
           case 6:
             _recipePageView.default.renderSpinner();
 
-            _context.next = 9;
+            _context3.next = 9;
             return modal.loadRecipe(id);
 
           case 9:
             _recipePageView.default.renderRecipe(modal.state.search.recipe);
 
-            _context.next = 15;
+            _context3.next = 15;
             break;
 
           case 12:
-            _context.prev = 12;
-            _context.t0 = _context["catch"](0);
+            _context3.prev = 12;
+            _context3.t0 = _context3["catch"](0);
 
             _recipePageView.default.renderError();
 
           case 15:
           case "end":
-            return _context.stop();
+            return _context3.stop();
         }
       }
-    }, _callee, null, [[0, 12]]);
+    }, _callee3, null, [[0, 12]]);
   }));
 
   return function controlRecipePage() {
-    return _ref.apply(this, arguments);
+    return _ref3.apply(this, arguments);
   };
 }();
 
 var init = function init() {
   controlLocalStorageData();
   controlUserNetworkStatus();
+  controlHeroView();
   controlThemeOnLoad();
+  controlUserLocationOnLoad();
   controlRecipePage();
 
   _htmlView.default.changeTheme(controlThemeChange);
+
+  _heroView.default.addHandlerLocation(controlUserLocation);
+
+  _searchView.default.addHandlerSearch(controlSearchResults);
 };
 
 init();
-},{"core-js/stable":"../node_modules/core-js/stable/index.js","./modal":"js/modal.js","./views/htmlView":"js/views/htmlView.js","./views/recipePageView":"js/views/recipePageView.js"}],"../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"core-js/stable":"../node_modules/core-js/stable/index.js","./modal":"js/modal.js","./views/heroView":"js/views/heroView.js","./views/htmlView":"js/views/htmlView.js","./views/searchView":"js/views/searchView.js","./views/recipePageView":"js/views/recipePageView.js"}],"../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -16868,7 +17237,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "40507" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "34489" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
