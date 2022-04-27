@@ -664,6 +664,37 @@ select {
   transition: all 0.5s;
 }
 
+.results__pagination {
+  width: 40vw;
+  margin: 2rem auto;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.results__pagination button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #333;
+  box-shadow: 0rem 1rem 1rem rgba(0, 0, 0, 0.1);
+}
+.results__pagination button:hover {
+  background-color: #fd5353;
+  color: #f3f3f3;
+}
+.results__pagination button:hover .search__icon {
+  fill: #f3f3f3;
+}
+.results__pagination .search__icon {
+  height: 2rem;
+  width: 2rem;
+  fill: #333;
+  transition: all 0.5s;
+}
+.results__pagination span {
+  margin: 0 0.4rem;
+}
+
 .upload__form {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
