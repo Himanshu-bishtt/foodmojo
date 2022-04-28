@@ -40,8 +40,6 @@ const controlSearchPageResults = async function () {
 
     searchPageView.renderSearchInfo(queryResults);
 
-    // searchPageView.renderResults(queryResults);
-
     const requiredRecipes = await modal.loadSearchResultsPerPage(query);
 
     console.log(requiredRecipes);
@@ -60,6 +58,8 @@ const controlPagination = async function (pageNum) {
   const queryResults = modal.state.allLoadedContent.find(
     results => results.query === query
   );
+
+  htmlView.scrollToTop();
 
   searchPageView.renderResults(
     await modal.loadSearchResultsPerPage(query, pageNum)

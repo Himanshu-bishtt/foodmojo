@@ -16538,6 +16538,11 @@ var HtmlView = /*#__PURE__*/function () {
 
       themePicker.value = theme === 'dark' ? 'dark' : 'light';
     }
+  }, {
+    key: "scrollToTop",
+    value: function scrollToTop() {
+      window.scrollTo(0, 0);
+    }
   }]);
 
   return HtmlView;

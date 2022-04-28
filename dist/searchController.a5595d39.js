@@ -16281,6 +16281,11 @@ var HtmlView = /*#__PURE__*/function () {
 
       themePicker.value = theme === 'dark' ? 'dark' : 'light';
     }
+  }, {
+    key: "scrollToTop",
+    value: function scrollToTop() {
+      window.scrollTo(0, 0);
+    }
   }]);
 
   return HtmlView;
@@ -16367,7 +16372,6 @@ var PaginationView = /*#__PURE__*/function () {
     key: "renderButtons",
     value: function renderButtons(data, results) {
       _classPrivateFieldGet(this, _parentElement).innerHTML = '';
-      console.log(_classPrivateMethodGet(this, _generateMarkup, _generateMarkup2).call(this, data, results));
 
       _classPrivateFieldGet(this, _parentElement).insertAdjacentHTML('beforeend', _classPrivateMethodGet(this, _generateMarkup, _generateMarkup2).call(this, data, results));
     }
@@ -16379,8 +16383,7 @@ var PaginationView = /*#__PURE__*/function () {
 function _generateMarkup2(data, results) {
   var curPage = data.page;
   var numPages = Math.ceil(results.length / data.resultsPerPage);
-  console.log(curPage);
-  console.log(numPages); // Page 1, and there are other pages
+  console.log("curPage: ".concat(curPage, ", numPages: ").concat(numPages)); // Page 1, and there are other pages
 
   if (curPage === 1 && numPages > 1) {
     return "\n      <button data-go-to=\"".concat(curPage + 1, "\" class=\"btn pagination__btn--next\">\n        <span>Page ").concat(curPage + 1, "</span>\n        <svg class=\"search__icon\">\n          <use href=\"").concat(_icons.default, "#icon-arrow-right\"></use>\n        </svg>\n      </button>");
@@ -16468,7 +16471,7 @@ var SearchPageView = /*#__PURE__*/function () {
     key: "renderSearchInfo",
     value: function renderSearchInfo(results) {
       _classPrivateFieldGet(this, _parentElement).querySelector('.results__heading').innerHTML = '';
-      var html = "\n      <h2 class=\"heading--primary\">You searched for: <span class=\"results__searched\">".concat(results.query, "</span></h2>\n      <p class=\"results__count mg-1\">\n        Total results: <span class=\"results__count--number\">").concat(results.results, "</span>\n      </p>\n    ");
+      var html = "\n      <h2 class=\"heading--primary\">You searched for: <span class=\"results__searched\">".concat(results.query, "</span></h2>\n      <p class=\"results__count mg-2\">\n        Total results: <span class=\"results__count--number\">").concat(results.results, " recipes</span>\n      </p>\n    ");
 
       _classPrivateFieldGet(this, _parentElement).querySelector('.results__heading').insertAdjacentHTML('beforeend', html);
     }
@@ -16555,8 +16558,7 @@ var controlSearchPageResults = /*#__PURE__*/function () {
 
             _searchPageView.default.renderPageTitle(queryResults);
 
-            _searchPageView.default.renderSearchInfo(queryResults); // searchPageView.renderResults(queryResults);
-
+            _searchPageView.default.renderSearchInfo(queryResults);
 
             _context.next = 10;
             return modal.loadSearchResultsPerPage(query);
@@ -16601,18 +16603,21 @@ var controlPagination = /*#__PURE__*/function () {
             queryResults = modal.state.allLoadedContent.find(function (results) {
               return results.query === query;
             });
+
+            _htmlView.default.scrollToTop();
+
             _context2.t0 = _searchPageView.default;
-            _context2.next = 5;
+            _context2.next = 6;
             return modal.loadSearchResultsPerPage(query, pageNum);
 
-          case 5:
+          case 6:
             _context2.t1 = _context2.sent;
 
             _context2.t0.renderResults.call(_context2.t0, _context2.t1);
 
             _paginationView.default.renderButtons(modal.state.search, queryResults.recipes);
 
-          case 8:
+          case 9:
           case "end":
             return _context2.stop();
         }

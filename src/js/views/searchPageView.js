@@ -26,8 +26,8 @@ class SearchPageView {
 
     const html = `
       <h2 class="heading--primary">You searched for: <span class="results__searched">${results.query}</span></h2>
-      <p class="results__count mg-1">
-        Total results: <span class="results__count--number">${results.results}</span>
+      <p class="results__count mg-2">
+        Total results: <span class="results__count--number">${results.results} recipes</span>
       </p>
     `;
     this.#parentElement

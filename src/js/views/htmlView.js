@@ -37,6 +37,10 @@ class HtmlView {
     );
     themePicker.value = theme === 'dark' ? 'dark' : 'light';
   }
+
+  scrollToTop() {
+    window.scrollTo(0, 0);
+  }
 }
 
 export default new HtmlView();

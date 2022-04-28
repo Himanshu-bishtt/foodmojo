@@ -16,7 +16,6 @@ class PaginationView {
 
   renderButtons(data, results) {
     this.#parentElement.innerHTML = '';
-    console.log(this.#generateMarkup(data, results));
     this.#parentElement.insertAdjacentHTML(
       'beforeend',
       this.#generateMarkup(data, results)
@@ -27,8 +26,7 @@ class PaginationView {
     const curPage = data.page;
     const numPages = Math.ceil(results.length / data.resultsPerPage);
 
-    console.log(curPage);
-    console.log(numPages);
+    console.log(`curPage: ${curPage}, numPages: ${numPages}`);
 
     // Page 1, and there are other pages
     if (curPage === 1 && numPages > 1) {

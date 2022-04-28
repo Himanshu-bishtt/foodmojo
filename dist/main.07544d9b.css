@@ -7,7 +7,7 @@
   text-transform: capitalize;
 }
 [data-theme=dark] .btn {
-  color: #000;
+  color: #333;
 }
 [data-theme=dark] input {
   color: #333;
@@ -670,6 +670,11 @@ select {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+}
+@media only screen and (max-width: 600px) {
+  .results__pagination {
+    width: 80vw;
+  }
 }
 .results__pagination button {
   display: flex;
