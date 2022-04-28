@@ -1,6 +1,7 @@
+import 'core-js/stable';
 import 'regenerator-runtime';
 
-import { API_URL } from './config';
+import { API_URL, RES_PER_PAGE } from './config';
 import {
   cronJob,
   getLocation,
@@ -13,8 +14,10 @@ export const state = {
   allLoadedContent: [],
   search: {
     query: [],
-    results: [],
+    result: {},
     recipe: {},
+    page: 1,
+    resultsPerPage: RES_PER_PAGE,
   },
   recipeTabs: ['steak', 'pizza', 'noodles', 'pasta'],
   activeTab: '',
@@ -56,12 +59,12 @@ export const loadQueryResults = async function (query) {
     // 4. Pushing searched results into results state
     const { results, data } = result;
 
-    if (state.search.results.length !== 0) {
-      state.search.results = [];
-      state.search.results.push({ query, results, recipes: data.recipes });
-    } else {
-      state.search.results.push({ query, results, recipes: data.recipes });
-    }
+    // if (state.search.results.length !== 0) {
+    //   state.search.results = [];
+    //   state.search.results.push({ query, results, recipes: data.recipes });
+    // } else {
+    //   state.search.results.push({ query, results, recipes: data.recipes });
+    // }
 
     state.allLoadedContent.push({ query, results, recipes: data.recipes });
 
@@ -196,6 +199,24 @@ export const loadTabsRequiredRecipes = function (query) {
   state.recipeTabsContent.push({ query, requiredRecipes });
 
   persistStateToLocalStorage();
+};
+
+export const loadSearchResultsPerPage = async function (
+  query,
+  page = state.search.page
+) {
+  state.search.page = page;
+
+  const start = (page - 1) * RES_PER_PAGE;
+  const end = page * RES_PER_PAGE;
+
+  await loadQueryResults(query);
+
+  const recipes = state.allLoadedContent
+    .find(item => item.query === query)
+    .recipes.slice(start, end);
+
+  return { query, results: recipes.length, recipes };
 };
 
 export const loadDataFromLocalStorageOnLoad = function () {

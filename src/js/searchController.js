@@ -4,6 +4,7 @@ import 'core-js/stable';
 
 import * as modal from './modal';
 import htmlView from './views/htmlView';
+import paginationView from './views/paginationView';
 import searchPageView from './views/searchPageView';
 
 const controlLocalStorageData = function () {
@@ -29,35 +30,56 @@ const controlSearchPageResults = async function () {
 
     const query = new URL(window.location.href).searchParams.get('query');
 
+    await modal.loadQueryResults(query);
+
     const queryResults = modal.state.allLoadedContent.find(
       results => results.query === query
     );
 
-    if (!queryResults) {
-      await modal.loadQueryResults(query);
+    searchPageView.renderPageTitle(queryResults);
 
-      const queryResults = modal.state.allLoadedContent.find(
-        results => results.query === query
-      );
+    searchPageView.renderSearchInfo(queryResults);
 
-      searchPageView.renderResults(queryResults);
+    // searchPageView.renderResults(queryResults);
 
-      return;
-    }
+    const requiredRecipes = await modal.loadSearchResultsPerPage(query);
 
-    searchPageView.renderResults(queryResults);
+    console.log(requiredRecipes);
+
+    searchPageView.renderResults(requiredRecipes);
+
+    paginationView.renderButtons(modal.state.search, queryResults.recipes);
   } catch (err) {
     console.log(err);
   }
 };
 
-const init = function () {
+const controlPagination = async function (pageNum) {
+  const query = new URL(window.location.href).searchParams.get('query');
+
+  const queryResults = modal.state.allLoadedContent.find(
+    results => results.query === query
+  );
+
+  searchPageView.renderResults(
+    await modal.loadSearchResultsPerPage(query, pageNum)
+  );
+
+  paginationView.renderButtons(modal.state.search, queryResults.recipes);
+};
+
+const init = async function () {
   controlLocalStorageData();
   controlUserNetworkStatus();
   controlThemeOnLoad();
   controlSearchPageResults();
 
   htmlView.changeTheme(controlThemeChange);
+  paginationView.addHandlerClick(controlPagination);
+
+  // test
+  // console.log(await modal.loadSearchResultsPerPage('pineapple', 1));
+  // console.log(await modal.loadSearchResultsPerPage('pineapple', 2));
 };
 
 init();

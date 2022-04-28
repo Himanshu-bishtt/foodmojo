@@ -15819,7 +15819,9 @@ exports.cronJob = cronJob;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.state = exports.loadUserLocation = exports.loadTheme = exports.loadTabsRequiredRecipes = exports.loadRecommenedRecipes = exports.loadRecipe = exports.loadQueryResults = exports.loadDataFromLocalStorageOnLoad = void 0;
+exports.state = exports.loadUserLocation = exports.loadTheme = exports.loadTabsRequiredRecipes = exports.loadSearchResultsPerPage = exports.loadRecommenedRecipes = exports.loadRecipe = exports.loadQueryResults = exports.loadDataFromLocalStorageOnLoad = void 0;
+
+require("core-js/stable");
 
 require("regenerator-runtime");
 
@@ -15835,8 +15837,10 @@ var state = {
   allLoadedContent: [],
   search: {
     query: [],
-    results: [],
-    recipe: {}
+    result: {},
+    recipe: {},
+    page: 1,
+    resultsPerPage: _config.RES_PER_PAGE
   },
   recipeTabs: ['steak', 'pizza', 'noodles', 'pasta'],
   activeTab: '',
@@ -15925,22 +15929,12 @@ var loadQueryResults = /*#__PURE__*/function () {
             // 3. Pushing searched query into query state
             state.search.query.push(query); // 4. Pushing searched results into results state
 
-            results = result.results, data = result.data;
-
-            if (state.search.results.length !== 0) {
-              state.search.results = [];
-              state.search.results.push({
-                query: query,
-                results: results,
-                recipes: data.recipes
-              });
-            } else {
-              state.search.results.push({
-                query: query,
-                results: results,
-                recipes: data.recipes
-              });
-            }
+            results = result.results, data = result.data; // if (state.search.results.length !== 0) {
+            //   state.search.results = [];
+            //   state.search.results.push({ query, results, recipes: data.recipes });
+            // } else {
+            //   state.search.results.push({ query, results, recipes: data.recipes });
+            // }
 
             state.allLoadedContent.push({
               query: query,
@@ -15949,20 +15943,20 @@ var loadQueryResults = /*#__PURE__*/function () {
             }); // 5. Storing state after every search into Local Storage
 
             persistStateToLocalStorage();
-            _context2.next = 18;
+            _context2.next = 17;
             break;
 
-          case 15:
-            _context2.prev = 15;
+          case 14:
+            _context2.prev = 14;
             _context2.t0 = _context2["catch"](0);
             throw _context2.t0;
 
-          case 18:
+          case 17:
           case "end":
             return _context2.stop();
         }
       }
-    }, _callee2, null, [[0, 15]]);
+    }, _callee2, null, [[0, 14]]);
   }));
 
   return function loadQueryResults(_x2) {
@@ -16147,6 +16141,49 @@ var loadTabsRequiredRecipes = function loadTabsRequiredRecipes(query) {
 
 exports.loadTabsRequiredRecipes = loadTabsRequiredRecipes;
 
+var loadSearchResultsPerPage = /*#__PURE__*/function () {
+  var _ref5 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee5(query) {
+    var page,
+        start,
+        end,
+        recipes,
+        _args5 = arguments;
+    return regeneratorRuntime.wrap(function _callee5$(_context5) {
+      while (1) {
+        switch (_context5.prev = _context5.next) {
+          case 0:
+            page = _args5.length > 1 && _args5[1] !== undefined ? _args5[1] : state.search.page;
+            state.search.page = page;
+            start = (page - 1) * _config.RES_PER_PAGE;
+            end = page * _config.RES_PER_PAGE;
+            _context5.next = 6;
+            return loadQueryResults(query);
+
+          case 6:
+            recipes = state.allLoadedContent.find(function (item) {
+              return item.query === query;
+            }).recipes.slice(start, end);
+            return _context5.abrupt("return", {
+              query: query,
+              results: recipes.length,
+              recipes: recipes
+            });
+
+          case 8:
+          case "end":
+            return _context5.stop();
+        }
+      }
+    }, _callee5);
+  }));
+
+  return function loadSearchResultsPerPage(_x3) {
+    return _ref5.apply(this, arguments);
+  };
+}();
+
+exports.loadSearchResultsPerPage = loadSearchResultsPerPage;
+
 var loadDataFromLocalStorageOnLoad = function loadDataFromLocalStorageOnLoad() {
   // 1. Loading state data from local storage
   var data = JSON.parse(localStorage.getItem('state')); // 2. If no data is present, then return
@@ -16172,7 +16209,7 @@ var persistStateToLocalStorage = function persistStateToLocalStorage() {
 var removeStateFromLocalStorage = function removeStateFromLocalStorage() {
   localStorage.removeItem('state');
 };
-},{"regenerator-runtime":"../node_modules/regenerator-runtime/runtime.js","./config":"js/config.js","./helper":"js/helper.js"}],"icons/icons.svg":[function(require,module,exports) {
+},{"core-js/stable":"../node_modules/core-js/stable/index.js","regenerator-runtime":"../node_modules/regenerator-runtime/runtime.js","./config":"js/config.js","./helper":"js/helper.js"}],"icons/icons.svg":[function(require,module,exports) {
 module.exports = "/icons.f20fc8b5.svg";
 },{}],"js/views/heroView.js":[function(require,module,exports) {
 "use strict";
@@ -17049,7 +17086,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "34359" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "35049" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

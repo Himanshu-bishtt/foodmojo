@@ -17,7 +17,11 @@ class SearchPageView {
       .insertAdjacentHTML('beforeend', spinner);
   }
 
-  #renderSearchInfo(results) {
+  renderPageTitle(results) {
+    document.title = `FoodMojo | Showing ${results.results} results for ${results.query}`;
+  }
+
+  renderSearchInfo(results) {
     this.#parentElement.querySelector('.results__heading').innerHTML = '';
 
     const html = `
@@ -32,9 +36,6 @@ class SearchPageView {
   }
 
   renderResults(results) {
-    document.title = `FoodMojo | Showing ${results.results} results for ${results.query}`;
-
-    this.#renderSearchInfo(results);
     this.#parentElement.querySelector('.results__container').innerHTML = '';
 
     this.#parentElement

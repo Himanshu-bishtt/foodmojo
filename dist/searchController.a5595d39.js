@@ -15819,7 +15819,9 @@ exports.cronJob = cronJob;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.state = exports.loadUserLocation = exports.loadTheme = exports.loadTabsRequiredRecipes = exports.loadRecommenedRecipes = exports.loadRecipe = exports.loadQueryResults = exports.loadDataFromLocalStorageOnLoad = void 0;
+exports.state = exports.loadUserLocation = exports.loadTheme = exports.loadTabsRequiredRecipes = exports.loadSearchResultsPerPage = exports.loadRecommenedRecipes = exports.loadRecipe = exports.loadQueryResults = exports.loadDataFromLocalStorageOnLoad = void 0;
+
+require("core-js/stable");
 
 require("regenerator-runtime");
 
@@ -15835,8 +15837,10 @@ var state = {
   allLoadedContent: [],
   search: {
     query: [],
-    results: [],
-    recipe: {}
+    result: {},
+    recipe: {},
+    page: 1,
+    resultsPerPage: _config.RES_PER_PAGE
   },
   recipeTabs: ['steak', 'pizza', 'noodles', 'pasta'],
   activeTab: '',
@@ -15925,22 +15929,12 @@ var loadQueryResults = /*#__PURE__*/function () {
             // 3. Pushing searched query into query state
             state.search.query.push(query); // 4. Pushing searched results into results state
 
-            results = result.results, data = result.data;
-
-            if (state.search.results.length !== 0) {
-              state.search.results = [];
-              state.search.results.push({
-                query: query,
-                results: results,
-                recipes: data.recipes
-              });
-            } else {
-              state.search.results.push({
-                query: query,
-                results: results,
-                recipes: data.recipes
-              });
-            }
+            results = result.results, data = result.data; // if (state.search.results.length !== 0) {
+            //   state.search.results = [];
+            //   state.search.results.push({ query, results, recipes: data.recipes });
+            // } else {
+            //   state.search.results.push({ query, results, recipes: data.recipes });
+            // }
 
             state.allLoadedContent.push({
               query: query,
@@ -15949,20 +15943,20 @@ var loadQueryResults = /*#__PURE__*/function () {
             }); // 5. Storing state after every search into Local Storage
 
             persistStateToLocalStorage();
-            _context2.next = 18;
+            _context2.next = 17;
             break;
 
-          case 15:
-            _context2.prev = 15;
+          case 14:
+            _context2.prev = 14;
             _context2.t0 = _context2["catch"](0);
             throw _context2.t0;
 
-          case 18:
+          case 17:
           case "end":
             return _context2.stop();
         }
       }
-    }, _callee2, null, [[0, 15]]);
+    }, _callee2, null, [[0, 14]]);
   }));
 
   return function loadQueryResults(_x2) {
@@ -16147,6 +16141,49 @@ var loadTabsRequiredRecipes = function loadTabsRequiredRecipes(query) {
 
 exports.loadTabsRequiredRecipes = loadTabsRequiredRecipes;
 
+var loadSearchResultsPerPage = /*#__PURE__*/function () {
+  var _ref5 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee5(query) {
+    var page,
+        start,
+        end,
+        recipes,
+        _args5 = arguments;
+    return regeneratorRuntime.wrap(function _callee5$(_context5) {
+      while (1) {
+        switch (_context5.prev = _context5.next) {
+          case 0:
+            page = _args5.length > 1 && _args5[1] !== undefined ? _args5[1] : state.search.page;
+            state.search.page = page;
+            start = (page - 1) * _config.RES_PER_PAGE;
+            end = page * _config.RES_PER_PAGE;
+            _context5.next = 6;
+            return loadQueryResults(query);
+
+          case 6:
+            recipes = state.allLoadedContent.find(function (item) {
+              return item.query === query;
+            }).recipes.slice(start, end);
+            return _context5.abrupt("return", {
+              query: query,
+              results: recipes.length,
+              recipes: recipes
+            });
+
+          case 8:
+          case "end":
+            return _context5.stop();
+        }
+      }
+    }, _callee5);
+  }));
+
+  return function loadSearchResultsPerPage(_x3) {
+    return _ref5.apply(this, arguments);
+  };
+}();
+
+exports.loadSearchResultsPerPage = loadSearchResultsPerPage;
+
 var loadDataFromLocalStorageOnLoad = function loadDataFromLocalStorageOnLoad() {
   // 1. Loading state data from local storage
   var data = JSON.parse(localStorage.getItem('state')); // 2. If no data is present, then return
@@ -16172,7 +16209,7 @@ var persistStateToLocalStorage = function persistStateToLocalStorage() {
 var removeStateFromLocalStorage = function removeStateFromLocalStorage() {
   localStorage.removeItem('state');
 };
-},{"regenerator-runtime":"../node_modules/regenerator-runtime/runtime.js","./config":"js/config.js","./helper":"js/helper.js"}],"js/views/htmlView.js":[function(require,module,exports) {
+},{"core-js/stable":"../node_modules/core-js/stable/index.js","regenerator-runtime":"../node_modules/regenerator-runtime/runtime.js","./config":"js/config.js","./helper":"js/helper.js"}],"js/views/htmlView.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -16268,7 +16305,7 @@ var _default = new HtmlView();
 exports.default = _default;
 },{}],"icons/icons.svg":[function(require,module,exports) {
 module.exports = "/icons.f20fc8b5.svg";
-},{}],"js/views/searchPageView.js":[function(require,module,exports) {
+},{}],"js/views/paginationView.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -16302,7 +16339,103 @@ function _classApplyDescriptorGet(receiver, descriptor) { if (descriptor.get) { 
 
 var _parentElement = /*#__PURE__*/new WeakMap();
 
-var _renderSearchInfo = /*#__PURE__*/new WeakSet();
+var _generateMarkup = /*#__PURE__*/new WeakSet();
+
+var PaginationView = /*#__PURE__*/function () {
+  function PaginationView() {
+    _classCallCheck(this, PaginationView);
+
+    _classPrivateMethodInitSpec(this, _generateMarkup);
+
+    _classPrivateFieldInitSpec(this, _parentElement, {
+      writable: true,
+      value: document.querySelector('.results__pagination')
+    });
+  }
+
+  _createClass(PaginationView, [{
+    key: "addHandlerClick",
+    value: function addHandlerClick(handler) {
+      _classPrivateFieldGet(this, _parentElement).addEventListener('click', function (e) {
+        var btn = e.target.closest('.btn');
+        if (!btn) return;
+        var goToPage = +btn.dataset.goTo;
+        handler(goToPage);
+      });
+    }
+  }, {
+    key: "renderButtons",
+    value: function renderButtons(data, results) {
+      _classPrivateFieldGet(this, _parentElement).innerHTML = '';
+      console.log(_classPrivateMethodGet(this, _generateMarkup, _generateMarkup2).call(this, data, results));
+
+      _classPrivateFieldGet(this, _parentElement).insertAdjacentHTML('beforeend', _classPrivateMethodGet(this, _generateMarkup, _generateMarkup2).call(this, data, results));
+    }
+  }]);
+
+  return PaginationView;
+}();
+
+function _generateMarkup2(data, results) {
+  var curPage = data.page;
+  var numPages = Math.ceil(results.length / data.resultsPerPage);
+  console.log(curPage);
+  console.log(numPages); // Page 1, and there are other pages
+
+  if (curPage === 1 && numPages > 1) {
+    return "\n      <button data-go-to=\"".concat(curPage + 1, "\" class=\"btn pagination__btn--next\">\n        <span>Page ").concat(curPage + 1, "</span>\n        <svg class=\"search__icon\">\n          <use href=\"").concat(_icons.default, "#icon-arrow-right\"></use>\n        </svg>\n      </button>");
+  } // Last page
+
+
+  if (curPage === numPages && numPages > 1) {
+    return "\n      <button data-go-to=\"".concat(curPage - 1, "\" class=\"btn pagination__btn--prev\">\n        <svg class=\"search__icon\">\n          <use href=\"").concat(_icons.default, "#icon-arrow-left\"></use>\n        </svg>\n        <span>Page ").concat(curPage - 1, "</span>\n      </button>");
+  } // Other page
+
+
+  if (curPage < numPages) {
+    return "\n      <button data-go-to=\"".concat(curPage - 1, "\" class=\"btn pagination__btn--prev\">\n        <svg class=\"search__icon\">\n          <use href=\"").concat(_icons.default, "#icon-arrow-left\"></use>\n        </svg>\n        <span>Page ").concat(curPage - 1, "</span>\n      </button>\n      <button data-go-to=\"").concat(curPage + 1, "\" class=\"btn pagination__btn--next\">\n        <span>Page ").concat(curPage + 1, "</span>\n        <svg class=\"search__icon\">\n          <use href=\"").concat(_icons.default, "#icon-arrow-right\"></use>\n        </svg>\n      </button>");
+  } // Page 1, and there are no other pages
+
+
+  return '';
+}
+
+var _default = new PaginationView();
+
+exports.default = _default;
+},{"../../icons/icons.svg":"icons/icons.svg"}],"js/views/searchPageView.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _icons = _interopRequireDefault(require("../../icons/icons.svg"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+function _classPrivateMethodInitSpec(obj, privateSet) { _checkPrivateRedeclaration(obj, privateSet); privateSet.add(obj); }
+
+function _classPrivateFieldInitSpec(obj, privateMap, value) { _checkPrivateRedeclaration(obj, privateMap); privateMap.set(obj, value); }
+
+function _checkPrivateRedeclaration(obj, privateCollection) { if (privateCollection.has(obj)) { throw new TypeError("Cannot initialize the same private elements twice on an object"); } }
+
+function _classPrivateMethodGet(receiver, privateSet, fn) { if (!privateSet.has(receiver)) { throw new TypeError("attempted to get private field on non-instance"); } return fn; }
+
+function _classPrivateFieldGet(receiver, privateMap) { var descriptor = _classExtractFieldDescriptor(receiver, privateMap, "get"); return _classApplyDescriptorGet(receiver, descriptor); }
+
+function _classExtractFieldDescriptor(receiver, privateMap, action) { if (!privateMap.has(receiver)) { throw new TypeError("attempted to " + action + " private field on non-instance"); } return privateMap.get(receiver); }
+
+function _classApplyDescriptorGet(receiver, descriptor) { if (descriptor.get) { return descriptor.get.call(receiver); } return descriptor.value; }
+
+var _parentElement = /*#__PURE__*/new WeakMap();
 
 var _generateMarkup = /*#__PURE__*/new WeakSet();
 
@@ -16311,8 +16444,6 @@ var SearchPageView = /*#__PURE__*/function () {
     _classCallCheck(this, SearchPageView);
 
     _classPrivateMethodInitSpec(this, _generateMarkup);
-
-    _classPrivateMethodInitSpec(this, _renderSearchInfo);
 
     _classPrivateFieldInitSpec(this, _parentElement, {
       writable: true,
@@ -16329,12 +16460,21 @@ var SearchPageView = /*#__PURE__*/function () {
       _classPrivateFieldGet(this, _parentElement).querySelector('.results__container').insertAdjacentHTML('beforeend', spinner);
     }
   }, {
+    key: "renderPageTitle",
+    value: function renderPageTitle(results) {
+      document.title = "FoodMojo | Showing ".concat(results.results, " results for ").concat(results.query);
+    }
+  }, {
+    key: "renderSearchInfo",
+    value: function renderSearchInfo(results) {
+      _classPrivateFieldGet(this, _parentElement).querySelector('.results__heading').innerHTML = '';
+      var html = "\n      <h2 class=\"heading--primary\">You searched for: <span class=\"results__searched\">".concat(results.query, "</span></h2>\n      <p class=\"results__count mg-1\">\n        Total results: <span class=\"results__count--number\">").concat(results.results, "</span>\n      </p>\n    ");
+
+      _classPrivateFieldGet(this, _parentElement).querySelector('.results__heading').insertAdjacentHTML('beforeend', html);
+    }
+  }, {
     key: "renderResults",
     value: function renderResults(results) {
-      document.title = "FoodMojo | Showing ".concat(results.results, " results for ").concat(results.query);
-
-      _classPrivateMethodGet(this, _renderSearchInfo, _renderSearchInfo2).call(this, results);
-
       _classPrivateFieldGet(this, _parentElement).querySelector('.results__container').innerHTML = '';
 
       _classPrivateFieldGet(this, _parentElement).querySelector('.results__container').insertAdjacentHTML('beforeend', _classPrivateMethodGet(this, _generateMarkup, _generateMarkup2).call(this, results));
@@ -16343,13 +16483,6 @@ var SearchPageView = /*#__PURE__*/function () {
 
   return SearchPageView;
 }();
-
-function _renderSearchInfo2(results) {
-  _classPrivateFieldGet(this, _parentElement).querySelector('.results__heading').innerHTML = '';
-  var html = "\n      <h2 class=\"heading--primary\">You searched for: <span class=\"results__searched\">".concat(results.query, "</span></h2>\n      <p class=\"results__count mg-1\">\n        Total results: <span class=\"results__count--number\">").concat(results.results, "</span>\n      </p>\n    ");
-
-  _classPrivateFieldGet(this, _parentElement).querySelector('.results__heading').insertAdjacentHTML('beforeend', html);
-}
 
 function _generateMarkup2(results) {
   return results.recipes.map(function (recipe) {
@@ -16368,6 +16501,8 @@ require("core-js/stable");
 var modal = _interopRequireWildcard(require("./modal"));
 
 var _htmlView = _interopRequireDefault(require("./views/htmlView"));
+
+var _paginationView = _interopRequireDefault(require("./views/paginationView"));
 
 var _searchPageView = _interopRequireDefault(require("./views/searchPageView"));
 
@@ -16400,8 +16535,7 @@ var controlThemeOnLoad = function controlThemeOnLoad() {
 
 var controlSearchPageResults = /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
-    var query, queryResults, _queryResults;
-
+    var query, queryResults, requiredRecipes;
     return regeneratorRuntime.wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
@@ -16411,44 +16545,44 @@ var controlSearchPageResults = /*#__PURE__*/function () {
             _searchPageView.default.renderSpinner();
 
             query = new URL(window.location.href).searchParams.get('query');
+            _context.next = 5;
+            return modal.loadQueryResults(query);
+
+          case 5:
             queryResults = modal.state.allLoadedContent.find(function (results) {
               return results.query === query;
             });
 
-            if (queryResults) {
-              _context.next = 10;
-              break;
-            }
+            _searchPageView.default.renderPageTitle(queryResults);
 
-            _context.next = 7;
-            return modal.loadQueryResults(query);
+            _searchPageView.default.renderSearchInfo(queryResults); // searchPageView.renderResults(queryResults);
 
-          case 7:
-            _queryResults = modal.state.allLoadedContent.find(function (results) {
-              return results.query === query;
-            });
 
-            _searchPageView.default.renderResults(_queryResults);
-
-            return _context.abrupt("return");
+            _context.next = 10;
+            return modal.loadSearchResultsPerPage(query);
 
           case 10:
-            _searchPageView.default.renderResults(queryResults);
+            requiredRecipes = _context.sent;
+            console.log(requiredRecipes);
 
-            _context.next = 16;
+            _searchPageView.default.renderResults(requiredRecipes);
+
+            _paginationView.default.renderButtons(modal.state.search, queryResults.recipes);
+
+            _context.next = 19;
             break;
 
-          case 13:
-            _context.prev = 13;
+          case 16:
+            _context.prev = 16;
             _context.t0 = _context["catch"](0);
             console.log(_context.t0);
 
-          case 16:
+          case 19:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[0, 13]]);
+    }, _callee, null, [[0, 16]]);
   }));
 
   return function controlSearchPageResults() {
@@ -16456,17 +16590,74 @@ var controlSearchPageResults = /*#__PURE__*/function () {
   };
 }();
 
-var init = function init() {
-  controlLocalStorageData();
-  controlUserNetworkStatus();
-  controlThemeOnLoad();
-  controlSearchPageResults();
+var controlPagination = /*#__PURE__*/function () {
+  var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(pageNum) {
+    var query, queryResults;
+    return regeneratorRuntime.wrap(function _callee2$(_context2) {
+      while (1) {
+        switch (_context2.prev = _context2.next) {
+          case 0:
+            query = new URL(window.location.href).searchParams.get('query');
+            queryResults = modal.state.allLoadedContent.find(function (results) {
+              return results.query === query;
+            });
+            _context2.t0 = _searchPageView.default;
+            _context2.next = 5;
+            return modal.loadSearchResultsPerPage(query, pageNum);
 
-  _htmlView.default.changeTheme(controlThemeChange);
-};
+          case 5:
+            _context2.t1 = _context2.sent;
+
+            _context2.t0.renderResults.call(_context2.t0, _context2.t1);
+
+            _paginationView.default.renderButtons(modal.state.search, queryResults.recipes);
+
+          case 8:
+          case "end":
+            return _context2.stop();
+        }
+      }
+    }, _callee2);
+  }));
+
+  return function controlPagination(_x) {
+    return _ref2.apply(this, arguments);
+  };
+}();
+
+var init = /*#__PURE__*/function () {
+  var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3() {
+    return regeneratorRuntime.wrap(function _callee3$(_context3) {
+      while (1) {
+        switch (_context3.prev = _context3.next) {
+          case 0:
+            controlLocalStorageData();
+            controlUserNetworkStatus();
+            controlThemeOnLoad();
+            controlSearchPageResults();
+
+            _htmlView.default.changeTheme(controlThemeChange);
+
+            _paginationView.default.addHandlerClick(controlPagination); // test
+            // console.log(await modal.loadSearchResultsPerPage('pineapple', 1));
+            // console.log(await modal.loadSearchResultsPerPage('pineapple', 2));
+
+
+          case 6:
+          case "end":
+            return _context3.stop();
+        }
+      }
+    }, _callee3);
+  }));
+
+  return function init() {
+    return _ref3.apply(this, arguments);
+  };
+}();
 
 init();
-},{"core-js/stable":"../node_modules/core-js/stable/index.js","./modal":"js/modal.js","./views/htmlView":"js/views/htmlView.js","./views/searchPageView":"js/views/searchPageView.js"}],"../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"core-js/stable":"../node_modules/core-js/stable/index.js","./modal":"js/modal.js","./views/htmlView":"js/views/htmlView.js","./views/paginationView":"js/views/paginationView.js","./views/searchPageView":"js/views/searchPageView.js"}],"../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -16494,7 +16685,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "34359" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "35049" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

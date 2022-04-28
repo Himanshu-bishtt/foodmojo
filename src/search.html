@@ -16,7 +16,7 @@
       rel="stylesheet"
     />
 
-    <script defer type="module" src="js/searchController.js"></script>
+    <script defer src="js/searchController.js"></script>
     <link rel="stylesheet" href="sass/main.scss" />
 
     <link rel="shortcut icon" type="image/png" href="img/favicon.png" />
@@ -31,13 +31,13 @@
         <div class="results__container mg-8"></div>
 
         <div class="results__pagination">
-          <button class="btn pagination__btn--prev">
+          <button class="btn pagination__btn--prev" data-go-to="1">
             <svg class="search__icon">
               <use href="icons/icons.svg#icon-arrow-left"></use>
             </svg>
             <span>Page 1</span>
           </button>
-          <button class="btn pagination__btn--next">
+          <button class="btn pagination__btn--next" data-go-to="3">
             <span>Page 3</span>
             <svg class="search__icon">
               <use href="icons/icons.svg#icon-arrow-right"></use>
