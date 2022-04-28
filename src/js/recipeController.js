@@ -40,8 +40,6 @@ const controlUserLocation = async function () {
 
     // 3. Displaying user exact location on hero view
     heroView.renderUserLocation(modal.state.userLocation.userData.region);
-
-    console.log(modal);
   } catch (err) {
     // 4. Display error popup, if user denied location
     heroView.renderErrorPopup(`${err.message}. Please reset permission`);

@@ -17105,12 +17105,11 @@ var controlUserLocation = /*#__PURE__*/function () {
             // 3. Displaying user exact location on hero view
             _heroView.default.renderUserLocation(modal.state.userLocation.userData.region);
 
-            console.log(modal);
-            _context.next = 12;
+            _context.next = 11;
             break;
 
-          case 8:
-            _context.prev = 8;
+          case 7:
+            _context.prev = 7;
             _context.t0 = _context["catch"](0);
 
             // 4. Display error popup, if user denied location
@@ -17119,12 +17118,12 @@ var controlUserLocation = /*#__PURE__*/function () {
 
             _heroView.default.renderLocationErrorOnCancel();
 
-          case 12:
+          case 11:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[0, 8]]);
+    }, _callee, null, [[0, 7]]);
   }));
 
   return function controlUserLocation() {
@@ -17279,7 +17278,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "35049" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "39419" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

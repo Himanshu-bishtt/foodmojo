@@ -3,6 +3,10 @@ import icons from '../../icons/icons.svg';
 class SearchPageView {
   #parentElement = document.querySelector('.results');
 
+  scrollIntoSection() {
+    this.#parentElement.scrollIntoView();
+  }
+
   renderSpinner() {
     this.#parentElement.querySelector('.results__container').innerHTML = '';
 
