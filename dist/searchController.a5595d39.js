@@ -16408,6 +16408,15 @@ var HtmlView = /*#__PURE__*/function () {
       themePicker.value = theme === 'dark' ? 'dark' : 'light';
     }
   }, {
+    key: "clearAppData",
+    value: function clearAppData() {
+      _classPrivateFieldGet(this, _parentElement).querySelector('.btn__clear-data').addEventListener('click', function (e) {
+        e.preventDefault();
+        localStorage.removeItem('state');
+        window.location.href = '/index.html';
+      });
+    }
+  }, {
     key: "scrollToTop",
     value: function scrollToTop() {
       window.scrollTo(0, 0);
@@ -17015,6 +17024,8 @@ var init = /*#__PURE__*/function () {
 
             _htmlView.default.changeTheme(controlThemeChange);
 
+            _htmlView.default.clearAppData();
+
             _heroView.default.addHandlerLocation(controlUserLocation);
 
             _searchView.default.addHandlerSearch(controlSearchResults);
@@ -17024,7 +17035,7 @@ var init = /*#__PURE__*/function () {
             // console.log(await modal.loadSearchResultsPerPage('pineapple', 2));
 
 
-          case 10:
+          case 11:
           case "end":
             return _context5.stop();
         }
@@ -17066,7 +17077,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "39419" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "37391" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -136,6 +136,7 @@ const init = async function () {
   controlSearchPageResults();
 
   htmlView.changeTheme(controlThemeChange);
+  htmlView.clearAppData();
   heroView.addHandlerLocation(controlUserLocation);
   searchView.addHandlerSearch(controlSearchResults);
   paginationView.addHandlerClick(controlPagination);

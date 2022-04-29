@@ -16539,6 +16539,15 @@ var HtmlView = /*#__PURE__*/function () {
       themePicker.value = theme === 'dark' ? 'dark' : 'light';
     }
   }, {
+    key: "clearAppData",
+    value: function clearAppData() {
+      _classPrivateFieldGet(this, _parentElement).querySelector('.btn__clear-data').addEventListener('click', function (e) {
+        e.preventDefault();
+        localStorage.removeItem('state');
+        window.location.href = '/index.html';
+      });
+    }
+  }, {
     key: "scrollToTop",
     value: function scrollToTop() {
       window.scrollTo(0, 0);
@@ -16777,6 +16786,8 @@ exports.default = _default;
 'use strict';
 
 require("core-js/stable");
+
+require("regenerator-runtime");
 
 var modal = _interopRequireWildcard(require("./modal"));
 
@@ -17051,6 +17062,8 @@ var init = function init() {
 
   _htmlView.default.changeTheme(controlThemeChange);
 
+  _htmlView.default.clearAppData();
+
   _recipeSectionView.default.addHandlerTabs(controlRecipeSection, modal.state.recipeTabs);
 };
 
@@ -17063,7 +17076,7 @@ init(); // document
 //     suggestionBox.style.transform = 'translateY(2rem)';
 //     suggestionBox.style.opacity = '0';
 //   });
-},{"core-js/stable":"../node_modules/core-js/stable/index.js","./modal":"js/modal.js","./views/heroView":"js/views/heroView.js","./views/searchView":"js/views/searchView.js","./views/htmlView":"js/views/htmlView.js","./views/galleryView":"js/views/galleryView.js","./views/recipeSectionView":"js/views/recipeSectionView.js","./helper":"js/helper.js"}],"../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"core-js/stable":"../node_modules/core-js/stable/index.js","regenerator-runtime":"../node_modules/regenerator-runtime/runtime.js","./modal":"js/modal.js","./views/heroView":"js/views/heroView.js","./views/searchView":"js/views/searchView.js","./views/htmlView":"js/views/htmlView.js","./views/galleryView":"js/views/galleryView.js","./views/recipeSectionView":"js/views/recipeSectionView.js","./helper":"js/helper.js"}],"../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -17091,7 +17104,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "39419" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "37391" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

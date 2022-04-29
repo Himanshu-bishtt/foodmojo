@@ -35,13 +35,15 @@
   }
 
   .btn__language select,
-  .btn__theme select {
+  .btn__theme select,
+  .btn__clear-data {
     padding: 0.3rem 0.5rem;
     font-size: 1.5rem;
     margin: 0rem 0.5rem;
     border-radius: 5px;
     background-color: #fff;
     border: 1px solid #ddd;
+    font-weight: bold;
     color: $color-dark--1;
     cursor: pointer;
   }

@@ -1,13 +1,14 @@
 {
   "name": "foodmojo",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Foodmojo is a site for food lover. Discover the best food, recipes and ingredients. Get daily recipe recommendations and more.",
   "default": "index.html",
   "scripts": {
     "start": "parcel index.html",
     "build": "parcel build src/index.html --no-minify -d output",
     "commit": "git-cz",
-    "release": "standard-version"
+    "release": "standard-version",
+    "sha": "git rev-parse --short HEAD > version"
   },
   "author": "Himanshu Bisht",
   "license": "ISC",
@@ -23,6 +24,7 @@
   "dependencies": {
     "core-js": "^3.6.5",
     "fractional": "^1.0.0",
+    "git-last-commit": "^1.0.1",
     "lodash-es": "^4.17.21",
     "regenerator-runtime": "^0.13.7"
   },

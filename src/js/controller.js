@@ -1,6 +1,7 @@
 'use strict';
 
 import 'core-js/stable';
+import 'regenerator-runtime';
 
 import * as modal from './modal';
 import heroView from './views/heroView';
@@ -158,6 +159,7 @@ const init = function () {
   searchView.addHandlerSearch(controlSearchResults);
   heroView.addHandlerLocation(controlUserLocation);
   htmlView.changeTheme(controlThemeChange);
+  htmlView.clearAppData();
   recipeSectionView.addHandlerTabs(
     controlRecipeSection,
     modal.state.recipeTabs

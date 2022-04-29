@@ -104,6 +104,7 @@ const init = function () {
   controlRecipePage();
 
   htmlView.changeTheme(controlThemeChange);
+  htmlView.clearAppData();
   heroView.addHandlerLocation(controlUserLocation);
   searchView.addHandlerSearch(controlSearchResults);
 };

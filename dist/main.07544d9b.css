@@ -133,13 +133,15 @@ select {
   align-items: center;
 }
 .footer__content .btn__language select,
-.footer__content .btn__theme select {
+.footer__content .btn__theme select,
+.footer__content .btn__clear-data {
   padding: 0.3rem 0.5rem;
   font-size: 1.5rem;
   margin: 0rem 0.5rem;
   border-radius: 5px;
   background-color: #fff;
   border: 1px solid #ddd;
+  font-weight: bold;
   color: #333;
   cursor: pointer;
 }
@@ -280,7 +282,7 @@ select {
 }
 @media only screen and (max-width: 600px) {
   .hero {
-    height: 60vh;
+    height: 30vh;
   }
 }
 .hero__content {

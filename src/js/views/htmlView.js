@@ -38,6 +38,16 @@ class HtmlView {
     themePicker.value = theme === 'dark' ? 'dark' : 'light';
   }
 
+  clearAppData() {
+    this.#parentElement
+      .querySelector('.btn__clear-data')
+      .addEventListener('click', function (e) {
+        e.preventDefault();
+        localStorage.removeItem('state');
+        window.location.href = '/index.html';
+      });
+  }
+
   scrollToTop() {
     window.scrollTo(0, 0);
   }
