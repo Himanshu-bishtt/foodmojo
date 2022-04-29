@@ -1,6 +1,6 @@
 {
   "name": "foodmojo",
-  "version": "3.0.0",
+  "version": "1.1.1",
   "description": "Foodmojo is a site for food lover. Discover the best food, recipes and ingredients. Get daily recipe recommendations and more.",
   "default": "index.html",
   "scripts": {
