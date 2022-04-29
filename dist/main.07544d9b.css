@@ -306,7 +306,7 @@ select {
 }
 @media only screen and (max-width: 600px) {
   .hero__content--heading {
-    font-size: 7rem;
+    font-size: 6rem;
   }
 }
 .hero__content--heading:hover {
@@ -498,6 +498,11 @@ select {
   height: 30rem;
   position: relative;
   transform-origin: top;
+}
+@media only screen and (max-width: 600px) {
+  .recipe__fig {
+    height: 20rem;
+  }
 }
 .recipe__fig::before {
   content: "";
