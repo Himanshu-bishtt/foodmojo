@@ -16646,8 +16646,7 @@ var PaginationView = /*#__PURE__*/function () {
 
 function _generateMarkup2(data, results) {
   var curPage = data.page;
-  var numPages = Math.ceil(results.length / data.resultsPerPage);
-  console.log("curPage: ".concat(curPage, ", numPages: ").concat(numPages)); // Page 1, and there are other pages
+  var numPages = Math.ceil(results.length / data.resultsPerPage); // Page 1, and there are other pages
 
   if (curPage === 1 && numPages > 1) {
     return "\n      <button data-go-to=\"".concat(curPage + 1, "\" class=\"btn pagination__btn--next\">\n        <span>Page ").concat(curPage + 1, "</span>\n        <svg class=\"search__icon\">\n          <use href=\"").concat(_icons.default, "#icon-arrow-right\"></use>\n        </svg>\n      </button>");
@@ -16920,14 +16919,16 @@ var controlSearchPageResults = /*#__PURE__*/function () {
         switch (_context3.prev = _context3.next) {
           case 0:
             _context3.prev = 0;
+            // Resetting page number to 1
+            modal.state.search.page = 1;
 
             _searchPageView.default.renderSpinner();
 
             query = new URL(window.location.href).searchParams.get('query');
-            _context3.next = 5;
+            _context3.next = 6;
             return modal.loadQueryResults(query);
 
-          case 5:
+          case 6:
             queryResults = modal.state.allLoadedContent.find(function (results) {
               return results.query === query;
             });
@@ -16936,12 +16937,11 @@ var controlSearchPageResults = /*#__PURE__*/function () {
 
             _searchPageView.default.renderSearchInfo(queryResults);
 
-            _context3.next = 10;
+            _context3.next = 11;
             return modal.loadSearchResultsPerPage(query);
 
-          case 10:
+          case 11:
             requiredRecipes = _context3.sent;
-            console.log(requiredRecipes);
 
             _searchPageView.default.renderResults(requiredRecipes);
 
@@ -17077,7 +17077,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "37391" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "37221" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

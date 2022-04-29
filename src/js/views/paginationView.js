@@ -26,8 +26,6 @@ class PaginationView {
     const curPage = data.page;
     const numPages = Math.ceil(results.length / data.resultsPerPage);
 
-    console.log(`curPage: ${curPage}, numPages: ${numPages}`);
-
     // Page 1, and there are other pages
     if (curPage === 1 && numPages > 1) {
       return `

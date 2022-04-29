@@ -6,9 +6,6 @@
 [data-theme=dark] .heading--teritary {
   text-transform: capitalize;
 }
-[data-theme=dark] .btn {
-  color: #333;
-}
 [data-theme=dark] input {
   color: #333;
 }
@@ -687,7 +684,8 @@ select {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #333;
+  background-color: #333;
+  color: #f3f3f3;
   box-shadow: 0rem 1rem 1rem rgba(0, 0, 0, 0.1);
 }
 .results__pagination button:hover {
@@ -700,7 +698,7 @@ select {
 .results__pagination .search__icon {
   height: 2rem;
   width: 2rem;
-  fill: #333;
+  fill: #f3f3f3;
   transition: all 0.5s;
 }
 .results__pagination span {

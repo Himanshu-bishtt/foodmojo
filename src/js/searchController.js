@@ -80,6 +80,9 @@ const controlSearchResults = async function () {
 
 const controlSearchPageResults = async function () {
   try {
+    // Resetting page number to 1
+    modal.state.search.page = 1;
+
     searchPageView.renderSpinner();
 
     const query = new URL(window.location.href).searchParams.get('query');
@@ -95,8 +98,6 @@ const controlSearchPageResults = async function () {
     searchPageView.renderSearchInfo(queryResults);
 
     const requiredRecipes = await modal.loadSearchResultsPerPage(query);
-
-    console.log(requiredRecipes);
 
     searchPageView.renderResults(requiredRecipes);
 

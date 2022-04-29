@@ -82,7 +82,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    color: $color-dark--1;
+    background-color: $color-dark--1;
+    color: $color-light--1;
     box-shadow: 0rem 1rem 1rem rgba(0, 0, 0, 0.1);
 
     &:hover {
@@ -98,7 +99,7 @@
   .search__icon {
     height: 2rem;
     width: 2rem;
-    fill: $color-dark--1;
+    fill: $color-light--1;
     transition: all 0.5s;
   }
 
