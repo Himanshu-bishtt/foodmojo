@@ -12,6 +12,15 @@ class HtmlView {
     });
   }
 
+  changeThemeOnUserPreference() {
+    window
+      .matchMedia('(prefers-color-scheme: light)')
+      .addEventListener('change', function (e) {
+        const theme = e.matches ? 'light' : 'dark';
+        this.#parentElement.setAttribute('data-theme', theme);
+      });
+  }
+
   renderErrorOnOffline() {
     window.addEventListener('online', this.#updateOnlineStatus.bind(this));
     window.addEventListener('offline', this.#updateOnlineStatus.bind(this));

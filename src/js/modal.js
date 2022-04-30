@@ -24,7 +24,7 @@ export const state = {
   recipeTabsContent: [],
   userLocation: {},
   recommenedRecipes: [],
-  theme: 'light',
+  theme: '',
 };
 
 export const loadTheme = function (th) {

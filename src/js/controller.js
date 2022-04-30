@@ -36,6 +36,10 @@ const controlThemeOnLoad = function () {
   htmlView.renderSavedTheme(modal.state.theme);
 };
 
+const controlThemeOnUserPreference = function () {
+  htmlView.changeThemeOnUserPreference();
+};
+
 const controlUserLocationOnLoad = function () {
   // 1. Retreving region's from userLocation in modal
   const region = modal.state.userLocation.userData?.region;
@@ -147,6 +151,7 @@ const init = function () {
   controlUserNetworkStatus();
   controlHeroView();
   controlThemeOnLoad();
+  controlThemeOnUserPreference();
   controlUserLocationOnLoad();
   controlRecommendedRecipes();
   controlRecipeSectionOnLoad();

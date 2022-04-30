@@ -15847,7 +15847,7 @@ var state = {
   recipeTabsContent: [],
   userLocation: {},
   recommenedRecipes: [],
-  theme: 'light'
+  theme: ''
 };
 exports.state = state;
 
@@ -16524,6 +16524,15 @@ var HtmlView = /*#__PURE__*/function () {
       });
     }
   }, {
+    key: "changeThemeOnUserPreference",
+    value: function changeThemeOnUserPreference() {
+      window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', function (e) {
+        var theme = e.matches ? 'light' : 'dark';
+
+        _classPrivateFieldGet(this, _parentElement).setAttribute('data-theme', theme);
+      });
+    }
+  }, {
     key: "renderErrorOnOffline",
     value: function renderErrorOnOffline() {
       window.addEventListener('online', _classPrivateMethodGet(this, _updateOnlineStatus, _updateOnlineStatus2).bind(this));
@@ -16838,6 +16847,10 @@ var controlThemeOnLoad = function controlThemeOnLoad() {
   _htmlView.default.renderSavedTheme(modal.state.theme);
 };
 
+var controlThemeOnUserPreference = function controlThemeOnUserPreference() {
+  _htmlView.default.changeThemeOnUserPreference();
+};
+
 var controlUserLocationOnLoad = function controlUserLocationOnLoad() {
   var _modal$state$userLoca;
 
@@ -17049,6 +17062,7 @@ var init = function init() {
   controlUserNetworkStatus();
   controlHeroView();
   controlThemeOnLoad();
+  controlThemeOnUserPreference();
   controlUserLocationOnLoad();
   controlRecommendedRecipes();
   controlRecipeSectionOnLoad();
@@ -17104,7 +17118,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "37221" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "34465" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
